@@ -1,0 +1,14 @@
+{
+    "name": "bibliotecamatematica",
+    "version": "1.0.0",
+    "description": "Biblioteca de matematica com algumas funções para facilitar calculos",
+    "publisher": "Gabriel Logan",
+    "main": "matematica.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "type": "module",
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
