@@ -1,3 +1,3 @@
 import Calcula from "./matematica.js"
 
-console.log(Calcula.somatorio(2))
+console.log(Calcula.fatorial(4))

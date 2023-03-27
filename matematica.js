@@ -1,33 +1,48 @@
 class Calculadora {
-    constructor() {
-        this.valorVasio = 0 // Valor vasio para iniciar o somatorio
-    }
+    constructor() {}
 
-    fatorial(valorParaFatoriar) {
-        if (valorParaFatoriar === 0) {
+    fatorial(valorParaCalcular) {
+        if (valorParaCalcular === 0) {
             return 1; // Fatorial de zero é 1
-        } else {
-            let resultado = 1;
-            for (let i = 1; i <= valorParaFatoriar; i++) {
-                resultado *= i;
-            }
-            return resultado; // Retorna o valor do fatorial
         }
+
+        let resultado = 1;
+        for (let i = 1; i <= valorParaCalcular; i++) {
+            resultado *= i;
+        }
+
+        return resultado; // Retorna o valor do fatorial
     }
 
-    somatorio(x) { // Valor da variavel X se tiver
-        const n = 23 // Valor An para soma parcial
-        const inicioSomatorio = 0 // Valor inicial do somatorio | Atenção com
-            // indeterminações
+    raizQuadrada(valorParaCalcular) {
+        return valorParaCalcular ** (1 / 2)
+    }
 
-        for (let k = inicioSomatorio; k < n + 1; k++) {
-            const serie = ((-1) ** (k) * x ** (2 * k)) / (this.fatorial(2 * k)) // Aqui você passa a função
-            this.valorVasio += serie // Soma a serie de acordo com o valor de n
+    raizCubica(valorParaCalcular) {
+        return valorParaCalcular ** (1 / 3)
+    }
+
+    fatorar(valorParaCalcular) {
+
+        if (typeof valorParaCalcular !== 'number') return console.log('Isso não é um numero inteiro');
+
+        const A = [];
+
+        for (let y = 2; y < valorParaCalcular; y++) {
+            while (valorParaCalcular % y === 0) {
+                valorParaCalcular /= y;
+                A.push(y);
+            }
         }
-        return this.valorVasio // Retorna a soma parcial da serie
+
+        if (A.length === 0) {
+            A.push(valorParaCalcular);
+        }
+
+        return A;
     }
 }
 
-const startCalculadora = new Calculadora() // Crie um executor da classe
+const startCalculadora = new Calculadora(); // Cria um executor da classe
 
-export default startCalculadora
+export default startCalculadora;
