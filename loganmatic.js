@@ -2,7 +2,7 @@
 /**
  * @author - Gabriel Logan
  * @description - Programa Criado como uma biblioteca de matematica em portugues
- * @example - import Matematica from "./matematica.js" 
+ * @example - import Matematica from "./loganmatic.js" 
  * console.log(Matematica.Pi)
  */
 class Calculadora {
@@ -179,27 +179,6 @@ class Calculadora {
         }
     }
 
-    /**
-     * Método para calcular o ln
-     * @param {number} valorParaCalcular - O número a ser calculado
-     * @example IMPORTANTE !!!!
-     * @example ln não pode conter valores <= 0
-     * @description Essa função calcula valores para ln(x+1)
-     * @example Matematica.ln(0)
-     * @return {number} - O resultado = 0 pois o ln 1 = 0 
-     */   
-    ln(valorParaCalcular) { // Valor da variavel X se tiver
-        const n = 100 // Valor An para soma parcial
-        
-        const inicioSomatorio = 1 // Valor inicial do somatorio
-        let valorVasio = 0
-        for (let k = inicioSomatorio; k < n + 1; k++) {
-            const serie = (((-1)**(k+1))*((Number(valorParaCalcular))**k))/(k)
-            valorVasio += serie // Soma a serie de acordo com o valor de n
-        }
-        return valorVasio // Retorna a soma parcial da serie
-    }
-
 
     /**
      * Método para calcular o numero aleatorio entre 2 numeros
@@ -211,10 +190,72 @@ class Calculadora {
         var timestamp = Date.now();
         return min + (timestamp % (max - min + 1));
     }
+
+    /**
+     * Método para calcular a raiz de um polinomio de grau 1
+     * @param {a: number, b: number} valorParaCalcular - O número a ser calculado
+     * @example Matematica.raizDePrimeiroGrau(a, b) 
+     * 
+     * a = termo que acompanha o (x) 
+     * e b = termo independente
+     * 
+     * EX: ax + b = 0 ou 2x + 3 = 0 | a=2 e b=3
+     * 
+     * Matematica.raizDePrimeiroGrau(2, 3) 
+     * @return {number} - O resultado = x = -3/2 = -1,5
+     */      
+    raizDePrimeiroGrau(a, b){
+        const numeroA = Number(a)
+        const numeroB = Number(b)
+
+        if(numeroA === 0){
+            return (`Esta equação é uma constante de valor = ${numeroB}`)
+        }else{
+            const raiz = -numeroB/numeroA
+            return raiz
+        }
+    }
+    
+    /**
+     * Método para calcular a raiz de um polinomio de grau 1
+     * @param {a: number, b: number, b: number} valorParaCalcular - O número a ser calculado
+     * @example Matematica.raizDePrimeiroGrau(a, b, c) 
+     * 
+     * a = termo que acompanha o (x^2) 
+     * b = termo que acompanha o (x)
+     * c = termo independente
+     * 
+     * EX: a(x^2) + b(x) + c = 0 
+     *     
+     *     1(x^2) + 2(x) - 3 = 0 | a = 1, b = 2, c = -3 
+     * 
+     * Matematica.raizDeSegundoGrau(1, 2, -3) 
+     * @return {array} - O resultado = [1, -3]
+     */    
+    raizDeSegundoGrau(a, b, c){
+        const numeroA = Number(a)
+        const numeroB = Number(b)
+        const numeroC = Number(c)
+
+        if(numeroA === 0 && numeroB === 0){
+            return (`Esta equação é uma constante de valor = ${numeroC}`)
+        }else{
+            const raiz1 = (-numeroB+(this.raizQuadrada(b**2-(4*numeroA*numeroC))))/(2*numeroA)
+            const raiz2 = (-numeroB-(this.raizQuadrada(b**2-(4*numeroA*numeroC))))/(2*numeroA)
+
+            if(raiz1 === raiz2){
+                return [raiz1, 'Possui apenas 1 raiz real']
+            }else{
+                return [raiz1, raiz2]
+            }
+        }
+
+    }
+
 }
 
 // Cria uma instância da classe Calculadora
 const startCalculadora = new Calculadora();
 
 // Exporta a instância da classe Calculadora
-export default startCalculadora;
+module.exports = startCalculadora;
