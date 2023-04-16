@@ -1,7 +1,7 @@
 # Math_Lib_Js
 Biblioteca pessoal criada em JS para uso comum. Em desenvolvimento... 
 
-para usar como pacote NPM so usar npm i loganmatic
+para usar como pacote NPM so usar **npm i loganmatic**
 
 Para usar baixe o arquivo json e o arquivo matematica.js
 
