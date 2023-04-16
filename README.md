@@ -5,6 +5,7 @@ Para usar baixe o arquivo json e o arquivo matematica.js
 
 e para importar utilize **import Calcula from "./matematica.js"** se o arquivo estiver no mesmo diretorio
 
+Se acharem erros no codigo, me enviem por favor, sera de grande ajuda !!!
 
 exemplo de uso: **console.log(Calcula.fatorial(4))**
 
