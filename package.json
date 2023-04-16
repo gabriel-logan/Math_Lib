@@ -1,14 +1,21 @@
 {
-    "name": "bibliotecamatematica",
-    "version": "1.0.0",
+    "name": "loganmatic",
+    "version": "1.0.3",
     "description": "Biblioteca de matematica com algumas funções para facilitar calculos",
     "publisher": "Gabriel Logan",
-    "main": "matematica.js",
+    "main": "loganmatic.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "type": "module",
-    "keywords": [],
-    "author": "Gabriel Logan",
+    "keywords": [
+        "matemática",
+        "cálculo",
+        "funções",
+        "biblioteca"
+    ],
+    "author": {
+        "name": "Gabriel Logan",
+        "url": "https://github.com/gabriel-logan/Math_Lib_Js"
+    },
     "license": "ISC"
 }
