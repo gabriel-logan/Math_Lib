@@ -1,3 +1,3 @@
-import Matematica from "./matematica.js"
+const Matematica = require('./loganmatic')
 
 console.log(Matematica.NumeroEuler) 
