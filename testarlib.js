@@ -1,3 +1,3 @@
-import Calcula from "./matematica.js"
+import Matematica from "./matematica.js"
 
-console.log(Calcula.fatorial(4))
+console.log(Matematica.NumeroEuler) 
