@@ -1,10 +1,13 @@
 # Math_Lib
 
+# Para informações detalhadas acesse: https://gabriel-logan.github.io/Math_Lib/
+# For detailed information visit: https://gabriel-logan.github.io/Math_Lib/
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Biblioteca Pessoal - Gabriel Lima</title>
+  <title>Biblioteca Pessoal - Gabriel Logan</title>
   <style>
     body {
       font-family: Arial, sans-serif;
