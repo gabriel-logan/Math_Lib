@@ -51,7 +51,7 @@
     <div id="pt-br" style="display: none;">
       <h1>Biblioteca pessoal criada em JavaScript e Python</h1>
       <p>para uso comum. Em desenvolvimento...</p>
-      <button onclick="changeLang()" class="change-language-btn">switch to english</button>
+      <button onclick="changeLang()" class="change-language-btn">Switch to english</button>
       <div class="section">
         <h2>JavaScript</h2>
         <p>Para usar como pacote NPM, execute o seguinte comando:</p>
