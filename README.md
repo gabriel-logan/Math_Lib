@@ -1,321 +1,216 @@
 # Math_Lib
 
-# Para informações detalhadas acesse: https://gabriel-logan.github.io/Math_Lib/
-# For detailed information visit: https://gabriel-logan.github.io/Math_Lib/
+# Para informações detalhadas acesse: 
+# For detailed information visit:
+**LINK**: https://gabriel-logan.github.io/Math_Lib/
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Biblioteca Pessoal - Gabriel Logan</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    h1 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-    p {
-      margin-top: 0;
-    }
-    code {
-      display: block;
-      background-color: #f4f4f4;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-    .section {
-      margin-top: 30px;
-    }
-    .change-language-btn {
-      background-color: #4CAF50;
-      border: none;
-      color: white;
-      padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background-color 0.3s ease;
-    }
-    .change-language-btn:hover {
-      background-color: #45a049;
-    }
-  </style>
-</head>
-  <body>
-    <div id="pt-br" style="display: none;">
-      <h1>Biblioteca pessoal criada em JavaScript e Python</h1>
-      <p>para uso comum. Em desenvolvimento...</p>
-      <button onclick="changeLang()" class="change-language-btn">Switch to english</button>
-      <div class="section">
-        <h2>JavaScript</h2>
-        <p>Para usar como pacote NPM, execute o seguinte comando:</p>
-        <code>npm i loganmatic</code>
-        <p>E para importar, utilize:</p>
-        <code>import Matematica from "loganmatic.js"</code>
-        <p>Ou</p>
-        <code>const Matematica = require("loganmatic.js");</code>
-        <p>Se o arquivo estiver no mesmo diretório</p>
-        <p>Exemplo de uso:</p>
-        <code>
-          console.log(Matematica.NumeroEuler);<br>
-          console.log(Matematica.fatorar(100));
-        </code>
-        <p>Retorno:</p>
-        <code>
-          2.7182818284590455<br>
-          [ 2, 2, 5, 5 ]
-        </code>
-        <div class="section">
-          <h2>Exemplo de Uso</h2>
-          <p>Se acharem erros no código, me enviem, por favor. Será de grande ajuda!</p>
-          <p>Exemplo de uso:</p>
-          <code>
-            console.log(Matematica.fatorial(4));<br>
-            console.log(Matematica.NumeroEuler);<br>
-            console.log(Matematica.fatorar(100));<br>
-            console.log(Matematica.Pi);<br>
-            console.log(Matematica.modulo(-4));<br>
-            console.log(Matematica.fatorial(4));<br>
-            console.log(Matematica.raizDePrimeiroGrau(2, 1));<br>
-            console.log(Matematica.raizDeSegundoGrau(1, 2, -3));<br>
-            console.log(Matematica.raizCubica(8));<br>
-            console.log(Matematica.raizQuadrada(9));<br>
-            console.log(Matematica.numeroAleatorioEntre(10, 20));<br>
-            console.log(Matematica.cosseno(0));<br>
-            console.log(Matematica.seno(Matematica.Pi));
-          </code>
-          <p>Retorna:</p>
-          <code>
-            2.7182818284590455<br>
-            [ 2, 2, 5, 5 ]<br>
-            3.141592653589793<br>
-            4<br>
-            24<br>
-            -0.5<br>
-            [ 1, -3 ]<br>
-            2<br>
-            3<br>
-            17<br>
-            1<br>
-            0
-          </code>
-        </div>
-      </div>
-      <div class="section">
-        <h2>Python</h2>
-        <p>Para usar como pacote PIP, execute o seguinte comando:</p>
-        <code>pip install loganmatic</code>
-        <p>E para importar, utilize:</p>
-        <code>from loganmatic import Calculadora</code>
-        <p>Exemplo de uso:</p>
-        <code>
-          Matematica = Calculadora()<br>
-          print(Matematica.NumeroEuler)<br>
-          print(Matematica.fatorar(100))
-        </code>
-        <p>Retorno:</p>
-        <code>
-          2.7182818284590455<br>
-          [2, 2, 5, 5]
-        </code>
-        <div class="section">
-          <h2>Exemplo de Uso em Python</h2>
-          <p>Exemplo de uso:</p>
-          <code>
-            print(Matematica.NumeroEuler)<br>
-            print(Matematica.fatorar(100))<br>
-            print(Matematica.Pi)<br>
-            print(Matematica.modulo(-4))<br>
-            print(Matematica.fatorial(4))<br>
-            print(Matematica.raiz_de_primeiro_grau(2, 1))<br>
-            print(Matematica.raizDeSegundoGrau(1, 2, -3))<br>
-            print(Matematica.raizCubica(8))<br>
-            print(Matematica.raizQuadrada(9))<br>
-            print(Matematica.numero_aleatorio_entre(10, 20))<br>
-            print(Matematica.cosseno(0))<br>
-            print(Matematica.seno(0))
-          </code>
-          <p>Retorna:</p>
-          <code>
-            2.7182818284590455<br>
-            [2, 2, 5, 5]<br>
-            3.141592653589793<br>
-            4<br>
-            24<br>
-            -0.5<br>
-            [1.0, -3.0]<br>
-            2.0<br>
-            3.0<br>
-            11<br>
-            1.0<br>
-            0
-          </code>
-          <p>Observação: As duas últimas linhas apresentam problemas para valores float.</p>
-        </div>        
-      </div>
-      <div class="section">
-        <h2>Funcionalidades</h2>
-        <p>A biblioteca calcula (atualmente) o valor de PI e do Número de Euler. Além disso, realiza as seguintes operações:</p>
-        <ul>
-          <li>Calcula funções: Seno, Cosseno</li>
-          <li>Fatora um número</li>
-          <li>Calcula o fatorial de um número</li>
-          <li>Calcula o módulo</li>
-          <li>Gera um número aleatório entre 2 números</li>
-          <li>Calcula raízes cúbicas e quadradas</li>
-          <li>Calcula as raízes de equações de primeiro e segundo grau</li>
-        </ul>
-      </div>
-      <div class="section">
-        <p>Feito por Gabriel Lima</p>
-      </div>
-    </div>
-    <div id="eng" style="display: block;">
-      <h1>Personal library created in JavaScript and Python</h1>
-      <p>for common use. Under development...</p>
-      <button onclick="changeLang()" class="change-language-btn">Mudar para português</button>
-      <div class="section">
-        <h2>JavaScript</h2>
-        <p>To use as an NPM package, execute the following command:</p>
-        <code>npm i loganmatic</code>
-        <p>And to import, use:</p>
-        <code>import Matematica from "loganmatic.js"</code>
-        <p>Or</p>
-        <code>const Matematica = require("loganmatic.js");</code>
-        <p>If the file is in the same directory</p>
-        <p>Usage example:</p>
-        <code>
-          console.log(Matematica.NumeroEuler);<br>
-          console.log(Matematica.fatorar(100));
-        </code>
-        <p>Returns:</p>
-        <code>
-          2.7182818284590455<br>
-          [ 2, 2, 5, 5 ]
-        </code>
-        <div class="section">
-          <h2>Usage Example</h2>
-          <p>If you find any errors in the code, please send them to me. It will be greatly appreciated!</p>
-          <p>Usage example:</p>
-          <code>
-            console.log(Matematica.fatorial(4));<br>
-            console.log(Matematica.NumeroEuler);<br>
-            console.log(Matematica.fatorar(100));<br>
-            console.log(Matematica.Pi);<br>
-            console.log(Matematica.modulo(-4));<br>
-            console.log(Matematica.fatorial(4));<br>
-            console.log(Matematica.raizDePrimeiroGrau(2, 1));<br>
-            console.log(Matematica.raizDeSegundoGrau(1, 2, -3));<br>
-            console.log(Matematica.raizCubica(8));<br>
-            console.log(Matematica.raizQuadrada(9));<br>
-            console.log(Matematica.numeroAleatorioEntre(10, 20));<br>
-            console.log(Matematica.cosseno(0));<br>
-            console.log(Matematica.seno(Matematica.Pi));
-          </code>
-          <p>Returns:</p>
-          <code>
-            2.7182818284590455<br>
-            [ 2, 2, 5, 5 ]<br>
-            3.141592653589793<br>
-            4<br>
-            24<br>
-            -0.5<br>
-            [ 1, -3 ]<br>
-            2<br>
-            3<br>
-            17<br>
-            1<br>
-            0
-          </code>
-        </div>
-      </div>
-      <div class="section">
-        <h2>Python</h2>
-        <p>To use as a PIP package, execute the following command:</p>
-        <code>pip install loganmatic</code>
-        <p>And to import, use:</p>
-        <code>from loganmatic import Calculadora</code>
-        <p>Usage example:</p>
-        <code>
-          Matematica = Calculadora()<br>
-          print(Matematica.NumeroEuler)<br>
-          print(Matematica.fatorar(100))
-        </code>
-        <p>Returns:</p>
-        <code>
-          2.7182818284590455<br>
-          [2, 2, 5, 5]
-        </code>
-        <div class="section">
-          <h2>Usage Example in Python</h2>
-          <p>Usage example:</p>
-          <code>
-            print(Matematica.NumeroEuler)<br>
-            print(Matematica.fatorar(100))<br>
-            print(Matematica.Pi)<br>
-            print(Matematica.modulo(-4))<br>
-            print(Matematica.fatorial(4))<br>
-            print(Matematica.raiz_de_primeiro_grau(2, 1))<br>
-            print(Matematica.raizDeSegundoGrau(1, 2, -3))<br>
-            print(Matematica.raizCubica(8))<br>
-            print(Matematica.raizQuadrada(9))<br>
-            print(Matematica.numero_aleatorio_entre(10, 20))<br>
-            print(Matematica.cosseno(0))<br>
-            print(Matematica.seno(0))
-          </code>
-          <p>Returns:</p>
-          <code>
-            2.7182818284590455<br>
-            [2, 2, 5, 5]<br>
-            3.141592653589793<br>
-            4<br>
-            24<br>
-            -0.5<br>
-            [1.0, -3.0]<br>
-            2.0<br>
-            3.0<br>
-            11<br>
-            1.0<br>
-            0
-          </code>
-          <p>Note: The last two lines have problems with float values.</p>
-        </div>
-      </div>
-      <div class="section">
-        <h2>Features</h2>
-        <p>The library calculates (currently) the value of PI and Euler's number. It also performs the following operations:</p>
-        <ul>
-          <li>Calculates functions: Sine, Cosine</li>
-          <li>Factors a number</li>
-          <li>Calculates the factorial of a number</li>
-          <li>Calculates the modulus</li>
-          <li>Generates a random number between two numbers</li>
-          <li>Calculates cubic and square roots</li>
-          <li>Calculates the roots of first and second-degree equations</li>
-        </ul>
-      </div>
-      <div class="section">
-        <p>Made by Gabriel Lima</p>
-      </div>
-    </div>
-    <script>
-      function changeLang(){
-        const eng = document.querySelector('#eng');
-        const ptBr = document.querySelector('#pt-br');
-        if (ptBr.style.display === 'none') {
-          ptBr.style.display = 'block';
-          eng.style.display = 'none';
-        } else {
-          eng.style.display = 'block';
-          ptBr.style.display = 'none';
-        }
-      }
-    </script>
-  </body>
-</html>
+**ENG**
+
+**!! JAVASCRIPT !!**
+
+Personal library created in JavaScript and Python for common use. In development...
+
+###################################################################
+
+To use as an NPM package, simply use npm i loganmatic.
+
+To import, use import Matematica from "loganmatic.js".
+
+Then, you can use it as follows:
+
+console.log(Matematica.NumeroEuler);
+console.log(Matematica.fatorar(100));
+
+If you are downloading the file, use:
+
+const Matematica = require("loganmatic.js");
+
+If the file is in the same directory.
+
+If you find any errors in the code, please send them to me. It will be of great help!
+
+Usage example:
+
+console.log(Matematica.fatorial(4));
+console.log(Matematica.NumeroEuler);
+console.log(Matematica.fatorar(100));
+console.log(Matematica.Pi);
+console.log(Matematica.modulo(-4));
+console.log(Matematica.fatorial(4));
+console.log(Matematica.raizDePrimeiroGrau(2, 1));
+console.log(Matematica.raizDeSegundoGrau(1,2,-3));
+console.log(Matematica.raizCubica(8));
+console.log(Matematica.raizQuadrada(9));
+console.log(Matematica.numeroAleatorioEntre(10, 20));
+console.log(Matematica.cosseno(0));
+console.log(Matematica.seno(Matematica.Pi));
+
+Output:
+2.7182818284590455
+[2, 2, 5, 5]
+3.141592653589793
+4
+24
+-0.5
+[1, -3]
+2
+3
+17
+1
+0
+
+###################################################################
+
+!! PYTHON !!
+
+To use as a PIP package, simply use pip install loganmatic.
+
+To import, use from loganmatic import Calculadora.
+
+Then, Matematica = Calculadora().
+
+Then, you can use it as follows:
+
+print(Matematica.NumeroEuler)
+print(Matematica.fatorar(100))
+print(Matematica.Pi)
+print(Matematica.modulo(-4))
+print(Matematica.fatorial(4))
+print(Matematica.raiz_de_primeiro_grau(2, 1))
+print(Matematica.raizDeSegundoGrau(1,2,-3))
+print(Matematica.raizCubica(8))
+print(Matematica.raizQuadrada(9))
+print(Matematica.numero_aleatorio_entre(10, 20))
+
+The last two have problems with float values:
+print(Matematica.cosseno(0))
+print(Matematica.seno(0))
+
+Output:
+2.7182818284590455
+[2, 2, 5, 5]
+3.141592653589793
+4
+24
+-0.5
+[1.0, -3.0]
+2.0
+3.0
+11
+1.0
+0
+
+########################################################
+
+The library calculates (currently) the values of PI and Euler's Number, calculates functions such as sine and cosine, factors a number, calculates the factorial of a number, computes the modulus, generates a random number between two given numbers, calculates cubic and square roots, and solves first and second-degree equations.
+
+Made by Gabriel Lima.
+
+
+#####################################################################
+
+**PT-BR**
+Biblioteca pessoal criada em JavaScript e Python para uso comum. Em desenvolvimento... 
+
+###################################################################
+
+** !! JAVASCRIPT !! **
+
+para usar como pacote NPM so usar **npm i loganmatic**
+
+e para importar utilize **import Matematica from "loganmatic.js"**
+
+depois somente utilizar 
+
+console.log(Matematica.NumeroEuler) 
+console.log(Matematica.fatorar(100))
+
+Se for baixar o arquivo use: 
+
+**const Matematica = require("loganmatic.js")** se o arquivo estiver no mesmo diretorio
+
+Se acharem erros no codigo, me enviem por favor, será de grande ajuda !!!
+
+exemplo de uso: **console.log(Matematica.fatorial(4))**
+
+console.log(Matematica.NumeroEuler) 
+console.log(Matematica.fatorar(100))
+console.log(Matematica.Pi)
+console.log(Matematica.modulo(-4))
+console.log(Matematica.fatorial(4))
+console.log(Matematica.raizDePrimeiroGrau(2, 1))
+console.log(Matematica.raizDeSegundoGrau(1,2,-3))
+console.log(Matematica.raizCubica(8))
+console.log(Matematica.raizQuadrada(9))
+console.log(Matematica.numeroAleatorioEntre(10, 20)) 
+console.log(Matematica.cosseno(0))
+console.log(Matematica.seno(Matematica.Pi))
+
+retorna: 
+
+2.7182818284590455
+[ 2, 2, 5, 5 ]
+3.141592653589793
+4
+24
+-0.5
+[ 1, -3 ]
+2
+3
+17
+1
+0
+
+###################################################################
+
+** !! PYTHON !! **
+
+para usar como pacote PIP so usar **pip install loganmatic**
+
+e para importar utilize **from loganmatic import Calculadora**
+
+depois **Matematica = Calculadora()**
+
+depois somente utilizar 
+
+print(Matematica.NumeroEuler)
+print(Matematica.fatorar(100))
+print(Matematica.Pi)
+print(Matematica.modulo(-4))
+print(Matematica.fatorial(4))
+print(Matematica.raiz_de_primeiro_grau(2, 1))
+print(Matematica.raizDeSegundoGrau(1,2,-3))
+print(Matematica.raizCubica(8))
+print(Matematica.raizQuadrada(9))
+print(Matematica.numero_aleatorio_entre(10, 20))
+
+# Essas duas ultimas estão com problema para valores float... 
+print(Matematica.cosseno(0))
+print(Matematica.seno(0))
+
+retorna: 
+
+2.7182818284590455
+[2, 2, 5, 5]
+3.141592653589793
+4
+24
+-0.5
+[1.0, -3.0]
+2.0
+3.0
+11
+1.0
+0
+
+########################################################
+
+A biblioteca calcula (atualmente) o valor de PI e do Numero de Euler ||
+Calcula Funções: Seno, Cosseno ||
+fatora um numero || 
+calcula o fatorial de um numero || 
+o modulo || 
+gera um numero aleatorio entre 2 numeros || 
+calcula raizes cubicas e quadrada e calcula as raizes de equações de primeiro e segundo grau
+
+Feito por **Gabriel Lima**
