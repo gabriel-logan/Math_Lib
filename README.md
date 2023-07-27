@@ -1,5 +1,11 @@
 # Math_Lib
 
+<p align="center">
+	<a href="https://www.buymeacoffee.com/gabriellogan" target="_blank">
+		<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" >
+	</a>
+</p>
+
 # Para informações detalhadas acesse: 
 # For detailed information visit:
 **LINK**: https://gabriel-logan.github.io/Math_Lib/
