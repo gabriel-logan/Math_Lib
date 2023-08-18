@@ -1,5 +1,8 @@
 # Math_Lib
 
+agora calcula raiz de terceiro grau...
+now calculates root of the third degree...
+
 <p align="center">
 	<a href="https://www.buymeacoffee.com/gabriellogan" target="_blank">
 		<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" >
@@ -151,6 +154,8 @@ console.log(Matematica.raizQuadrada(9))
 console.log(Matematica.numeroAleatorioEntre(10, 20)) 
 console.log(Matematica.cosseno(0))
 console.log(Matematica.seno(Matematica.Pi))
+console.log(Matematica.raizDeTerceiroGrau(1,2,-3,4))
+
 
 retorna: 
 
@@ -166,6 +171,7 @@ retorna:
 17
 1
 0
+Possui apenas 1 raiz real em X = -3.284277537306952
 
 ###################################################################
 
