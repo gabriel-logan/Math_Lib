@@ -18,7 +18,11 @@ now calculates root of the third degree...
 
 ```bash
 npm install loganmatic
+```
+
 or
+
+```bash
 yarn add install loganmatic
 ```
 
