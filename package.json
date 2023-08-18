@@ -17,6 +17,10 @@
         "name": "Gabriel Logan",
         "url": "https://github.com/gabriel-logan/Math_Lib_Js"
     },
+    "bugs": {
+        "url": "https://github.com/gabriel-logan/Math_Lib_Js/issues"
+      },
+    "homepage": "https://github.com/gabriel-logan/Math_Lib_Js#readme",
     "license": "ISC",
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^6.4.0",

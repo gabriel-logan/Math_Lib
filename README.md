@@ -12,6 +12,7 @@ now calculates root of the third degree...
 # Para informações detalhadas acesse: 
 # For detailed information visit:
 **DOCUMENTATION**: https://gabriel-logan.github.io/Math_Lib/
+**github**: https://github.com/gabriel-logan/Math_Lib_Js
 **NPM**: https://www.npmjs.com/package/loganmatic
 ### Installation
 
