@@ -251,6 +251,27 @@ class Calculadora {
         }
 
     }
+    raizDeTerceiroGrau(a, b, c, d){
+        const numeroA = Number(a)
+        const numeroB = Number(b)
+        const numeroC = Number(c)
+
+        console.log('oi')
+
+        if(numeroA === 0 && numeroB === 0){
+            return (`Esta equação é uma constante de valor = ${numeroC}`)
+        }else{
+            const raiz1 = (-numeroB+(this.raizQuadrada(b**2-(4*numeroA*numeroC))))/(2*numeroA)
+            const raiz2 = (-numeroB-(this.raizQuadrada(b**2-(4*numeroA*numeroC))))/(2*numeroA)
+
+            if(raiz1 === raiz2){
+                return [raiz1, 'Possui apenas 1 raiz real']
+            }else{
+                return [raiz1, raiz2]
+            }
+        }
+
+    }
 
 }
 
