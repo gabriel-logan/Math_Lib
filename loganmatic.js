@@ -38,7 +38,7 @@ class Calculadora {
 
     /**
      * Método para calcular o valor absoluto de um numero
-     * @param {number} valorParaCalcular - O número a ser calculado o modulo
+     * @param {number} numero - O número a ser calculado o modulo
      * @example Matematica.modulo(-4)
      * @return {number} - O resultado = 4
      */    
@@ -183,6 +183,8 @@ class Calculadora {
     /**
      * Método para calcular o numero aleatorio entre 2 numeros
      * @param {min: number, max: number} valorParaCalcular - O número a ser calculado
+     * @param {number} max 
+     * @param {number} min 
      * @example Matematica.numeroAleatorioEntre(10, 20)
      * @return {number} - O resultado = algum numero entre 10 e 20
      */  
@@ -193,7 +195,9 @@ class Calculadora {
 
     /**
      * Método para calcular a raiz de um polinomio de grau 1
-     * @param {a: number, b: number} valorParaCalcular - O número a ser calculado
+     * @param {a: number, b: number} valorParaCalcular - O número a ser 
+     * @param {number} a 
+     * @param {number} b 
      * @example Matematica.raizDePrimeiroGrau(a, b) 
      * 
      * a = termo que acompanha o (x) 
@@ -218,8 +222,11 @@ class Calculadora {
     
     /**
      * Método para calcular a raiz de um polinomio de grau 1
-     * @param {a: number, b: number, b: number} valorParaCalcular - O número a ser calculado
-     * @example Matematica.raizDePrimeiroGrau(a, b, c) 
+     * @param {a: number, b: number, c: number} valorParaCalcular - O número a ser calculado
+     * @param {number} a 
+     * @param {number} b
+     * @param {number} c
+     * @example Matematica.raizDeSegundoGrau(a, b, c) 
      * 
      * a = termo que acompanha o (x^2) 
      * b = termo que acompanha o (x)
@@ -251,6 +258,23 @@ class Calculadora {
         }
 
     }
+    /**
+     * Método para calcular a raiz de um polinomio de grau 1
+     * @param {number} a 
+     * @param {number} b
+     * @param {number} c
+     * @param {number} d
+     * @param {boolean} [aproxima=false] 
+     * @example Matematica.raizDeTerceiroGrau(a, b, c, d) 
+     * 
+     * a = termo que acompanha o (x^3) 
+     * b = termo que acompanha o (x^2)
+     * c = termo que acompanha o (x)
+     * d = termo independente
+     * 
+     * Matematica.raizDeTerceiroGrau(1, 2, -3, 5) 
+     * @return {string} - Possui apenas 1 raiz real em X = -3.344171229347796
+     */   
     raizDeTerceiroGrau(a=0, b=0, c=0, d=0, aproxima = false){
         const checkedSim = aproxima;
         const valorA = Number(a)

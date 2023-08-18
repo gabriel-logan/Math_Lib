@@ -237,4 +237,4 @@ function raizDeTerceiroGrau(a=0, b=0, c=0, d=0, aproxima = false){
     }
 }
 
-console.log(raizDeTerceiroGrau(1,0,-7,6))
+console.log(raizDeTerceiroGrau(1, 2, -3, 5))
