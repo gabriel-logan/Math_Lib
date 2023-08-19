@@ -7,21 +7,8 @@
  * console.log(Matematica.Pi)
  */
 class Calculadora {
-    // Construtor vazio
     constructor() {
-        /**
-        * Numero de Euler
-        * @example Matematica.NumeroEuler
-        * @return {number} - 2.7182818284590455...
-        * @author - Gabriel Logan
-        */
         this.NumeroEuler = this.crieEulerNumber();
-        /**
-        * Numero PI
-        * @example Matematica.Pi
-        * @return {number} - 3.14159265358979323...
-        */
-        // eslint-disable-next-line @typescript-eslint/no-loss-of-precision
         this.Pi = 3.1415926535897932384626433832795;
     }
     /**
@@ -133,7 +120,6 @@ class Calculadora {
      * @param {boolean} checkedSim
      */
     dispositivoBrioRufinho(valorA, valorB, valorC, valorD, raizes, checkedSim) {
-        // irei achar os coeficientes de grau 2
         const primeiro = valorA * raizes[0];
         const segundoCoeficiente = Number(primeiro) + Number(valorB);
         const segundo = segundoCoeficiente * raizes[0];
@@ -259,20 +245,20 @@ class Calculadora {
         if (typeof valorParaCalcular !== 'number') {
             return console.log('Isso não é um numero inteiro');
         }
-        const A = [];
+        const numerosFatorados = [];
         // Encontra os fatores do número
         for (let y = 2; y < valorParaCalcular; y++) {
             while (valorParaCalcular % y === 0) {
                 valorParaCalcular /= y;
-                A.push(y);
+                numerosFatorados.push(y);
             }
         }
         // Se o array está vazio, significa que o número é primo e ele é adicionado ao array
-        if (A.length === 0) {
-            A.push(valorParaCalcular);
+        if (numerosFatorados.length === 0) {
+            numerosFatorados.push(valorParaCalcular);
         }
         // Retorna o array com os fatores
-        return A;
+        return numerosFatorados;
     }
     /**
      * Método para calcular o seno
