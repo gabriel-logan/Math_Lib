@@ -531,8 +531,6 @@ class Calculadora {
 }
 
 // Cria uma instância da classe Calculadora
-const startCalculadora = new Calculadora();
-
 // Exporta a instância da classe Calculadora
-export = startCalculadora;
+export = new Calculadora();
 

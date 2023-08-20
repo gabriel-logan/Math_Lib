@@ -6,8 +6,8 @@
  * @example - import Matematica from "./loganmatic.js"
  * console.log(Matematica.Pi)
  */
-class Calculadora {
-    constructor() {
+var Calculadora = /** @class */ (function () {
+    function Calculadora() {
         this.NumeroEuler = this.crieEulerNumber();
         this.Pi = 3.1415926535897932384626433832795;
     }
@@ -18,15 +18,16 @@ class Calculadora {
      * isso pode travar o seu pc, numeros muito grande resultam em demora para encontrar o valor
      * @return {number} - Numero de Euler
      */
-    crieEulerNumber(n = 9999) {
-        const inicioSomatorio = 0;
-        let valorVasio = 0;
-        for (let k = inicioSomatorio; k < n + 1; k++) {
-            const serie = ((1 ** k)) / (this.fatorial(k));
+    Calculadora.prototype.crieEulerNumber = function (n) {
+        if (n === void 0) { n = 9999; }
+        var inicioSomatorio = 0;
+        var valorVasio = 0;
+        for (var k = inicioSomatorio; k < n + 1; k++) {
+            var serie = ((Math.pow(1, k))) / (this.fatorial(k));
             valorVasio += serie;
         }
         return valorVasio;
-    }
+    };
     /**
     * @param {number} valorA
     * @param {number} valorB
@@ -34,15 +35,15 @@ class Calculadora {
     * @param {number} valorD
     * @param {boolean} checkedSim
     */
-    metodoDeNewton(valorA, valorB, valorC, valorD, checkedSim) {
-        const valorADerivado = valorA * 3;
-        const valorBDerivado = valorB * 2;
-        const valorCDerivado = valorC * 1;
-        const delta = (valorBDerivado ** 2 - 4 * valorADerivado * valorCDerivado);
-        const resposta1 = (-valorBDerivado + (delta ** (1 / 2))) / (2 * valorADerivado);
-        const resposta2 = (-valorBDerivado - (delta ** (1 / 2))) / (2 * valorADerivado);
-        let pontoCritico1 = resposta1 * (1000);
-        let pontoCritico2 = resposta2 * (1000);
+    Calculadora.prototype.metodoDeNewton = function (valorA, valorB, valorC, valorD, checkedSim) {
+        var valorADerivado = valorA * 3;
+        var valorBDerivado = valorB * 2;
+        var valorCDerivado = valorC * 1;
+        var delta = (Math.pow(valorBDerivado, 2) - 4 * valorADerivado * valorCDerivado);
+        var resposta1 = (-valorBDerivado + (Math.pow(delta, (1 / 2)))) / (2 * valorADerivado);
+        var resposta2 = (-valorBDerivado - (Math.pow(delta, (1 / 2)))) / (2 * valorADerivado);
+        var pontoCritico1 = resposta1 * (1000);
+        var pontoCritico2 = resposta2 * (1000);
         if (resposta1 < 0 && resposta2 < 0) {
             pontoCritico1 = pontoCritico2 * (-1);
         }
@@ -52,7 +53,7 @@ class Calculadora {
         function geraIntervaloPontoCritico(min, max) {
             return Math.random() * (max - min + 1) + min;
         }
-        let pontoCritico3;
+        var pontoCritico3;
         if (resposta1 > resposta2) {
             if ((Number(resposta1) - Number(resposta2)) > 1) {
                 pontoCritico3 = geraIntervaloPontoCritico(Math.ceil(Number(resposta2) + 0.2), Number(resposta1));
@@ -73,14 +74,14 @@ class Calculadora {
             pontoCritico1 = -10000;
             pontoCritico2 = 9000;
         }
-        const primeiraRaizCritica = [];
-        const iteracoes = 100000;
-        for (let index = 0; index < iteracoes; index++) {
-            pontoCritico1 = pontoCritico1 - (((Number(valorA) * ((pontoCritico1) ** 3)) + (Number(valorB) * ((pontoCritico1) ** 2)) + (Number(valorC) * (pontoCritico1)) + Number(valorD)) / ((Number(valorADerivado) * ((pontoCritico1) ** 2)) + (Number(valorBDerivado) * (pontoCritico1)) + Number(valorCDerivado)));
-            const valorDaFuncao1 = ((Number(valorA) * ((pontoCritico1) ** 3)) + (Number(valorB) * ((pontoCritico1) ** 2)) + (Number(valorC) * (pontoCritico1)) + Number(valorD)).toFixed(10);
-            pontoCritico2 = pontoCritico2 - (((Number(valorA) * ((pontoCritico2) ** 3)) + (Number(valorB) * ((pontoCritico2) ** 2)) + (Number(valorC) * (pontoCritico2)) + Number(valorD)) / ((Number(valorADerivado) * ((pontoCritico2) ** 2)) + (Number(valorBDerivado) * (pontoCritico2)) + Number(valorCDerivado)));
-            const valorDaFuncao2 = ((Number(valorA) * ((pontoCritico2) ** 3)) + (Number(valorB) * ((pontoCritico2) ** 2)) + (Number(valorC) * (pontoCritico2)) + Number(valorD)).toFixed(10);
-            pontoCritico3 = pontoCritico3 - (((Number(valorA) * ((pontoCritico3) ** 3)) + (Number(valorB) * ((pontoCritico3) ** 2)) + (Number(valorC) * (pontoCritico3)) + Number(valorD)) / ((Number(valorADerivado) * ((pontoCritico3) ** 2)) + (Number(valorBDerivado) * (pontoCritico3)) + Number(valorCDerivado)));
+        var primeiraRaizCritica = [];
+        var iteracoes = 100000;
+        for (var index = 0; index < iteracoes; index++) {
+            pontoCritico1 = pontoCritico1 - (((Number(valorA) * (Math.pow((pontoCritico1), 3))) + (Number(valorB) * (Math.pow((pontoCritico1), 2))) + (Number(valorC) * (pontoCritico1)) + Number(valorD)) / ((Number(valorADerivado) * (Math.pow((pontoCritico1), 2))) + (Number(valorBDerivado) * (pontoCritico1)) + Number(valorCDerivado)));
+            var valorDaFuncao1 = ((Number(valorA) * (Math.pow((pontoCritico1), 3))) + (Number(valorB) * (Math.pow((pontoCritico1), 2))) + (Number(valorC) * (pontoCritico1)) + Number(valorD)).toFixed(10);
+            pontoCritico2 = pontoCritico2 - (((Number(valorA) * (Math.pow((pontoCritico2), 3))) + (Number(valorB) * (Math.pow((pontoCritico2), 2))) + (Number(valorC) * (pontoCritico2)) + Number(valorD)) / ((Number(valorADerivado) * (Math.pow((pontoCritico2), 2))) + (Number(valorBDerivado) * (pontoCritico2)) + Number(valorCDerivado)));
+            var valorDaFuncao2 = ((Number(valorA) * (Math.pow((pontoCritico2), 3))) + (Number(valorB) * (Math.pow((pontoCritico2), 2))) + (Number(valorC) * (pontoCritico2)) + Number(valorD)).toFixed(10);
+            pontoCritico3 = pontoCritico3 - (((Number(valorA) * (Math.pow((pontoCritico3), 3))) + (Number(valorB) * (Math.pow((pontoCritico3), 2))) + (Number(valorC) * (pontoCritico3)) + Number(valorD)) / ((Number(valorADerivado) * (Math.pow((pontoCritico3), 2))) + (Number(valorBDerivado) * (pontoCritico3)) + Number(valorCDerivado)));
             // const valorDaFuncao3 = ((Number(valorA)*((pontoCritico3)**3)) + (Number(valorB)*((pontoCritico3)**2)) + (Number(valorC)*(pontoCritico3)) + Number(valorD)).toFixed(10);
             if (parseFloat(valorDaFuncao1) === 0.0000000000 && parseFloat(valorDaFuncao2) === 0.0000000000) {
                 primeiraRaizCritica.push(pontoCritico1, pontoCritico2, pontoCritico3);
@@ -89,10 +90,10 @@ class Calculadora {
         }
         if (primeiraRaizCritica[0].toFixed(7) == primeiraRaizCritica[1].toFixed(7)) {
             if (checkedSim) {
-                return (`Possui apenas 1 raiz real em X = ${primeiraRaizCritica[0].toFixed(4)}`);
+                return ("Possui apenas 1 raiz real em X = ".concat(primeiraRaizCritica[0].toFixed(4)));
             }
             else {
-                return (`Possui apenas 1 raiz real em X = ${primeiraRaizCritica[0]}`);
+                return ("Possui apenas 1 raiz real em X = ".concat(primeiraRaizCritica[0]));
             }
         }
         else if (primeiraRaizCritica[0].toFixed(4) == primeiraRaizCritica[2].toFixed(4)) {
@@ -103,14 +104,14 @@ class Calculadora {
         }
         else {
             if (checkedSim) {
-                return (`X1 ≅ ${primeiraRaizCritica[0].toFixed(4)}, X2 ≅ ${primeiraRaizCritica[1].toFixed(4)}, X3 ≅ ${primeiraRaizCritica[2].toFixed(4)}`);
+                return ("X1 \u2245 ".concat(primeiraRaizCritica[0].toFixed(4), ", X2 \u2245 ").concat(primeiraRaizCritica[1].toFixed(4), ", X3 \u2245 ").concat(primeiraRaizCritica[2].toFixed(4)));
             }
             else {
-                return (`X1 ≅ ${primeiraRaizCritica[0]}, X2 ≅ ${primeiraRaizCritica[1]}, X3 ≅ ${primeiraRaizCritica[2]}`);
+                return ("X1 \u2245 ".concat(primeiraRaizCritica[0], ", X2 \u2245 ").concat(primeiraRaizCritica[1], ", X3 \u2245 ").concat(primeiraRaizCritica[2]));
             }
         }
-        return (`X1 = ${primeiraRaizCritica[0]}`);
-    }
+        return ("X1 = ".concat(primeiraRaizCritica[0]));
+    };
     /**
      * @param {number} valorA
      * @param {number} valorB
@@ -119,57 +120,57 @@ class Calculadora {
      * @param {number[]} raizes
      * @param {boolean} checkedSim
      */
-    dispositivoBrioRufinho(valorA, valorB, valorC, valorD, raizes, checkedSim) {
-        const primeiro = valorA * raizes[0];
-        const segundoCoeficiente = Number(primeiro) + Number(valorB);
-        const segundo = segundoCoeficiente * raizes[0];
-        const terceiroCoeficiente = Number(segundo) + Number(valorC);
-        const terceiro = terceiroCoeficiente * raizes[0];
-        const quartoCoeficiente = Number(terceiro) + Number(valorD);
+    Calculadora.prototype.dispositivoBrioRufinho = function (valorA, valorB, valorC, valorD, raizes, checkedSim) {
+        var primeiro = valorA * raizes[0];
+        var segundoCoeficiente = Number(primeiro) + Number(valorB);
+        var segundo = segundoCoeficiente * raizes[0];
+        var terceiroCoeficiente = Number(segundo) + Number(valorC);
+        var terceiro = terceiroCoeficiente * raizes[0];
+        var quartoCoeficiente = Number(terceiro) + Number(valorD);
         if (quartoCoeficiente == 0) {
-            const delta = (segundoCoeficiente ** 2 - 4 * valorA * terceiroCoeficiente);
+            var delta = (Math.pow(segundoCoeficiente, 2) - 4 * valorA * terceiroCoeficiente);
             if (delta < 0) {
-                return `Possui apenas 1 raiz real em X = ${raizes[0]}`;
+                return "Possui apenas 1 raiz real em X = ".concat(raizes[0]);
             }
             else {
-                const resposta1 = (-segundoCoeficiente + (delta ** (1 / 2))) / (2 * valorA);
-                const resposta2 = (-segundoCoeficiente - (delta ** (1 / 2))) / (2 * valorA);
+                var resposta1 = (-segundoCoeficiente + (Math.pow(delta, (1 / 2)))) / (2 * valorA);
+                var resposta2 = (-segundoCoeficiente - (Math.pow(delta, (1 / 2)))) / (2 * valorA);
                 if (delta === 0) {
                     if (resposta1 == raizes[0]) {
                         return ('O valor de X1 = 0 | X1 = X2 = X3');
                     }
                     else {
                         if (checkedSim) {
-                            return (`O valor de X1 = 0 e X2 é igual a: ${resposta1.toFixed(2)} | X2 = X3`);
+                            return ("O valor de X1 = 0 e X2 \u00E9 igual a: ".concat(resposta1.toFixed(2), " | X2 = X3"));
                         }
                         else {
-                            return (`O valor de X1 = 0 e X2 é igual a: ${resposta1} | X2 = X3`);
+                            return ("O valor de X1 = 0 e X2 \u00E9 igual a: ".concat(resposta1, " | X2 = X3"));
                         }
                     }
                 }
                 else {
                     if (resposta1 == raizes[0]) {
                         if (checkedSim) {
-                            return (`O valor de X1 = ${raizes[0]} e X2 = ${resposta2.toFixed(2)} | X1 = X3`);
+                            return ("O valor de X1 = ".concat(raizes[0], " e X2 = ").concat(resposta2.toFixed(2), " | X1 = X3"));
                         }
                         else {
-                            return (`O valor de X1 = ${raizes[0]} e X2 = ${resposta2} | X1 = X3`);
+                            return ("O valor de X1 = ".concat(raizes[0], " e X2 = ").concat(resposta2, " | X1 = X3"));
                         }
                     }
                     else if (resposta2 == raizes[0]) {
                         if (checkedSim) {
-                            return (`O valor de X1 = ${raizes[0]} e X2 é igual a: ${resposta1.toFixed(2)} | X1 = X3`);
+                            return ("O valor de X1 = ".concat(raizes[0], " e X2 \u00E9 igual a: ").concat(resposta1.toFixed(2), " | X1 = X3"));
                         }
                         else {
-                            return (`O valor de X1 = ${raizes[0]} e X2 é igual a: ${resposta1} | X1 = X3`);
+                            return ("O valor de X1 = ".concat(raizes[0], " e X2 \u00E9 igual a: ").concat(resposta1, " | X1 = X3"));
                         }
                     }
                     else {
                         if (checkedSim) {
-                            return (`O valor de X1 = ${raizes[0]}, X2 é igual a: ${resposta1.toFixed(2)} e O valor de X3 é igual a: ${resposta2.toFixed(2)}`);
+                            return ("O valor de X1 = ".concat(raizes[0], ", X2 \u00E9 igual a: ").concat(resposta1.toFixed(2), " e O valor de X3 \u00E9 igual a: ").concat(resposta2.toFixed(2)));
                         }
                         else {
-                            return (`O valor de X1 = ${raizes[0]}, X2 é igual a: ${resposta1} e O valor de X3 é igual a: ${resposta2}`);
+                            return ("O valor de X1 = ".concat(raizes[0], ", X2 \u00E9 igual a: ").concat(resposta1, " e O valor de X3 \u00E9 igual a: ").concat(resposta2));
                         }
                     }
                 }
@@ -181,7 +182,7 @@ class Calculadora {
         else {
             return ('Vish, não sei oque rolou HEHEHE');
         }
-    }
+    };
     // ACIMA FUNCOES PRIVADAS
     /**
      * Método para calcular o valor absoluto de um numero
@@ -189,65 +190,65 @@ class Calculadora {
      * @example Matematica.modulo(-4)
      * @return {number} - O resultado = 4
      */
-    modulo(numero) {
+    Calculadora.prototype.modulo = function (numero) {
         if (numero < 0) {
             return -numero; // Retorna o valor negativo como positivo
         }
         else {
             return numero; // Retorna o valor positivo como é
         }
-    }
+    };
     /**
      * Método para calcular o fatorial de um número
      * @param {number} valorParaCalcular - O número a ser calculado o fatorial
      * @example Matematica.fatorial(4)
      * @return {number} - O resultado do fatorial que é 24
      */
-    fatorial(valorParaCalcular) {
+    Calculadora.prototype.fatorial = function (valorParaCalcular) {
         // Se o valor é zero, o fatorial é 1
         if (valorParaCalcular === 0) {
             return 1;
         }
-        let resultado = 1;
+        var resultado = 1;
         // Itera sobre os números menores ou iguais ao valor para calcular o fatorial
-        for (let i = 1; i <= valorParaCalcular; i++) {
+        for (var i = 1; i <= valorParaCalcular; i++) {
             resultado *= i;
         }
         // Retorna o resultado do fatorial
         return resultado;
-    }
+    };
     /**
      * Método para calcular a raiz quadrada de um número
      * @param {number} valorParaCalcular - O número a ter a raiz quadrada calculada
      * @example Matematica.raizQuadrada(9)
      * @return {number} - O resultado da raiz quadrada = 3
      */
-    raizQuadrada(valorParaCalcular) {
-        return valorParaCalcular ** (1 / 2);
-    }
+    Calculadora.prototype.raizQuadrada = function (valorParaCalcular) {
+        return Math.pow(valorParaCalcular, (1 / 2));
+    };
     /**
      * Método para calcular a raiz cúbica de um número
      * @param {number} valorParaCalcular - O número a ter a raiz cúbica calculada
      * @example Matematica.raizCubica(8)
      * @return {number} - O resultado da raiz cúbica = 2
      */
-    raizCubica(valorParaCalcular) {
-        return valorParaCalcular ** (1 / 3);
-    }
+    Calculadora.prototype.raizCubica = function (valorParaCalcular) {
+        return Math.pow(valorParaCalcular, (1 / 3));
+    };
     /**
      * Método para fatorar um número
      * @param {number} valorParaCalcular - O número a ser fatorado
      * @example Matematica.fatorar(100)
      * @return {array} - Um array com os fatores do número [2, 2, 5, 5]
      */
-    fatorar(valorParaCalcular) {
+    Calculadora.prototype.fatorar = function (valorParaCalcular) {
         // Se o valor não é um número, retorna uma mensagem de erro
         if (typeof valorParaCalcular !== 'number') {
             return console.log('Isso não é um numero inteiro');
         }
-        const numerosFatorados = [];
+        var numerosFatorados = [];
         // Encontra os fatores do número
-        for (let y = 2; y < valorParaCalcular; y++) {
+        for (var y = 2; y < valorParaCalcular; y++) {
             while (valorParaCalcular % y === 0) {
                 valorParaCalcular /= y;
                 numerosFatorados.push(y);
@@ -259,15 +260,15 @@ class Calculadora {
         }
         // Retorna o array com os fatores
         return numerosFatorados;
-    }
+    };
     /**
      * Método para calcular o seno
      * @param {number} valorParaCalcular - O número a ser calculado
      * @example Matematica.seno(Matematica.Pi)
      * @return {number} - O resultado = 0 pois o seno de pi(180Graus) = 0
      */
-    seno(valorParaCalcular) {
-        let n;
+    Calculadora.prototype.seno = function (valorParaCalcular) {
+        var n;
         if (this.modulo(valorParaCalcular) > 5 && this.modulo(valorParaCalcular) <= 30) {
             n = 100; // Valor An para soma parcial
         }
@@ -277,10 +278,10 @@ class Calculadora {
         else {
             n = 200; // Valor An para soma parcial
         }
-        const inicioSomatorio = 0; // Valor inicial do somatorio
-        let valorVasio = 0;
-        for (let k = inicioSomatorio; k < n + 1; k++) {
-            const serie = (((-1) ** k) * (valorParaCalcular ** (2 * k + 1))) / (this.fatorial(2 * k + 1));
+        var inicioSomatorio = 0; // Valor inicial do somatorio
+        var valorVasio = 0;
+        for (var k = inicioSomatorio; k < n + 1; k++) {
+            var serie = ((Math.pow((-1), k)) * (Math.pow(valorParaCalcular, (2 * k + 1)))) / (this.fatorial(2 * k + 1));
             valorVasio += serie; // Soma a serie de acordo com o valor de n
         }
         if (this.modulo(valorVasio) < 0.00000001) {
@@ -289,15 +290,15 @@ class Calculadora {
         else {
             return valorVasio; // Retorna a soma parcial da serie
         }
-    }
+    };
     /**
      * Método para calcular o cosseno
      * @param {number} valorParaCalcular - O número a ser calculado
      * @example Matematica.cosseno(Matematica.Pi)
      * @return {number} - O resultado = 0 pois o cosseno de pi(180Graus) = 0
      */
-    cosseno(valorParaCalcular) {
-        let n;
+    Calculadora.prototype.cosseno = function (valorParaCalcular) {
+        var n;
         if (this.modulo(valorParaCalcular) > 5 && this.modulo(valorParaCalcular) <= 30) {
             n = 100; // Valor An para soma parcial
         }
@@ -307,10 +308,10 @@ class Calculadora {
         else {
             n = 200; // Valor An para soma parcial
         }
-        const inicioSomatorio = 0; // Valor inicial do somatorio
-        let valorVasio = 0;
-        for (let k = inicioSomatorio; k < n + 1; k++) {
-            const serie = (((-1) ** k) * (valorParaCalcular ** (2 * k))) / (this.fatorial(2 * k));
+        var inicioSomatorio = 0; // Valor inicial do somatorio
+        var valorVasio = 0;
+        for (var k = inicioSomatorio; k < n + 1; k++) {
+            var serie = ((Math.pow((-1), k)) * (Math.pow(valorParaCalcular, (2 * k)))) / (this.fatorial(2 * k));
             valorVasio += serie; // Soma a serie de acordo com o valor de n
         }
         if (this.modulo(valorVasio) < 0.00000001) {
@@ -319,7 +320,7 @@ class Calculadora {
         else {
             return valorVasio; // Retorna a soma parcial da serie
         }
-    }
+    };
     /**
      * Método para calcular o numero aleatorio entre 2 numeros
      * @param {min: number, max: number} valorParaCalcular - O número a ser calculado
@@ -328,10 +329,10 @@ class Calculadora {
      * @example Matematica.numeroAleatorioEntre(10, 20)
      * @return {number} - O resultado = algum numero entre 10 e 20
      */
-    numeroAleatorioEntre(min, max) {
-        const timestamp = Date.now();
+    Calculadora.prototype.numeroAleatorioEntre = function (min, max) {
+        var timestamp = Date.now();
         return min + (timestamp % (max - min + 1));
-    }
+    };
     /**
      * Método para calcular a raiz de um polinomio de grau 1
      * @param {a: number, b: number} valorParaCalcular - O número a ser
@@ -347,17 +348,17 @@ class Calculadora {
      * Matematica.raizDePrimeiroGrau(2, 3)
      * @return {number} - O resultado = x = -3/2 = -1,5
      */
-    raizDePrimeiroGrau(a, b) {
-        const numeroA = Number(a);
-        const numeroB = Number(b);
+    Calculadora.prototype.raizDePrimeiroGrau = function (a, b) {
+        var numeroA = Number(a);
+        var numeroB = Number(b);
         if (numeroA === 0) {
-            return (`Esta equação é uma constante de valor = ${numeroB}`);
+            return ("Esta equa\u00E7\u00E3o \u00E9 uma constante de valor = ".concat(numeroB));
         }
         else {
-            const raiz = -numeroB / numeroA;
+            var raiz = -numeroB / numeroA;
             return raiz;
         }
-    }
+    };
     /**
      * Método para calcular a raiz de um polinomio de grau 1
      * @param {a: number, b: number, c: number} valorParaCalcular - O número a ser calculado
@@ -377,16 +378,16 @@ class Calculadora {
      * Matematica.raizDeSegundoGrau(1, 2, -3)
      * @return {array} - O resultado = [1, -3]
      */
-    raizDeSegundoGrau(a, b, c) {
-        const numeroA = Number(a);
-        const numeroB = Number(b);
-        const numeroC = Number(c);
+    Calculadora.prototype.raizDeSegundoGrau = function (a, b, c) {
+        var numeroA = Number(a);
+        var numeroB = Number(b);
+        var numeroC = Number(c);
         if (numeroA === 0 && numeroB === 0) {
-            return (`Esta equação é uma constante de valor = ${numeroC}`);
+            return ("Esta equa\u00E7\u00E3o \u00E9 uma constante de valor = ".concat(numeroC));
         }
         else {
-            const raiz1 = (-numeroB + (this.raizQuadrada(b ** 2 - (4 * numeroA * numeroC)))) / (2 * numeroA);
-            const raiz2 = (-numeroB - (this.raizQuadrada(b ** 2 - (4 * numeroA * numeroC)))) / (2 * numeroA);
+            var raiz1 = (-numeroB + (this.raizQuadrada(Math.pow(b, 2) - (4 * numeroA * numeroC)))) / (2 * numeroA);
+            var raiz2 = (-numeroB - (this.raizQuadrada(Math.pow(b, 2) - (4 * numeroA * numeroC)))) / (2 * numeroA);
             if (raiz1 === raiz2) {
                 return [raiz1, 'Possui apenas 1 raiz real'];
             }
@@ -394,7 +395,7 @@ class Calculadora {
                 return [raiz1, raiz2];
             }
         }
-    }
+    };
     /**
      * Método para calcular a raiz de um polinomio de grau 1
      * @param {number} a
@@ -412,67 +413,72 @@ class Calculadora {
      * Matematica.raizDeTerceiroGrau(1, 2, -3, 5)
      * @return {string} - Possui apenas 1 raiz real em X = -3.344171229347796
      */
-    raizDeTerceiroGrau(a = 0, b = 0, c = 0, d = 0, aproxima = false) {
-        const checkedSim = aproxima;
-        const valorA = Number(a);
-        const valorB = Number(b);
-        const valorC = Number(c);
-        const valorD = Number(d);
+    Calculadora.prototype.raizDeTerceiroGrau = function (a, b, c, d, aproxima) {
+        if (a === void 0) { a = 0; }
+        if (b === void 0) { b = 0; }
+        if (c === void 0) { c = 0; }
+        if (d === void 0) { d = 0; }
+        if (aproxima === void 0) { aproxima = false; }
+        var checkedSim = aproxima;
+        var valorA = Number(a);
+        var valorB = Number(b);
+        var valorC = Number(c);
+        var valorD = Number(d);
         if (valorD == 0) {
-            const x1 = 0;
-            const delta = (valorB ** 2 - 4 * valorA * valorC);
+            var x1 = 0;
+            var delta = (Math.pow(valorB, 2) - 4 * valorA * valorC);
             if (delta < 0) {
                 return ('Possui apenas 1 raiz real em X = 0');
             }
             else {
-                const resposta1 = (-valorB + (delta ** (1 / 2))) / (2 * valorA);
-                const resposta2 = (-valorB - (delta ** (1 / 2))) / (2 * valorA);
+                var resposta1 = (-valorB + (Math.pow(delta, (1 / 2)))) / (2 * valorA);
+                var resposta2 = (-valorB - (Math.pow(delta, (1 / 2)))) / (2 * valorA);
                 if (delta === 0) {
                     if (resposta1 == x1) {
                         return ('O valor de X1 = 0 | X1 = X2 = X3');
                     }
                     else {
                         if (checkedSim) {
-                            return (`O valor de X1 = 0 e X2 é igual a: ${resposta1.toFixed(2)} | X2 = X3`);
+                            return ("O valor de X1 = 0 e X2 \u00E9 igual a: ".concat(resposta1.toFixed(2), " | X2 = X3"));
                         }
                         else {
-                            return (`O valor de X1 = 0 e X2 é igual a: ${resposta1} | X2 = X3`);
+                            return ("O valor de X1 = 0 e X2 \u00E9 igual a: ".concat(resposta1, " | X2 = X3"));
                         }
                     }
                 }
                 else {
                     if (resposta1 == x1) {
                         if (checkedSim) {
-                            return (`O valor de X1 = 0 e X2 = ${resposta2.toFixed(2)} | X1 = X3`);
+                            return ("O valor de X1 = 0 e X2 = ".concat(resposta2.toFixed(2), " | X1 = X3"));
                         }
                         else {
-                            return (`O valor de X1 = 0 e X2 = ${resposta2} | X1 = X3`);
+                            return ("O valor de X1 = 0 e X2 = ".concat(resposta2, " | X1 = X3"));
                         }
                     }
                     else if (resposta2 == x1) {
                         if (checkedSim) {
-                            return (`O valor de X1 = 0 e X2 é igual a: ${resposta1.toFixed(2)} | X1 = X3`);
+                            return ("O valor de X1 = 0 e X2 \u00E9 igual a: ".concat(resposta1.toFixed(2), " | X1 = X3"));
                         }
                         else {
-                            return (`O valor de X1 = 0 e X2 é igual a: ${resposta1} | X1 = X3`);
+                            return ("O valor de X1 = 0 e X2 \u00E9 igual a: ".concat(resposta1, " | X1 = X3"));
                         }
                     }
                     else {
                         if (checkedSim) {
-                            return (`O valor de X1 = 0, X2 é igual a: ${resposta1.toFixed(2)} e O valor de X3 é igual a: ${resposta2.toFixed(2)}`);
+                            return ("O valor de X1 = 0, X2 \u00E9 igual a: ".concat(resposta1.toFixed(2), " e O valor de X3 \u00E9 igual a: ").concat(resposta2.toFixed(2)));
                         }
                         else {
-                            return (`O valor de X1 = 0, X2 é igual a: ${resposta1} e O valor de X3 é igual a: ${resposta2}`);
+                            return ("O valor de X1 = 0, X2 \u00E9 igual a: ".concat(resposta1, " e O valor de X3 \u00E9 igual a: ").concat(resposta2));
                         }
                     }
                 }
             }
         }
         else {
-            const possiveisRaizes = [];
+            var possiveisRaizes = [];
             if (valorD > 0) {
-                for (let index = 1; index < (Number(valorD) + 1); index++) {
-                    const isInteger = valorD % index;
+                for (var index = 1; index < (Number(valorD) + 1); index++) {
+                    var isInteger = valorD % index;
                     if (isInteger == 0) {
                         possiveisRaizes.push(index);
                         possiveisRaizes.push(-index);
@@ -480,28 +486,27 @@ class Calculadora {
                 }
             }
             else {
-                for (let index = -1; index > (Number(valorD) - 1); index--) {
-                    const isInteger = valorD % index;
+                for (var index = -1; index > (Number(valorD) - 1); index--) {
+                    var isInteger = valorD % index;
                     if (isInteger == 0) {
                         possiveisRaizes.push(index);
                         possiveisRaizes.push(-index);
                     }
                 }
             }
-            const raizes = [];
-            possiveisRaizes.forEach(test => {
-                const primeiraRaiz = Number(valorA) * (test ** 3) + Number(valorB) * (test ** 2) + Number(valorC) * (test) + Number(valorD);
+            var raizes_1 = [];
+            possiveisRaizes.forEach(function (test) {
+                var primeiraRaiz = Number(valorA) * (Math.pow(test, 3)) + Number(valorB) * (Math.pow(test, 2)) + Number(valorC) * (test) + Number(valorD);
                 if (primeiraRaiz == 0) {
-                    raizes.push(test);
+                    raizes_1.push(test);
                 }
             });
-            if (raizes.length === 0) {
+            if (raizes_1.length === 0) {
                 return this.metodoDeNewton(valorA, valorB, valorC, valorD, checkedSim);
             }
-            return this.dispositivoBrioRufinho(valorA, valorB, valorC, valorD, raizes, checkedSim);
+            return this.dispositivoBrioRufinho(valorA, valorB, valorC, valorD, raizes_1, checkedSim);
         }
-    }
-}
-// Cria uma instância da classe Calculadora
-const startCalculadora = new Calculadora();
-module.exports = startCalculadora;
+    };
+    return Calculadora;
+}());
+module.exports = new Calculadora();
