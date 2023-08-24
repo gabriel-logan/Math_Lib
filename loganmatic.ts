@@ -1,4 +1,7 @@
 // Classe que representa uma calculadora com algumas funções matemáticas básicas
+
+const valorPi: string = '3.1415926535897932384626433832795';
+
 /**
  * @author - Gabriel Logan
  * @description - Programa Criado como uma biblioteca de matematica em portugues
@@ -8,18 +11,18 @@
 class Calculadora {
     NumeroEuler: number; // Declare NumeroEuler property
     Pi: number; // Declare Pi property
-    
+
     constructor() {
         this.NumeroEuler = this.crieEulerNumber(); 
-        this.Pi = 3.1415926535897932384626433832795;
+        this.Pi = parseFloat(valorPi);
     }
 
     /**
      * Método para calcular o valor absoluto de um numero
-     * @param {number} n - Precisão do numero de euler
+     * @param n - Precisão do numero de euler
      * @example Matematica.crieEulerNumber(99999); ira criar um numero de euler com 99999 somas, cuidado
      * isso pode travar o seu pc, numeros muito grande resultam em demora para encontrar o valor
-     * @return {number} - Numero de Euler
+     * @return - Numero de Euler
      */      
     protected crieEulerNumber(n = 9999) {
         const inicioSomatorio = 0;
@@ -33,11 +36,11 @@ class Calculadora {
     }
 
      /**
-     * @param {number} valorA
-     * @param {number} valorB
-     * @param {number} valorC
-     * @param {number} valorD
-     * @param {boolean} checkedSim
+     * @param valorA
+     * @param valorB
+     * @param valorC
+     * @param valorD
+     * @param checkedSim
      */   
     protected metodoDeNewton(valorA: number, valorB: number, valorC: number, valorD: number, checkedSim: boolean){ 
         const valorADerivado = valorA*3;
@@ -130,12 +133,12 @@ class Calculadora {
     }
     
     /**
-     * @param {number} valorA
-     * @param {number} valorB
-     * @param {number} valorC
-     * @param {number} valorD
-     * @param {number[]} raizes
-     * @param {boolean} checkedSim
+     * @param valorA
+     * @param valorB
+     * @param valorC
+     * @param valorD
+     * @param raizes
+     * @param checkedSim
      */  
     protected dispositivoBrioRufinho(valorA: number, valorB: number, valorC: number, valorD:number, raizes: number[], checkedSim: boolean){
 
@@ -205,9 +208,9 @@ class Calculadora {
 
     /**
      * Método para calcular o valor absoluto de um numero
-     * @param {number} numero - O número a ser calculado o modulo
+     * @param numero - O número a ser calculado o modulo
      * @example Matematica.modulo(-4)
-     * @return {number} - O resultado = 4
+     * @return - O resultado = 4
      */    
     modulo(numero: number) {
         if (numero < 0) {
@@ -219,9 +222,9 @@ class Calculadora {
 
     /**
      * Método para calcular o fatorial de um número
-     * @param {number} valorParaCalcular - O número a ser calculado o fatorial
+     * @param valorParaCalcular - O número a ser calculado o fatorial
      * @example Matematica.fatorial(4)
-     * @return {number} - O resultado do fatorial que é 24
+     * @return - O resultado do fatorial que é 24
      */
     fatorial(valorParaCalcular: number) {
         // Se o valor é zero, o fatorial é 1
@@ -241,9 +244,9 @@ class Calculadora {
 
     /**
      * Método para calcular a raiz quadrada de um número
-     * @param {number} valorParaCalcular - O número a ter a raiz quadrada calculada
+     * @param valorParaCalcular - O número a ter a raiz quadrada calculada
      * @example Matematica.raizQuadrada(9)
-     * @return {number} - O resultado da raiz quadrada = 3
+     * @return - O resultado da raiz quadrada = 3
      */
     raizQuadrada(valorParaCalcular: number) {
         return valorParaCalcular ** (1 / 2);
@@ -251,9 +254,9 @@ class Calculadora {
 
     /**
      * Método para calcular a raiz cúbica de um número
-     * @param {number} valorParaCalcular - O número a ter a raiz cúbica calculada
+     * @param valorParaCalcular - O número a ter a raiz cúbica calculada
      * @example Matematica.raizCubica(8)
-     * @return {number} - O resultado da raiz cúbica = 2
+     * @return - O resultado da raiz cúbica = 2
      */
     raizCubica(valorParaCalcular: number) {
         return valorParaCalcular ** (1 / 3);
@@ -261,9 +264,9 @@ class Calculadora {
 
     /**
      * Método para fatorar um número
-     * @param {number} valorParaCalcular - O número a ser fatorado
+     * @param valorParaCalcular - O número a ser fatorado
      * @example Matematica.fatorar(100)
-     * @return {array} - Um array com os fatores do número [2, 2, 5, 5]
+     * @return - Um array com os fatores do número [2, 2, 5, 5]
      */
     fatorar(valorParaCalcular: number) {
         // Se o valor não é um número, retorna uma mensagem de erro
@@ -292,9 +295,9 @@ class Calculadora {
 
     /**
      * Método para calcular o seno
-     * @param {number} valorParaCalcular - O número a ser calculado
+     * @param valorParaCalcular - O número a ser calculado
      * @example Matematica.seno(Matematica.Pi)
-     * @return {number} - O resultado = 0 pois o seno de pi(180Graus) = 0 
+     * @return - O resultado = 0 pois o seno de pi(180Graus) = 0 
      */   
     seno(valorParaCalcular: number) { // Valor da variavel X se tiver
         let n: number;
@@ -321,9 +324,9 @@ class Calculadora {
 
     /**
      * Método para calcular o cosseno
-     * @param {number} valorParaCalcular - O número a ser calculado
+     * @param valorParaCalcular - O número a ser calculado
      * @example Matematica.cosseno(Matematica.Pi)
-     * @return {number} - O resultado = 0 pois o cosseno de pi(180Graus) = 0 
+     * @return - O resultado = 0 pois o cosseno de pi(180Graus) = 0 
      */   
     cosseno(valorParaCalcular: number) { // Valor da variavel X se tiver
         let n: number;
@@ -350,11 +353,10 @@ class Calculadora {
 
     /**
      * Método para calcular o numero aleatorio entre 2 numeros
-     * @param {min: number, max: number} valorParaCalcular - O número a ser calculado
-     * @param {number} max 
-     * @param {number} min 
+     * @param max 
+     * @param min 
      * @example Matematica.numeroAleatorioEntre(10, 20)
-     * @return {number} - O resultado = algum numero entre 10 e 20
+     * @return - O resultado = algum numero entre 10 e 20
      */  
     numeroAleatorioEntre(min: number, max: number) {
         const timestamp = Date.now();
@@ -363,9 +365,8 @@ class Calculadora {
 
     /**
      * Método para calcular a raiz de um polinomio de grau 1
-     * @param {a: number, b: number} valorParaCalcular - O número a ser 
-     * @param {number} a 
-     * @param {number} b 
+     * @param a 
+     * @param b 
      * @example Matematica.raizDePrimeiroGrau(a, b) 
      * 
      * a = termo que acompanha o (x) 
@@ -374,7 +375,7 @@ class Calculadora {
      * EX: ax + b = 0 ou 2x + 3 = 0 | a=2 e b=3
      * 
      * Matematica.raizDePrimeiroGrau(2, 3) 
-     * @return {number} - O resultado = x = -3/2 = -1,5
+     * @return - O resultado = x = -3/2 = -1,5
      */      
     raizDePrimeiroGrau(a: number, b: number){
         const numeroA = Number(a);
@@ -390,10 +391,9 @@ class Calculadora {
     
     /**
      * Método para calcular a raiz de um polinomio de grau 1
-     * @param {a: number, b: number, c: number} valorParaCalcular - O número a ser calculado
-     * @param {number} a 
-     * @param {number} b
-     * @param {number} c
+     * @param a 
+     * @param b
+     * @param c
      * @example Matematica.raizDeSegundoGrau(a, b, c) 
      * 
      * a = termo que acompanha o (x^2) 
@@ -405,12 +405,14 @@ class Calculadora {
      *     1(x^2) + 2(x) - 3 = 0 | a = 1, b = 2, c = -3 
      * 
      * Matematica.raizDeSegundoGrau(1, 2, -3) 
-     * @return {array} - O resultado = [1, -3]
+     * @return - O resultado = [1, -3]
      */    
     raizDeSegundoGrau(a: number, b: number, c: number){
         const numeroA = Number(a);
         const numeroB = Number(b);
         const numeroC = Number(c);
+
+        if((numeroB**2)-(4*numeroA*numeroC) < 0) return 'Não possui raizes reais';
 
         if(numeroA === 0 && numeroB === 0){
             return (`Esta equação é uma constante de valor = ${numeroC}`);
@@ -428,11 +430,11 @@ class Calculadora {
     }
     /**
      * Método para calcular a raiz de um polinomio de grau 1
-     * @param {number} a 
-     * @param {number} b
-     * @param {number} c
-     * @param {number} d
-     * @param {boolean} [aproxima=false] 
+     * @param a 
+     * @param b
+     * @param c
+     * @param d
+     * @param [aproxima=false] 
      * @example Matematica.raizDeTerceiroGrau(a, b, c, d) 
      * 
      * a = termo que acompanha o (x^3) 
@@ -441,7 +443,7 @@ class Calculadora {
      * d = termo independente
      * 
      * Matematica.raizDeTerceiroGrau(1, 2, -3, 5) 
-     * @return {string} - Possui apenas 1 raiz real em X = -3.344171229347796
+     * @return - Possui apenas 1 raiz real em X = -3.344171229347796
      */   
     raizDeTerceiroGrau(a=0, b=0, c=0, d=0, aproxima = false){
         const checkedSim = aproxima;

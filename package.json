@@ -1,6 +1,6 @@
 {
     "name": "loganmatic",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Biblioteca de matematica com algumas funções para facilitar calculos",
     "publisher": "Gabriel Logan",
     "main": "loganmatic.js",
