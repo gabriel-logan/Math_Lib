@@ -489,8 +489,50 @@ class Calculator {
 		}
 	}
 
-	mdc() {}
-	mmc() {}
+	/**
+	 * Method to calculate the gcd
+	 * @param valuesToCalculate - The numbers to calculate the gcd
+	 * @example Matematics.gcd([4,8])
+	 * @return - The result = 4 because the gcd of 4 and 8 = 4
+	 */
+	gcd(valuesToCalculate: number[]): number {
+		let mdcValue = valuesToCalculate[0];
+		for (let i = 1; i < valuesToCalculate.length; i++) {
+			let a = mdcValue;
+			let b = valuesToCalculate[i];
+			let rest: number;
+			while (b !== 0) {
+				rest = a % b;
+				a = b;
+				b = rest;
+			}
+			mdcValue = a;
+		}
+		return this.absoluteValue(mdcValue);
+	}
+
+	/**
+	 * Method to calculate the lcm
+	 * @param valuesToCalculate - The numbers to calculate the lcm
+	 * @example Matematics.lcm([4,8])
+	 * @return - The result = 8 because the lcm of 4 and 8 = 8
+	 */
+	lcm(valuesToCalculate: number[]): number {
+		let mmcValue = valuesToCalculate[0];
+		for (let i = 1; i < valuesToCalculate.length; i++) {
+			let a = mmcValue;
+			let b = valuesToCalculate[i];
+			let rest: number;
+			const mdcValue = a;
+			while (b !== 0) {
+				rest = a % b;
+				a = b;
+				b = rest;
+			}
+			mmcValue = (mdcValue * valuesToCalculate[i]) / a;
+		}
+		return this.absoluteValue(mmcValue);
+	}
 
 	/**
 	 * Method to generate a random number between two values
@@ -749,4 +791,4 @@ class Calculator {
 
 // Create an instance of the Calculator class
 // Exports the instance of the Calculator class
-export = new Calculator();
+export default new Calculator();

@@ -92,8 +92,20 @@ declare class Calculator {
      * @return - The result = 0 because the cosine of pi(180 degrees) = 0
      */
     cosine(valueToCalculate: number): number;
-    mdc(): void;
-    mmc(): void;
+    /**
+     * Method to calculate the gcd
+     * @param valuesToCalculate - The numbers to calculate the gcd
+     * @example Matematics.gcd([4,8])
+     * @return - The result = 4 because the gcd of 4 and 8 = 4
+     */
+    gcd(valuesToCalculate: number[]): number;
+    /**
+     * Method to calculate the lcm
+     * @param valuesToCalculate - The numbers to calculate the lcm
+     * @example Matematics.lcm([4,8])
+     * @return - The result = 8 because the lcm of 4 and 8 = 8
+     */
+    lcm(valuesToCalculate: number[]): number;
     /**
      * Method to generate a random number between two values
      * @param min - The minimum value
@@ -156,4 +168,4 @@ declare class Calculator {
     cubicEquation(a?: number, b?: number, c?: number, d?: number, approximate?: boolean): ReturnTypesForEquation2upDegree;
 }
 declare const _default: Calculator;
-export = _default;
+export default _default;

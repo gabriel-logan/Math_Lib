@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var piValue = "3.1415926535897932384626433832795";
 var Calculator = (function () {
     function Calculator() {
@@ -339,8 +340,37 @@ var Calculator = (function () {
             return emptyValue;
         }
     };
-    Calculator.prototype.mdc = function () { };
-    Calculator.prototype.mmc = function () { };
+    Calculator.prototype.gcd = function (valuesToCalculate) {
+        var mdcValue = valuesToCalculate[0];
+        for (var i = 1; i < valuesToCalculate.length; i++) {
+            var a = mdcValue;
+            var b = valuesToCalculate[i];
+            var rest = void 0;
+            while (b !== 0) {
+                rest = a % b;
+                a = b;
+                b = rest;
+            }
+            mdcValue = a;
+        }
+        return this.absoluteValue(mdcValue);
+    };
+    Calculator.prototype.lcm = function (valuesToCalculate) {
+        var mmcValue = valuesToCalculate[0];
+        for (var i = 1; i < valuesToCalculate.length; i++) {
+            var a = mmcValue;
+            var b = valuesToCalculate[i];
+            var rest = void 0;
+            var mdcValue = a;
+            while (b !== 0) {
+                rest = a % b;
+                a = b;
+                b = rest;
+            }
+            mmcValue = (mdcValue * valuesToCalculate[i]) / a;
+        }
+        return this.absoluteValue(mmcValue);
+    };
     Calculator.prototype.randomNumberBetween = function (min, max) {
         var timestamp = Date.now();
         return min + (timestamp % (max - min + 1));
@@ -523,4 +553,4 @@ var Calculator = (function () {
     };
     return Calculator;
 }());
-module.exports = new Calculator();
+exports.default = new Calculator();
