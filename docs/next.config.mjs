@@ -4,8 +4,8 @@ const nextConfig = {
 	images: {
 		unoptimized: true,
 	},
-	assetPrefix: "/out",
-	basePath: "/out",
+	assetPrefix: "/Math_Lib/",
+	basePath: "/Math_Lib/",
 };
 
 export default nextConfig;
