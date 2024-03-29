@@ -9,6 +9,6 @@ export type ReturnTypesForEquation2upDegree = {
     value: null;
     msg: string;
 } | {
-    value: number | number[];
+    value: number[];
     msg: string;
 };

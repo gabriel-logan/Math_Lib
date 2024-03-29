@@ -1,475 +1,484 @@
 "use strict";
-var valorPi = "3.1415926535897932384626433832795";
-var Calculadora = (function () {
-    function Calculadora() {
-        this.NumeroEuler = this.crieEulerNumber();
-        this.Pi = parseFloat(valorPi);
+var piValue = "3.1415926535897932384626433832795";
+var Calculator = (function () {
+    function Calculator() {
+        this.EulerNumber = this.createEulerNumber();
+        this.Pi = parseFloat(piValue);
     }
-    Calculadora.prototype.crieEulerNumber = function (n) {
+    Calculator.prototype.createEulerNumber = function (n) {
         if (n === void 0) { n = 9999; }
-        var inicioSomatorio = 0;
-        var valorVasio = 0;
-        for (var k = inicioSomatorio; k < n + 1; k++) {
-            var serie = Math.pow(1, k) / this.fatorial(k);
-            valorVasio += serie;
+        var sumStart = 0;
+        var emptyValue = 0;
+        for (var k = sumStart; k < n + 1; k++) {
+            var series = Math.pow(1, k) / this.factorial(k);
+            emptyValue += series;
         }
-        return valorVasio;
+        return emptyValue;
     };
-    Calculadora.prototype.metodoDeNewton = function (valorA, valorB, valorC, valorD, checkedSim) {
-        var valorADerivado = valorA * 3;
-        var valorBDerivado = valorB * 2;
-        var valorCDerivado = valorC * 1;
-        var delta = Math.pow(valorBDerivado, 2) - 4 * valorADerivado * valorCDerivado;
-        var resposta1 = (-valorBDerivado + Math.pow(delta, (1 / 2))) / (2 * valorADerivado);
-        var resposta2 = (-valorBDerivado - Math.pow(delta, (1 / 2))) / (2 * valorADerivado);
-        var pontoCritico1 = resposta1 * 1000;
-        var pontoCritico2 = resposta2 * 1000;
-        if (resposta1 < 0 && resposta2 < 0) {
-            pontoCritico1 = pontoCritico2 * -1;
+    Calculator.prototype.newtonMethod = function (valueA, valueB, valueC, valueD, checkedYes) {
+        var derivedValueA = valueA * 3;
+        var derivedValueB = valueB * 2;
+        var derivedValueC = valueC * 1;
+        var delta = Math.pow(derivedValueB, 2) - 4 * derivedValueA * derivedValueC;
+        var answer1 = (-derivedValueB + Math.pow(delta, (1 / 2))) / (2 * derivedValueA);
+        var answer2 = (-derivedValueB - Math.pow(delta, (1 / 2))) / (2 * derivedValueA);
+        var criticalPoint1 = answer1 * 1000;
+        var criticalPoint2 = answer2 * 1000;
+        if (answer1 < 0 && answer2 < 0) {
+            criticalPoint1 = criticalPoint2 * -1;
         }
-        else if (resposta1 > 0 && resposta2 > 0) {
-            pontoCritico1 = pontoCritico2 * -1;
+        else if (answer1 > 0 && answer2 > 0) {
+            criticalPoint1 = criticalPoint2 * -1;
         }
-        function geraIntervaloPontoCritico(min, max) {
+        function generateCriticalPointInterval(min, max) {
             return Math.random() * (max - min + 1) + min;
         }
-        var pontoCritico3;
-        if (resposta1 > resposta2) {
-            if (Number(resposta1) - Number(resposta2) > 1) {
-                pontoCritico3 = geraIntervaloPontoCritico(Math.ceil(Number(resposta2) + 0.2), Number(resposta1));
+        var criticalPoint3;
+        if (answer1 > answer2) {
+            if (Number(answer1) - Number(answer2) > 1) {
+                criticalPoint3 = generateCriticalPointInterval(Math.ceil(Number(answer2) + 0.2), Number(answer1));
             }
             else {
-                pontoCritico3 = geraIntervaloPontoCritico(Number(resposta2) + 0.2, Number(resposta1));
+                criticalPoint3 = generateCriticalPointInterval(Number(answer2) + 0.2, Number(answer1));
             }
         }
         else {
-            if (Number(resposta2) - Number(resposta1) > 1) {
-                pontoCritico3 = geraIntervaloPontoCritico(Math.ceil(Number(resposta1) + 0.2), Number(resposta2));
+            if (Number(answer2) - Number(answer1) > 1) {
+                criticalPoint3 = generateCriticalPointInterval(Math.ceil(Number(answer1) + 0.2), Number(answer2));
             }
             else {
-                pontoCritico3 = geraIntervaloPontoCritico(Number(resposta1) + 0.2, Number(resposta2));
+                criticalPoint3 = generateCriticalPointInterval(Number(answer1) + 0.2, Number(answer2));
             }
         }
         if (delta < 0) {
-            pontoCritico1 = -10000;
-            pontoCritico2 = 9000;
+            criticalPoint1 = -10000;
+            criticalPoint2 = 9000;
         }
-        var primeiraRaizCritica = [];
-        var iteracoes = 100000;
-        for (var index = 0; index < iteracoes; index++) {
-            pontoCritico1 =
-                pontoCritico1 -
-                    (Number(valorA) * Math.pow(pontoCritico1, 3) +
-                        Number(valorB) * Math.pow(pontoCritico1, 2) +
-                        Number(valorC) * pontoCritico1 +
-                        Number(valorD)) /
-                        (Number(valorADerivado) * Math.pow(pontoCritico1, 2) +
-                            Number(valorBDerivado) * pontoCritico1 +
-                            Number(valorCDerivado));
-            var valorDaFuncao1 = (Number(valorA) * Math.pow(pontoCritico1, 3) +
-                Number(valorB) * Math.pow(pontoCritico1, 2) +
-                Number(valorC) * pontoCritico1 +
-                Number(valorD)).toFixed(10);
-            pontoCritico2 =
-                pontoCritico2 -
-                    (Number(valorA) * Math.pow(pontoCritico2, 3) +
-                        Number(valorB) * Math.pow(pontoCritico2, 2) +
-                        Number(valorC) * pontoCritico2 +
-                        Number(valorD)) /
-                        (Number(valorADerivado) * Math.pow(pontoCritico2, 2) +
-                            Number(valorBDerivado) * pontoCritico2 +
-                            Number(valorCDerivado));
-            var valorDaFuncao2 = (Number(valorA) * Math.pow(pontoCritico2, 3) +
-                Number(valorB) * Math.pow(pontoCritico2, 2) +
-                Number(valorC) * pontoCritico2 +
-                Number(valorD)).toFixed(10);
-            pontoCritico3 =
-                pontoCritico3 -
-                    (Number(valorA) * Math.pow(pontoCritico3, 3) +
-                        Number(valorB) * Math.pow(pontoCritico3, 2) +
-                        Number(valorC) * pontoCritico3 +
-                        Number(valorD)) /
-                        (Number(valorADerivado) * Math.pow(pontoCritico3, 2) +
-                            Number(valorBDerivado) * pontoCritico3 +
-                            Number(valorCDerivado));
-            if (parseFloat(valorDaFuncao1) === 0.0 &&
-                parseFloat(valorDaFuncao2) === 0.0) {
-                primeiraRaizCritica.push(pontoCritico1, pontoCritico2, pontoCritico3);
+        var firstRootCritical = [];
+        var iterations = 100000;
+        for (var index = 0; index < iterations; index++) {
+            criticalPoint1 =
+                criticalPoint1 -
+                    (Number(valueA) * Math.pow(criticalPoint1, 3) +
+                        Number(valueB) * Math.pow(criticalPoint1, 2) +
+                        Number(valueC) * criticalPoint1 +
+                        Number(valueD)) /
+                        (Number(derivedValueA) * Math.pow(criticalPoint1, 2) +
+                            Number(derivedValueB) * criticalPoint1 +
+                            Number(derivedValueC));
+            var functionValue1 = (Number(valueA) * Math.pow(criticalPoint1, 3) +
+                Number(valueB) * Math.pow(criticalPoint1, 2) +
+                Number(valueC) * criticalPoint1 +
+                Number(valueD)).toFixed(10);
+            criticalPoint2 =
+                criticalPoint2 -
+                    (Number(valueA) * Math.pow(criticalPoint2, 3) +
+                        Number(valueB) * Math.pow(criticalPoint2, 2) +
+                        Number(valueC) * criticalPoint2 +
+                        Number(valueD)) /
+                        (Number(derivedValueA) * Math.pow(criticalPoint2, 2) +
+                            Number(derivedValueB) * criticalPoint2 +
+                            Number(derivedValueC));
+            var functionValue2 = (Number(valueA) * Math.pow(criticalPoint2, 3) +
+                Number(valueB) * Math.pow(criticalPoint2, 2) +
+                Number(valueC) * criticalPoint2 +
+                Number(valueD)).toFixed(10);
+            criticalPoint3 =
+                criticalPoint3 -
+                    (Number(valueA) * Math.pow(criticalPoint3, 3) +
+                        Number(valueB) * Math.pow(criticalPoint3, 2) +
+                        Number(valueC) * criticalPoint3 +
+                        Number(valueD)) /
+                        (Number(derivedValueA) * Math.pow(criticalPoint3, 2) +
+                            Number(derivedValueB) * criticalPoint3 +
+                            Number(derivedValueC));
+            if (parseFloat(functionValue1) === 0.0 &&
+                parseFloat(functionValue2) === 0.0) {
+                firstRootCritical.push(criticalPoint1, criticalPoint2, criticalPoint3);
                 break;
             }
         }
-        if (primeiraRaizCritica[0].toFixed(7) == primeiraRaizCritica[1].toFixed(7)) {
-            if (checkedSim) {
+        if (firstRootCritical[0].toFixed(7) == firstRootCritical[1].toFixed(7)) {
+            if (checkedYes) {
                 return {
-                    value: primeiraRaizCritica[0],
-                    msg: "Possui apenas 1 raiz real em X = ".concat(primeiraRaizCritica[0].toFixed(4)),
+                    value: [firstRootCritical[0]],
+                    msg: "It has only 1 real root in X = ".concat(firstRootCritical[0].toFixed(4)),
                 };
             }
             else {
                 return {
-                    value: primeiraRaizCritica[0],
-                    msg: "Possui apenas 1 raiz real em X = ".concat(primeiraRaizCritica[0]),
+                    value: [firstRootCritical[0]],
+                    msg: "It has only 1 real root in X = ".concat(firstRootCritical[0]),
                 };
             }
         }
-        else if (primeiraRaizCritica[0].toFixed(4) == primeiraRaizCritica[2].toFixed(4)) {
-            this.metodoDeNewton(valorA, valorB, valorC, valorD, checkedSim);
+        else if (firstRootCritical[0].toFixed(4) == firstRootCritical[2].toFixed(4)) {
+            this.newtonMethod(valueA, valueB, valueC, valueD, checkedYes);
         }
-        else if (primeiraRaizCritica[1].toFixed(4) == primeiraRaizCritica[2].toFixed(4)) {
-            this.metodoDeNewton(valorA, valorB, valorC, valorD, checkedSim);
+        else if (firstRootCritical[1].toFixed(4) == firstRootCritical[2].toFixed(4)) {
+            this.newtonMethod(valueA, valueB, valueC, valueD, checkedYes);
         }
         else {
-            if (checkedSim) {
+            if (checkedYes) {
                 return {
                     value: [
-                        primeiraRaizCritica[0],
-                        primeiraRaizCritica[1],
-                        primeiraRaizCritica[2],
+                        firstRootCritical[0],
+                        firstRootCritical[1],
+                        firstRootCritical[2],
                     ],
-                    msg: "X1 \u2245 ".concat(primeiraRaizCritica[0].toFixed(4), ", X2 \u2245 ").concat(primeiraRaizCritica[1].toFixed(4), ", X3 \u2245 ").concat(primeiraRaizCritica[2].toFixed(4)),
+                    msg: "X1 \u2245 ".concat(firstRootCritical[0].toFixed(4), ", X2 \u2245 ").concat(firstRootCritical[1].toFixed(4), ", X3 \u2245 ").concat(firstRootCritical[2].toFixed(4)),
                 };
             }
             else {
                 return {
                     value: [
-                        primeiraRaizCritica[0],
-                        primeiraRaizCritica[1],
-                        primeiraRaizCritica[2],
+                        firstRootCritical[0],
+                        firstRootCritical[1],
+                        firstRootCritical[2],
                     ],
-                    msg: "X1 \u2245 ".concat(primeiraRaizCritica[0], ", X2 \u2245 ").concat(primeiraRaizCritica[1], ", X3 \u2245 ").concat(primeiraRaizCritica[2]),
+                    msg: "X1 \u2245 ".concat(firstRootCritical[0], ", X2 \u2245 ").concat(firstRootCritical[1], ", X3 \u2245 ").concat(firstRootCritical[2]),
                 };
             }
         }
         return {
-            value: [primeiraRaizCritica[0]],
-            msg: "X1 = ".concat(primeiraRaizCritica[0]),
+            value: [firstRootCritical[0]],
+            msg: "X1 = ".concat(firstRootCritical[0]),
         };
     };
-    Calculadora.prototype.dispositivoBrioRufinho = function (valorA, valorB, valorC, valorD, raizes, checkedSim) {
-        var primeiro = valorA * raizes[0];
-        var segundoCoeficiente = Number(primeiro) + Number(valorB);
-        var segundo = segundoCoeficiente * raizes[0];
-        var terceiroCoeficiente = Number(segundo) + Number(valorC);
-        var terceiro = terceiroCoeficiente * raizes[0];
-        var quartoCoeficiente = Number(terceiro) + Number(valorD);
-        if (quartoCoeficiente == 0) {
-            var delta = Math.pow(segundoCoeficiente, 2) - 4 * valorA * terceiroCoeficiente;
+    Calculator.prototype.ruffiniDevice = function (valueA, valueB, valueC, valueD, raizes, checkedYes) {
+        var first = valueA * raizes[0];
+        var secondCoefficient = Number(first) + Number(valueB);
+        var second = secondCoefficient * raizes[0];
+        var thirdCoefficient = Number(second) + Number(valueC);
+        var third = thirdCoefficient * raizes[0];
+        var fourthCoefficient = Number(third) + Number(valueD);
+        if (fourthCoefficient == 0) {
+            var delta = Math.pow(secondCoefficient, 2) - 4 * valueA * thirdCoefficient;
             if (delta < 0) {
                 return {
-                    value: 0,
-                    msg: "Possui apenas 1 raiz real em X = ".concat(raizes[0]),
+                    value: [0],
+                    msg: "It has only 1 real root in X = ".concat(raizes[0]),
                 };
             }
             else {
-                var resposta1 = (-segundoCoeficiente + Math.pow(delta, (1 / 2))) / (2 * valorA);
-                var resposta2 = (-segundoCoeficiente - Math.pow(delta, (1 / 2))) / (2 * valorA);
+                var answer1 = (-secondCoefficient + Math.pow(delta, (1 / 2))) / (2 * valueA);
+                var answer2 = (-secondCoefficient - Math.pow(delta, (1 / 2))) / (2 * valueA);
                 if (delta === 0) {
-                    if (resposta1 == raizes[0]) {
+                    if (answer1 == raizes[0]) {
                         return {
-                            value: 0,
-                            msg: "O valor de X1 = 0 | X1 = X2 = X3",
+                            value: [0],
+                            msg: "The value of X1 = 0 | X1 = X2 = X3",
                         };
                     }
                     else {
-                        if (checkedSim) {
+                        if (checkedYes) {
                             return {
-                                value: [0, resposta1],
-                                msg: "O valor de X1 = 0 e X2 \u00E9 igual a: ".concat(resposta1.toFixed(2), " | X2 = X3"),
+                                value: [0, answer1],
+                                msg: "The value of X1 = 0 and X2 is equal to: ".concat(answer1.toFixed(2), " | X2 = X3"),
                             };
                         }
                         else {
                             return {
-                                value: [0, resposta1],
-                                msg: "O valor de X1 = 0 e X2 \u00E9 igual a: ".concat(resposta1, " | X2 = X3"),
+                                value: [0, answer1],
+                                msg: "The value of X1 = 0 and X2 is equal to: ".concat(answer1, " | X2 = X3"),
                             };
                         }
                     }
                 }
                 else {
-                    if (resposta1 == raizes[0]) {
-                        if (checkedSim) {
+                    if (answer1 == raizes[0]) {
+                        if (checkedYes) {
                             return {
-                                value: [raizes[0], resposta2],
-                                msg: "O valor de X1 = ".concat(raizes[0], " e X2 = ").concat(resposta2.toFixed(2), " | X1 = X3"),
+                                value: [raizes[0], answer2],
+                                msg: "The value of X1 = ".concat(raizes[0], " and X2 = ").concat(answer2.toFixed(2), " | X1 = X3"),
                             };
                         }
                         else {
                             return {
-                                value: [raizes[0], resposta2],
-                                msg: "O valor de X1 = ".concat(raizes[0], " e X2 = ").concat(resposta2, " | X1 = X3"),
+                                value: [raizes[0], answer2],
+                                msg: "The value of X1 = ".concat(raizes[0], " and X2 = ").concat(answer2, " | X1 = X3"),
                             };
                         }
                     }
-                    else if (resposta2 == raizes[0]) {
-                        if (checkedSim) {
+                    else if (answer2 == raizes[0]) {
+                        if (checkedYes) {
                             return {
-                                value: [raizes[0], resposta1],
-                                msg: "O valor de X1 = ".concat(raizes[0], " e X2 \u00E9 igual a: ").concat(resposta1.toFixed(2), " | X1 = X3"),
+                                value: [raizes[0], answer1],
+                                msg: "The value of X1 = ".concat(raizes[0], " and X2 it's the same as: ").concat(answer1.toFixed(2), " | X1 = X3"),
                             };
                         }
                         else {
                             return {
-                                value: [raizes[0], resposta1],
-                                msg: "O valor de X1 = ".concat(raizes[0], " e X2 \u00E9 igual a: ").concat(resposta1, " | X1 = X3"),
+                                value: [raizes[0], answer1],
+                                msg: "The value of X1 = ".concat(raizes[0], " and X2 it's the same as: ").concat(answer1, " | X1 = X3"),
                             };
                         }
                     }
                     else {
-                        if (checkedSim) {
+                        if (checkedYes) {
                             return {
-                                value: [raizes[0], resposta1, resposta2],
-                                msg: "O valor de X1 = ".concat(raizes[0], ", X2 \u00E9 igual a: ").concat(resposta1.toFixed(2), " e O valor de X3 \u00E9 igual a: ").concat(resposta2.toFixed(2)),
+                                value: [raizes[0], answer1, answer2],
+                                msg: "The value of X1 = ".concat(raizes[0], ", X2 it's the same as: ").concat(answer1.toFixed(2), " and The value of X3 it's the same as: ").concat(answer2.toFixed(2)),
                             };
                         }
                         else {
                             return {
-                                value: [raizes[0], resposta1, resposta2],
-                                msg: "O valor de X1 = ".concat(raizes[0], ", X2 \u00E9 igual a: ").concat(resposta1, " e O valor de X3 \u00E9 igual a: ").concat(resposta2),
+                                value: [raizes[0], answer1, answer2],
+                                msg: "The value of X1 = ".concat(raizes[0], ", X2 it's the same as: ").concat(answer1, " and The value of X3 it's the same as: ").concat(answer2),
                             };
                         }
                     }
                 }
             }
         }
-        else if (quartoCoeficiente != 0) {
-            return this.metodoDeNewton(valorA, valorB, valorC, valorD, checkedSim);
+        else if (fourthCoefficient != 0) {
+            return this.newtonMethod(valueA, valueB, valueC, valueD, checkedYes);
         }
         else {
             return {
                 value: null,
-                msg: "Vish, não sei oque rolou HEHEHE",
+                msg: "Vish, I don't know what happened HEHEHE",
             };
         }
     };
-    Calculadora.prototype.modulo = function (numero) {
-        if (numero < 0) {
-            return -numero;
+    Calculator.prototype.absoluteValue = function (number) {
+        if (number < 0) {
+            return -number;
         }
         else {
-            return numero;
+            return number;
         }
     };
-    Calculadora.prototype.fatorial = function (valorParaCalcular) {
-        if (valorParaCalcular === 0) {
+    Calculator.prototype.factorial = function (valueToCalculate) {
+        if (valueToCalculate === 0) {
             return 1;
         }
-        var resultado = 1;
-        for (var i = 1; i <= valorParaCalcular; i++) {
-            resultado *= i;
+        var result = 1;
+        for (var i = 1; i <= valueToCalculate; i++) {
+            result *= i;
         }
-        return resultado;
+        return result;
     };
-    Calculadora.prototype.raizQuadrada = function (valorParaCalcular) {
-        return Math.pow(valorParaCalcular, (1 / 2));
+    Calculator.prototype.squareRoot = function (valueToCalculate) {
+        return Math.pow(valueToCalculate, (1 / 2));
     };
-    Calculadora.prototype.raizCubica = function (valorParaCalcular) {
-        return Math.pow(valorParaCalcular, (1 / 3));
-    };
-    Calculadora.prototype.fatorar = function (valorParaCalcular) {
-        if (typeof valorParaCalcular !== "number") {
-            return console.log("Isso não é um numero inteiro");
+    Calculator.prototype.cubicRoot = function (valueToCalculate) {
+        var convertToPositive = this.absoluteValue(valueToCalculate);
+        var result = Math.pow(convertToPositive, (1 / 3));
+        if (valueToCalculate < 0) {
+            return result * -1;
         }
-        var numerosFatorados = [];
-        for (var y = 2; y < valorParaCalcular; y++) {
-            while (valorParaCalcular % y === 0) {
-                valorParaCalcular /= y;
-                numerosFatorados.push(y);
+        else {
+            return result;
+        }
+    };
+    Calculator.prototype.factor = function (valueToCalculate) {
+        if (typeof valueToCalculate !== "number") {
+            return console.log("This is not an integer");
+        }
+        var factoredNumbers = [];
+        for (var y = 2; y < valueToCalculate; y++) {
+            while (valueToCalculate % y === 0) {
+                valueToCalculate /= y;
+                factoredNumbers.push(y);
             }
         }
-        if (numerosFatorados.length === 0) {
-            numerosFatorados.push(valorParaCalcular);
+        if (factoredNumbers.length === 0) {
+            factoredNumbers.push(valueToCalculate);
         }
-        return numerosFatorados;
+        return factoredNumbers;
     };
-    Calculadora.prototype.seno = function (valorParaCalcular) {
+    Calculator.prototype.sine = function (valueToCalculate) {
         var n;
-        if (this.modulo(valorParaCalcular) > 5 &&
-            this.modulo(valorParaCalcular) <= 30) {
+        if (this.absoluteValue(valueToCalculate) > 5 &&
+            this.absoluteValue(valueToCalculate) <= 30) {
             n = 100;
         }
-        else if (this.modulo(valorParaCalcular) > 30) {
+        else if (this.absoluteValue(valueToCalculate) > 30) {
             n = 40;
         }
         else {
             n = 200;
         }
-        var inicioSomatorio = 0;
-        var valorVasio = 0;
-        for (var k = inicioSomatorio; k < n + 1; k++) {
-            var serie = (Math.pow((-1), k) * Math.pow(valorParaCalcular, (2 * k + 1))) /
-                this.fatorial(2 * k + 1);
-            valorVasio += serie;
+        var startSum = 0;
+        var emptyValue = 0;
+        for (var k = startSum; k < n + 1; k++) {
+            var series = (Math.pow((-1), k) * Math.pow(valueToCalculate, (2 * k + 1))) /
+                this.factorial(2 * k + 1);
+            emptyValue += series;
         }
-        if (this.modulo(valorVasio) < 0.00000001) {
+        if (this.absoluteValue(emptyValue) < 0.00000001) {
             return 0;
         }
         else {
-            return valorVasio;
+            return emptyValue;
         }
     };
-    Calculadora.prototype.cosseno = function (valorParaCalcular) {
+    Calculator.prototype.cosine = function (valueToCalculate) {
         var n;
-        if (this.modulo(valorParaCalcular) > 5 &&
-            this.modulo(valorParaCalcular) <= 30) {
+        if (this.absoluteValue(valueToCalculate) > 5 &&
+            this.absoluteValue(valueToCalculate) <= 30) {
             n = 100;
         }
-        else if (this.modulo(valorParaCalcular) > 30) {
+        else if (this.absoluteValue(valueToCalculate) > 30) {
             n = 40;
         }
         else {
             n = 200;
         }
-        var inicioSomatorio = 0;
-        var valorVasio = 0;
-        for (var k = inicioSomatorio; k < n + 1; k++) {
-            var serie = (Math.pow((-1), k) * Math.pow(valorParaCalcular, (2 * k))) / this.fatorial(2 * k);
-            valorVasio += serie;
+        var startSum = 0;
+        var emptyValue = 0;
+        for (var k = startSum; k < n + 1; k++) {
+            var series = (Math.pow((-1), k) * Math.pow(valueToCalculate, (2 * k))) / this.factorial(2 * k);
+            emptyValue += series;
         }
-        if (this.modulo(valorVasio) < 0.00000001) {
+        if (this.absoluteValue(emptyValue) < 0.00000001) {
             return 0;
         }
         else {
-            return valorVasio;
+            return emptyValue;
         }
     };
-    Calculadora.prototype.numeroAleatorioEntre = function (min, max) {
+    Calculator.prototype.mdc = function () { };
+    Calculator.prototype.mmc = function () { };
+    Calculator.prototype.randomNumberBetween = function (min, max) {
         var timestamp = Date.now();
         return min + (timestamp % (max - min + 1));
     };
-    Calculadora.prototype.raizDePrimeiroGrau = function (a, b) {
-        var numeroA = Number(a);
-        var numeroB = Number(b);
-        if (numeroA === 0) {
+    Calculator.prototype.linearEquation = function (a, b) {
+        var numberA = Number(a);
+        var numberB = Number(b);
+        if (numberA === 0) {
             return {
                 value: null,
-                msg: "O valor de 'a' não pode ser 0",
+                msg: "The value of 'a' cannot be 0",
             };
         }
-        var raiz = -numeroB / numeroA;
+        var root = -numberB / numberA;
         return {
-            value: raiz,
-            msg: "O valor de x \u00E9 igual a: ".concat(raiz),
+            value: root,
+            msg: "The value of x is the same as: ".concat(root),
         };
     };
-    Calculadora.prototype.raizDeSegundoGrau = function (a, b, c) {
-        var numeroA = Number(a);
-        var numeroB = Number(b);
-        var numeroC = Number(c);
-        if (Math.pow(numeroB, 2) - 4 * numeroA * numeroC < 0)
+    Calculator.prototype.quadraticEquation = function (a, b, c) {
+        var numberA = Number(a);
+        var numberB = Number(b);
+        var numberC = Number(c);
+        if (Math.pow(numberB, 2) - 4 * numberA * numberC < 0)
             return {
                 value: null,
-                msg: "A equação não possui raízes reais",
+                msg: "The equation does not have real roots",
             };
-        if (numeroA === 0 && numeroB === 0) {
+        if (numberA === 0 && numberB === 0) {
             return {
                 value: null,
-                msg: "O valor de 'a' e 'b' não podem ser 0 ao mesmo tempo",
+                msg: "The values of 'a' and 'b' cannot be 0 at the same time",
             };
         }
         else {
-            var raiz1 = (-numeroB + this.raizQuadrada(Math.pow(b, 2) - 4 * numeroA * numeroC)) /
-                (2 * numeroA);
-            var raiz2 = (-numeroB - this.raizQuadrada(Math.pow(b, 2) - 4 * numeroA * numeroC)) /
-                (2 * numeroA);
-            if (raiz1 === raiz2) {
+            var root1 = (-numberB + this.squareRoot(Math.pow(b, 2) - 4 * numberA * numberC)) /
+                (2 * numberA);
+            var root2 = (-numberB - this.squareRoot(Math.pow(b, 2) - 4 * numberA * numberC)) /
+                (2 * numberA);
+            if (root1 === root2) {
                 return {
-                    value: raiz1,
-                    msg: "Possui apenas 1 raiz real em X = ".concat(raiz1),
+                    value: [root1],
+                    msg: "It has only 1 real root in X = ".concat(root1),
                 };
             }
             else {
                 return {
-                    value: [raiz1, raiz2],
-                    msg: "O valor de X1 = ".concat(raiz1, " e X2 = ").concat(raiz2),
+                    value: [root1, root2],
+                    msg: "The value of X1 = ".concat(root1, " and X2 = ").concat(root2),
                 };
             }
         }
     };
-    Calculadora.prototype.raizDeTerceiroGrau = function (a, b, c, d, aproxima) {
+    Calculator.prototype.cubicEquation = function (a, b, c, d, approximate) {
         if (a === void 0) { a = 0; }
         if (b === void 0) { b = 0; }
         if (c === void 0) { c = 0; }
         if (d === void 0) { d = 0; }
-        if (aproxima === void 0) { aproxima = false; }
-        var checkedSim = aproxima;
-        var valorA = Number(a);
-        var valorB = Number(b);
-        var valorC = Number(c);
-        var valorD = Number(d);
-        if (valorD == 0) {
+        if (approximate === void 0) { approximate = false; }
+        var checkedYes = approximate;
+        var valueA = Number(a);
+        var valueB = Number(b);
+        var valueC = Number(c);
+        var valueD = Number(d);
+        if (valueD == 0) {
             var x1 = 0;
-            var delta = Math.pow(valorB, 2) - 4 * valorA * valorC;
+            var delta = Math.pow(valueB, 2) - 4 * valueA * valueC;
             if (delta < 0) {
                 return {
-                    value: 0,
-                    msg: "Possui apenas 1 raiz real em X = 0",
+                    value: [0],
+                    msg: "It has only 1 real root in X = 0",
                 };
             }
             else {
-                var resposta1 = (-valorB + Math.pow(delta, (1 / 2))) / (2 * valorA);
-                var resposta2 = (-valorB - Math.pow(delta, (1 / 2))) / (2 * valorA);
+                var answer1 = (-valueB + Math.pow(delta, (1 / 2))) / (2 * valueA);
+                var answer2 = (-valueB - Math.pow(delta, (1 / 2))) / (2 * valueA);
                 if (delta === 0) {
-                    if (resposta1 == x1) {
+                    if (answer1 == x1) {
                         return {
-                            value: 0,
-                            msg: "O valor de X1 = 0 | X1 = X2 = X3",
+                            value: [0],
+                            msg: "The value of X1 = 0 | X1 = X2 = X3",
                         };
                     }
                     else {
-                        if (checkedSim) {
+                        if (checkedYes) {
                             return {
-                                value: [0, resposta1],
-                                msg: "O valor de X1 = 0 e X2 \u00E9 igual a: ".concat(resposta1.toFixed(2), " | X2 = X3"),
+                                value: [0, answer1],
+                                msg: "The value of X1 = 0 and X2 is equal to: ".concat(answer1.toFixed(2), " | X2 = X3"),
                             };
                         }
                         else {
                             return {
-                                value: [0, resposta1],
-                                msg: "O valor de X1 = 0 e X2 \u00E9 igual a: ".concat(resposta1, " | X2 = X3"),
+                                value: [0, answer1],
+                                msg: "The value of X1 = 0 and X2 is equal to: ".concat(answer1, " | X2 = X3"),
                             };
                         }
                     }
                 }
                 else {
-                    if (resposta1 == x1) {
-                        if (checkedSim) {
+                    if (answer1 == x1) {
+                        if (checkedYes) {
                             return {
-                                value: [0, resposta2],
-                                msg: "O valor de X1 = 0 e X2 = ".concat(resposta2.toFixed(2), " | X1 = X3"),
+                                value: [0, answer2],
+                                msg: "The value of X1 = 0 and X2 = ".concat(answer2.toFixed(2), " | X1 = X3"),
                             };
                         }
                         else {
                             return {
-                                value: [0, resposta2],
-                                msg: "O valor de X1 = 0 e X2 = ".concat(resposta2, " | X1 = X3"),
+                                value: [0, answer2],
+                                msg: "The value of X1 = 0 and X2 = ".concat(answer2, " | X1 = X3"),
                             };
                         }
                     }
-                    else if (resposta2 == x1) {
-                        if (checkedSim) {
+                    else if (answer2 == x1) {
+                        if (checkedYes) {
                             return {
-                                value: [0, resposta1],
-                                msg: "O valor de X1 = 0 e X2 = ".concat(resposta1.toFixed(2), " | X1 = X3"),
+                                value: [0, answer1],
+                                msg: "The value of X1 = 0 and X2 = ".concat(answer1.toFixed(2), " | X1 = X3"),
                             };
                         }
                         else {
                             return {
-                                value: [0, resposta1],
-                                msg: "O valor de X1 = 0 e X2 \u00E9 igual a: ".concat(resposta1, " | X1 = X3"),
+                                value: [0, answer1],
+                                msg: "The value of X1 = 0 and X2 is equal to: ".concat(answer1, " | X1 = X3"),
                             };
                         }
                     }
                     else {
-                        if (checkedSim) {
+                        if (checkedYes) {
                             return {
-                                value: [0, resposta1, resposta2],
-                                msg: "O valor de X1 = 0, X2 \u00E9 igual a: ".concat(resposta1.toFixed(2), " e O valor de X3 \u00E9 igual a: ").concat(resposta2.toFixed(2)),
+                                value: [0, answer1, answer2],
+                                msg: "The value of X1 = 0, X2 it's the same as: ".concat(answer1.toFixed(2), " and The value of X3 it's the same as: ").concat(answer2.toFixed(2)),
                             };
                         }
                         else {
                             return {
-                                value: [0, resposta1, resposta2],
-                                msg: "O valor de X1 = 0, X2 \u00E9 igual a: ".concat(resposta1, " e O valor de X3 \u00E9 igual a: ").concat(resposta2),
+                                value: [0, answer1, answer2],
+                                msg: "The value of X1 = 0, X2 it's the same as: ".concat(answer1, " and The value of X3 it's the same as: ").concat(answer2),
                             };
                         }
                     }
@@ -477,41 +486,41 @@ var Calculadora = (function () {
             }
         }
         else {
-            var possiveisRaizes = [];
-            if (valorD > 0) {
-                for (var index = 1; index < Number(valorD) + 1; index++) {
-                    var isInteger = valorD % index;
+            var possibleRoots = [];
+            if (valueD > 0) {
+                for (var index = 1; index < Number(valueD) + 1; index++) {
+                    var isInteger = valueD % index;
                     if (isInteger == 0) {
-                        possiveisRaizes.push(index);
-                        possiveisRaizes.push(-index);
+                        possibleRoots.push(index);
+                        possibleRoots.push(-index);
                     }
                 }
             }
             else {
-                for (var index = -1; index > Number(valorD) - 1; index--) {
-                    var isInteger = valorD % index;
+                for (var index = -1; index > Number(valueD) - 1; index--) {
+                    var isInteger = valueD % index;
                     if (isInteger == 0) {
-                        possiveisRaizes.push(index);
-                        possiveisRaizes.push(-index);
+                        possibleRoots.push(index);
+                        possibleRoots.push(-index);
                     }
                 }
             }
             var raizes_1 = [];
-            possiveisRaizes.forEach(function (test) {
-                var primeiraRaiz = Number(valorA) * Math.pow(test, 3) +
-                    Number(valorB) * Math.pow(test, 2) +
-                    Number(valorC) * test +
-                    Number(valorD);
+            possibleRoots.forEach(function (test) {
+                var primeiraRaiz = Number(valueA) * Math.pow(test, 3) +
+                    Number(valueB) * Math.pow(test, 2) +
+                    Number(valueC) * test +
+                    Number(valueD);
                 if (primeiraRaiz == 0) {
                     raizes_1.push(test);
                 }
             });
             if (raizes_1.length === 0) {
-                return this.metodoDeNewton(valorA, valorB, valorC, valorD, checkedSim);
+                return this.newtonMethod(valueA, valueB, valueC, valueD, checkedYes);
             }
-            return this.dispositivoBrioRufinho(valorA, valorB, valorC, valorD, raizes_1, checkedSim);
+            return this.ruffiniDevice(valueA, valueB, valueC, valueD, raizes_1, checkedYes);
         }
     };
-    return Calculadora;
+    return Calculator;
 }());
-module.exports = new Calculadora();
+module.exports = new Calculator();

@@ -1,395 +1,389 @@
-// Classe que representa uma calculadora com algumas funções matemáticas básicas
+// Class that represents a calculator with some basic mathematical functions
 
 import {
 	ReturnTypesForEquation,
 	ReturnTypesForEquation2upDegree,
 } from "./types/loganmatic";
 
-const valorPi: string = "3.1415926535897932384626433832795";
+const piValue: string = "3.1415926535897932384626433832795";
 
 /**
  * @author - Gabriel Logan
- * @description - Programa Criado como uma biblioteca de matematica em portugues
- * @example - import Matematica from "./loganmatic.js"
- * console.log(Matematica.Pi)
+ * @description - Program created as a math library in English
+ * @example - import Mathematics from "loganmatic"
+ * console.log(Mathematics.Pi)
  */
-class Calculadora {
-	NumeroEuler: number; // Declare NumeroEuler property
+class Calculator {
+	EulerNumber: number; // Declare EulerNumber property
 	Pi: number; // Declare Pi property
 
 	constructor() {
-		this.NumeroEuler = this.crieEulerNumber();
-		this.Pi = parseFloat(valorPi);
+		this.EulerNumber = this.createEulerNumber();
+		this.Pi = parseFloat(piValue);
 	}
 
 	/**
-	 * Método para calcular o valor absoluto de um numero
-	 * @param n - Precisão do numero de euler
-	 * @example Matematica.crieEulerNumber(99999); ira criar um numero de euler com 99999 somas, cuidado
-	 * isso pode travar o seu pc, numeros muito grande resultam em demora para encontrar o valor
-	 * @return - Numero de Euler
+	 * Method to calculate the absoluteValue value of a number
+	 * @param n - Precision of the euler number
+	 * @example Mathematics.createEulerNumber(99999); will create an euler number with 99999 sums, be careful
+	 * this can freeze your pc, very large numbers result in delay to find the value
+	 * @return - Euler Number
 	 */
-	protected crieEulerNumber(n = 9999): number {
-		const inicioSomatorio = 0;
-		let valorVasio = 0;
+	protected createEulerNumber(n = 9999): number {
+		const sumStart = 0;
+		let emptyValue = 0;
 
-		for (let k = inicioSomatorio; k < n + 1; k++) {
-			const serie = 1 ** k / this.fatorial(k);
-			valorVasio += serie;
+		for (let k = sumStart; k < n + 1; k++) {
+			const series = 1 ** k / this.factorial(k);
+			emptyValue += series;
 		}
-		return valorVasio;
+		return emptyValue;
 	}
 
 	/**
-	 * @param valorA
-	 * @param valorB
-	 * @param valorC
-	 * @param valorD
-	 * @param checkedSim
+	 * @param valueA
+	 * @param valueB
+	 * @param valueC
+	 * @param valueD
+	 * @param checkedYes
 	 */
-	protected metodoDeNewton(
-		valorA: number,
-		valorB: number,
-		valorC: number,
-		valorD: number,
-		checkedSim: boolean,
+	protected newtonMethod(
+		valueA: number,
+		valueB: number,
+		valueC: number,
+		valueD: number,
+		checkedYes: boolean,
 	) {
-		const valorADerivado = valorA * 3;
-		const valorBDerivado = valorB * 2;
-		const valorCDerivado = valorC * 1;
+		const derivedValueA = valueA * 3;
+		const derivedValueB = valueB * 2;
+		const derivedValueC = valueC * 1;
 
-		const delta = valorBDerivado ** 2 - 4 * valorADerivado * valorCDerivado;
+		const delta = derivedValueB ** 2 - 4 * derivedValueA * derivedValueC;
 
-		const resposta1 =
-			(-valorBDerivado + delta ** (1 / 2)) / (2 * valorADerivado);
-		const resposta2 =
-			(-valorBDerivado - delta ** (1 / 2)) / (2 * valorADerivado);
+		const answer1 = (-derivedValueB + delta ** (1 / 2)) / (2 * derivedValueA);
+		const answer2 = (-derivedValueB - delta ** (1 / 2)) / (2 * derivedValueA);
 
-		let pontoCritico1 = resposta1 * 1000;
-		let pontoCritico2 = resposta2 * 1000;
+		let criticalPoint1 = answer1 * 1000;
+		let criticalPoint2 = answer2 * 1000;
 
-		if (resposta1 < 0 && resposta2 < 0) {
-			pontoCritico1 = pontoCritico2 * -1;
-		} else if (resposta1 > 0 && resposta2 > 0) {
-			pontoCritico1 = pontoCritico2 * -1;
+		if (answer1 < 0 && answer2 < 0) {
+			criticalPoint1 = criticalPoint2 * -1;
+		} else if (answer1 > 0 && answer2 > 0) {
+			criticalPoint1 = criticalPoint2 * -1;
 		}
 
-		function geraIntervaloPontoCritico(min: number, max: number) {
+		function generateCriticalPointInterval(min: number, max: number) {
 			return Math.random() * (max - min + 1) + min;
 		}
 
-		let pontoCritico3: number;
+		let criticalPoint3: number;
 
-		if (resposta1 > resposta2) {
-			if (Number(resposta1) - Number(resposta2) > 1) {
-				pontoCritico3 = geraIntervaloPontoCritico(
-					Math.ceil(Number(resposta2) + 0.2),
-					Number(resposta1),
+		if (answer1 > answer2) {
+			if (Number(answer1) - Number(answer2) > 1) {
+				criticalPoint3 = generateCriticalPointInterval(
+					Math.ceil(Number(answer2) + 0.2),
+					Number(answer1),
 				);
 			} else {
-				pontoCritico3 = geraIntervaloPontoCritico(
-					Number(resposta2) + 0.2,
-					Number(resposta1),
+				criticalPoint3 = generateCriticalPointInterval(
+					Number(answer2) + 0.2,
+					Number(answer1),
 				);
 			}
 		} else {
-			if (Number(resposta2) - Number(resposta1) > 1) {
-				pontoCritico3 = geraIntervaloPontoCritico(
-					Math.ceil(Number(resposta1) + 0.2),
-					Number(resposta2),
+			if (Number(answer2) - Number(answer1) > 1) {
+				criticalPoint3 = generateCriticalPointInterval(
+					Math.ceil(Number(answer1) + 0.2),
+					Number(answer2),
 				);
 			} else {
-				pontoCritico3 = geraIntervaloPontoCritico(
-					Number(resposta1) + 0.2,
-					Number(resposta2),
+				criticalPoint3 = generateCriticalPointInterval(
+					Number(answer1) + 0.2,
+					Number(answer2),
 				);
 			}
 		}
 
 		if (delta < 0) {
-			pontoCritico1 = -10000;
-			pontoCritico2 = 9000;
+			criticalPoint1 = -10000;
+			criticalPoint2 = 9000;
 		}
 
-		const primeiraRaizCritica = [];
+		const firstRootCritical = [];
 
-		const iteracoes = 100000;
+		const iterations = 100000;
 
-		for (let index = 0; index < iteracoes; index++) {
-			pontoCritico1 =
-				pontoCritico1 -
-				(Number(valorA) * pontoCritico1 ** 3 +
-					Number(valorB) * pontoCritico1 ** 2 +
-					Number(valorC) * pontoCritico1 +
-					Number(valorD)) /
-					(Number(valorADerivado) * pontoCritico1 ** 2 +
-						Number(valorBDerivado) * pontoCritico1 +
-						Number(valorCDerivado));
+		for (let index = 0; index < iterations; index++) {
+			criticalPoint1 =
+				criticalPoint1 -
+				(Number(valueA) * criticalPoint1 ** 3 +
+					Number(valueB) * criticalPoint1 ** 2 +
+					Number(valueC) * criticalPoint1 +
+					Number(valueD)) /
+					(Number(derivedValueA) * criticalPoint1 ** 2 +
+						Number(derivedValueB) * criticalPoint1 +
+						Number(derivedValueC));
 
-			const valorDaFuncao1 = (
-				Number(valorA) * pontoCritico1 ** 3 +
-				Number(valorB) * pontoCritico1 ** 2 +
-				Number(valorC) * pontoCritico1 +
-				Number(valorD)
+			const functionValue1 = (
+				Number(valueA) * criticalPoint1 ** 3 +
+				Number(valueB) * criticalPoint1 ** 2 +
+				Number(valueC) * criticalPoint1 +
+				Number(valueD)
 			).toFixed(10);
 
-			pontoCritico2 =
-				pontoCritico2 -
-				(Number(valorA) * pontoCritico2 ** 3 +
-					Number(valorB) * pontoCritico2 ** 2 +
-					Number(valorC) * pontoCritico2 +
-					Number(valorD)) /
-					(Number(valorADerivado) * pontoCritico2 ** 2 +
-						Number(valorBDerivado) * pontoCritico2 +
-						Number(valorCDerivado));
+			criticalPoint2 =
+				criticalPoint2 -
+				(Number(valueA) * criticalPoint2 ** 3 +
+					Number(valueB) * criticalPoint2 ** 2 +
+					Number(valueC) * criticalPoint2 +
+					Number(valueD)) /
+					(Number(derivedValueA) * criticalPoint2 ** 2 +
+						Number(derivedValueB) * criticalPoint2 +
+						Number(derivedValueC));
 
-			const valorDaFuncao2 = (
-				Number(valorA) * pontoCritico2 ** 3 +
-				Number(valorB) * pontoCritico2 ** 2 +
-				Number(valorC) * pontoCritico2 +
-				Number(valorD)
+			const functionValue2 = (
+				Number(valueA) * criticalPoint2 ** 3 +
+				Number(valueB) * criticalPoint2 ** 2 +
+				Number(valueC) * criticalPoint2 +
+				Number(valueD)
 			).toFixed(10);
 
-			pontoCritico3 =
-				pontoCritico3 -
-				(Number(valorA) * pontoCritico3 ** 3 +
-					Number(valorB) * pontoCritico3 ** 2 +
-					Number(valorC) * pontoCritico3 +
-					Number(valorD)) /
-					(Number(valorADerivado) * pontoCritico3 ** 2 +
-						Number(valorBDerivado) * pontoCritico3 +
-						Number(valorCDerivado));
+			criticalPoint3 =
+				criticalPoint3 -
+				(Number(valueA) * criticalPoint3 ** 3 +
+					Number(valueB) * criticalPoint3 ** 2 +
+					Number(valueC) * criticalPoint3 +
+					Number(valueD)) /
+					(Number(derivedValueA) * criticalPoint3 ** 2 +
+						Number(derivedValueB) * criticalPoint3 +
+						Number(derivedValueC));
 
-			// const valorDaFuncao3 = ((Number(valorA)*((pontoCritico3)**3)) + (Number(valorB)*((pontoCritico3)**2)) + (Number(valorC)*(pontoCritico3)) + Number(valorD)).toFixed(10);
+			// const valueOfFuncao3 = ((Number(valueA)*((criticalPoint3)**3)) + (Number(valueB)*((criticalPoint3)**2)) + (Number(valueC)*(criticalPoint3)) + Number (valueD)).toFixed(10);
 
 			if (
-				parseFloat(valorDaFuncao1) === 0.0 &&
-				parseFloat(valorDaFuncao2) === 0.0
+				parseFloat(functionValue1) === 0.0 &&
+				parseFloat(functionValue2) === 0.0
 			) {
-				primeiraRaizCritica.push(pontoCritico1, pontoCritico2, pontoCritico3);
+				firstRootCritical.push(criticalPoint1, criticalPoint2, criticalPoint3);
 				break;
 			}
 		}
 
-		if (
-			primeiraRaizCritica[0].toFixed(7) == primeiraRaizCritica[1].toFixed(7)
-		) {
-			if (checkedSim) {
+		if (firstRootCritical[0].toFixed(7) == firstRootCritical[1].toFixed(7)) {
+			if (checkedYes) {
 				return {
-					value: [primeiraRaizCritica[0]],
-					msg: `Possui apenas 1 raiz real em X = ${primeiraRaizCritica[0].toFixed(4)}`,
+					value: [firstRootCritical[0]],
+					msg: `It has only 1 real root in X = ${firstRootCritical[0].toFixed(4)}`,
 				};
 			} else {
 				return {
-					value: [primeiraRaizCritica[0]],
-					msg: `Possui apenas 1 raiz real em X = ${primeiraRaizCritica[0]}`,
+					value: [firstRootCritical[0]],
+					msg: `It has only 1 real root in X = ${firstRootCritical[0]}`,
 				};
 			}
 		} else if (
-			primeiraRaizCritica[0].toFixed(4) == primeiraRaizCritica[2].toFixed(4)
+			firstRootCritical[0].toFixed(4) == firstRootCritical[2].toFixed(4)
 		) {
-			this.metodoDeNewton(valorA, valorB, valorC, valorD, checkedSim);
+			this.newtonMethod(valueA, valueB, valueC, valueD, checkedYes);
 		} else if (
-			primeiraRaizCritica[1].toFixed(4) == primeiraRaizCritica[2].toFixed(4)
+			firstRootCritical[1].toFixed(4) == firstRootCritical[2].toFixed(4)
 		) {
-			this.metodoDeNewton(valorA, valorB, valorC, valorD, checkedSim);
+			this.newtonMethod(valueA, valueB, valueC, valueD, checkedYes);
 		} else {
-			if (checkedSim) {
+			if (checkedYes) {
 				return {
 					value: [
-						primeiraRaizCritica[0],
-						primeiraRaizCritica[1],
-						primeiraRaizCritica[2],
+						firstRootCritical[0],
+						firstRootCritical[1],
+						firstRootCritical[2],
 					],
-					msg: `X1 ≅ ${primeiraRaizCritica[0].toFixed(4)}, X2 ≅ ${primeiraRaizCritica[1].toFixed(4)}, X3 ≅ ${primeiraRaizCritica[2].toFixed(4)}`,
+					msg: `X1 ≅ ${firstRootCritical[0].toFixed(4)}, X2 ≅ ${firstRootCritical[1].toFixed(4)}, X3 ≅ ${firstRootCritical[2].toFixed(4)}`,
 				};
 			} else {
 				return {
 					value: [
-						primeiraRaizCritica[0],
-						primeiraRaizCritica[1],
-						primeiraRaizCritica[2],
+						firstRootCritical[0],
+						firstRootCritical[1],
+						firstRootCritical[2],
 					],
-					msg: `X1 ≅ ${primeiraRaizCritica[0]}, X2 ≅ ${primeiraRaizCritica[1]}, X3 ≅ ${primeiraRaizCritica[2]}`,
+					msg: `X1 ≅ ${firstRootCritical[0]}, X2 ≅ ${firstRootCritical[1]}, X3 ≅ ${firstRootCritical[2]}`,
 				};
 			}
 		}
 
 		return {
-			value: [primeiraRaizCritica[0]],
-			msg: `X1 = ${primeiraRaizCritica[0]}`,
+			value: [firstRootCritical[0]],
+			msg: `X1 = ${firstRootCritical[0]}`,
 		};
 	}
 
 	/**
-	 * @param valorA
-	 * @param valorB
-	 * @param valorC
-	 * @param valorD
+	 * @param valueA
+	 * @param valueB
+	 * @param valueC
+	 * @param valueD
 	 * @param raizes
-	 * @param checkedSim
+	 * @param checkedYes
 	 */
-	protected dispositivoBrioRufinho(
-		valorA: number,
-		valorB: number,
-		valorC: number,
-		valorD: number,
+	protected ruffiniDevice(
+		valueA: number,
+		valueB: number,
+		valueC: number,
+		valueD: number,
 		raizes: number[],
-		checkedSim: boolean,
+		checkedYes: boolean,
 	) {
-		const primeiro = valorA * raizes[0];
+		const first = valueA * raizes[0];
 
-		const segundoCoeficiente = Number(primeiro) + Number(valorB);
+		const secondCoefficient = Number(first) + Number(valueB);
 
-		const segundo = segundoCoeficiente * raizes[0];
+		const second = secondCoefficient * raizes[0];
 
-		const terceiroCoeficiente = Number(segundo) + Number(valorC);
+		const thirdCoefficient = Number(second) + Number(valueC);
 
-		const terceiro = terceiroCoeficiente * raizes[0];
+		const third = thirdCoefficient * raizes[0];
 
-		const quartoCoeficiente = Number(terceiro) + Number(valorD);
+		const fourthCoefficient = Number(third) + Number(valueD);
 
-		if (quartoCoeficiente == 0) {
-			const delta = segundoCoeficiente ** 2 - 4 * valorA * terceiroCoeficiente;
+		if (fourthCoefficient == 0) {
+			const delta = secondCoefficient ** 2 - 4 * valueA * thirdCoefficient;
 
 			if (delta < 0) {
 				return {
 					value: [0],
-					msg: `Possui apenas 1 raiz real em X = ${raizes[0]}`,
+					msg: `It has only 1 real root in X = ${raizes[0]}`,
 				};
 			} else {
-				const resposta1 =
-					(-segundoCoeficiente + delta ** (1 / 2)) / (2 * valorA);
-				const resposta2 =
-					(-segundoCoeficiente - delta ** (1 / 2)) / (2 * valorA);
+				const answer1 = (-secondCoefficient + delta ** (1 / 2)) / (2 * valueA);
+				const answer2 = (-secondCoefficient - delta ** (1 / 2)) / (2 * valueA);
 
 				if (delta === 0) {
-					if (resposta1 == raizes[0]) {
+					if (answer1 == raizes[0]) {
 						return {
 							value: [0],
-							msg: "O valor de X1 = 0 | X1 = X2 = X3",
+							msg: "The value of X1 = 0 | X1 = X2 = X3",
 						};
 					} else {
-						if (checkedSim) {
+						if (checkedYes) {
 							return {
-								value: [0, resposta1],
-								msg: `O valor de X1 = 0 e X2 é igual a: ${resposta1.toFixed(2)} | X2 = X3`,
+								value: [0, answer1],
+								msg: `The value of X1 = 0 and X2 is equal to: ${answer1.toFixed(2)} | X2 = X3`,
 							};
 						} else {
 							return {
-								value: [0, resposta1],
-								msg: `O valor de X1 = 0 e X2 é igual a: ${resposta1} | X2 = X3`,
+								value: [0, answer1],
+								msg: `The value of X1 = 0 and X2 is equal to: ${answer1} | X2 = X3`,
 							};
 						}
 					}
 				} else {
-					if (resposta1 == raizes[0]) {
-						if (checkedSim) {
+					if (answer1 == raizes[0]) {
+						if (checkedYes) {
 							return {
-								value: [raizes[0], resposta2],
-								msg: `O valor de X1 = ${raizes[0]} e X2 = ${resposta2.toFixed(2)} | X1 = X3`,
+								value: [raizes[0], answer2],
+								msg: `The value of X1 = ${raizes[0]} and X2 = ${answer2.toFixed(2)} | X1 = X3`,
 							};
 						} else {
 							return {
-								value: [raizes[0], resposta2],
-								msg: `O valor de X1 = ${raizes[0]} e X2 = ${resposta2} | X1 = X3`,
+								value: [raizes[0], answer2],
+								msg: `The value of X1 = ${raizes[0]} and X2 = ${answer2} | X1 = X3`,
 							};
 						}
-					} else if (resposta2 == raizes[0]) {
-						if (checkedSim) {
+					} else if (answer2 == raizes[0]) {
+						if (checkedYes) {
 							return {
-								value: [raizes[0], resposta1],
-								msg: `O valor de X1 = ${raizes[0]} e X2 é igual a: ${resposta1.toFixed(2)} | X1 = X3`,
+								value: [raizes[0], answer1],
+								msg: `The value of X1 = ${raizes[0]} and X2 it's the same as: ${answer1.toFixed(2)} | X1 = X3`,
 							};
 						} else {
 							return {
-								value: [raizes[0], resposta1],
-								msg: `O valor de X1 = ${raizes[0]} e X2 é igual a: ${resposta1} | X1 = X3`,
+								value: [raizes[0], answer1],
+								msg: `The value of X1 = ${raizes[0]} and X2 it's the same as: ${answer1} | X1 = X3`,
 							};
 						}
 					} else {
-						if (checkedSim) {
+						if (checkedYes) {
 							return {
-								value: [raizes[0], resposta1, resposta2],
-								msg: `O valor de X1 = ${raizes[0]}, X2 é igual a: ${resposta1.toFixed(2)} e O valor de X3 é igual a: ${resposta2.toFixed(2)}`,
+								value: [raizes[0], answer1, answer2],
+								msg: `The value of X1 = ${raizes[0]}, X2 it's the same as: ${answer1.toFixed(2)} and The value of X3 it's the same as: ${answer2.toFixed(2)}`,
 							};
 						} else {
 							return {
-								value: [raizes[0], resposta1, resposta2],
-								msg: `O valor de X1 = ${raizes[0]}, X2 é igual a: ${resposta1} e O valor de X3 é igual a: ${resposta2}`,
+								value: [raizes[0], answer1, answer2],
+								msg: `The value of X1 = ${raizes[0]}, X2 it's the same as: ${answer1} and The value of X3 it's the same as: ${answer2}`,
 							};
 						}
 					}
 				}
 			}
-		} else if (quartoCoeficiente != 0) {
-			return this.metodoDeNewton(valorA, valorB, valorC, valorD, checkedSim);
+		} else if (fourthCoefficient != 0) {
+			return this.newtonMethod(valueA, valueB, valueC, valueD, checkedYes);
 		} else {
 			return {
 				value: null,
-				msg: "Vish, não sei oque rolou HEHEHE",
+				msg: "Vish, I don't know what happened HEHEHE",
 			};
 		}
 	}
 
-	// ACIMA FUNCOES PRIVADAS
+	// ABOVE PRIVATE FUNCTIONS
 
 	/**
-	 * Método para calcular o valor absoluto de um numero
-	 * @param numero - O número a ser calculado o modulo
-	 * @example Matematica.modulo(-4)
-	 * @return - O resultado = 4
+	 * Method for calculating the absoluteValue value of a number
+	 * @param number - The number to calculate the module
+	 * @example Matematics.absoluteValue(-4)
+	 * @return - The result = 4
 	 */
-	modulo(numero: number): number {
-		if (numero < 0) {
-			return -numero; // Retorna o valor negativo como positivo
+	absoluteValue(number: number): number {
+		if (number < 0) {
+			return -number; // Returns the negative value as positive
 		} else {
-			return numero; // Retorna o valor positivo como é
+			return number; // Returns the positive value as it is
 		}
 	}
 
 	/**
-	 * Método para calcular o fatorial de um número
-	 * @param valorParaCalcular - O número a ser calculado o fatorial
-	 * @example Matematica.fatorial(4)
-	 * @return - O resultado do fatorial que é 24
+	 * Method to calculate the factorial of a number
+	 * @param valueToCalculate - The number to calculate the factorial
+	 * @example Matematics.factorial(4)
+	 * @return - The result of the factorial which is 24
 	 */
-	fatorial(valorParaCalcular: number): number {
-		// Se o valor é zero, o fatorial é 1
-		if (valorParaCalcular === 0) {
+	factorial(valueToCalculate: number): number {
+		// If the value is zero, the factorial is 1
+		if (valueToCalculate === 0) {
 			return 1;
 		}
 
-		let resultado = 1;
-		// Itera sobre os números menores ou iguais ao valor para calcular o fatorial
-		for (let i = 1; i <= valorParaCalcular; i++) {
-			resultado *= i;
+		let result = 1;
+		// Iterates over the numbers less than or equal to the value to calculate the factorial
+		for (let i = 1; i <= valueToCalculate; i++) {
+			result *= i;
 		}
 
-		// Retorna o resultado do fatorial
-		return resultado;
+		// Returns the result of the factorial
+		return result;
 	}
 
 	/**
-	 * Método para calcular a raiz quadrada de um número
-	 * @param valorParaCalcular - O número a ter a raiz quadrada calculada
-	 * @example Matematica.raizQuadrada(9)
-	 * @return - O resultado da raiz quadrada = 3
+	 * Method to calculate the square root of a number
+	 * @param valueToCalculate - The number to calculate the square root
+	 * @example Matematics.squareRoot(9)
+	 * @return - The result of the square root = 3
 	 */
-	raizQuadrada(valorParaCalcular: number): number {
-		return valorParaCalcular ** (1 / 2);
+	squareRoot(valueToCalculate: number): number {
+		return valueToCalculate ** (1 / 2);
 	}
 
 	/**
-	 * Método para calcular a raiz cúbica de um número
-	 * @param valorParaCalcular - O número a ter a raiz cúbica calculada
-	 * @example Matematica.raizCubica(8)
-	 * @return - O resultado da raiz cúbica = 2
+	 * Method to calculate the cubic root of a number
+	 * @param valueToCalculate - The number to calculate the cubic root
+	 * @example Matematics.cubicRoot(8)
+	 * @return - The result of the cubic root = 2
 	 */
-	raizCubica(valorParaCalcular: number): number {
-		const convertToPositive = this.modulo(valorParaCalcular);
+	cubicRoot(valueToCalculate: number): number {
+		const convertToPositive = this.absoluteValue(valueToCalculate);
 		const result = convertToPositive ** (1 / 3);
-		if (valorParaCalcular < 0) {
+		if (valueToCalculate < 0) {
 			return result * -1;
 		} else {
 			return result;
@@ -397,358 +391,362 @@ class Calculadora {
 	}
 
 	/**
-	 * Método para fatorar um número
-	 * @param valorParaCalcular - O número a ser fatorado
-	 * @example Matematica.fatorar(100)
-	 * @return - Um array com os fatores do número [2, 2, 5, 5]
+	 * Method to factor a number
+	 * @param valueToCalculate - The number to be factored
+	 * @example Matematics.factor(100)
+	 * @return - An array with the factors of the number [2, 2, 5, 5]
 	 */
-	fatorar(valorParaCalcular: number): void | number[] {
-		// Se o valor não é um número, retorna uma mensagem de erro
-		if (typeof valorParaCalcular !== "number") {
-			return console.log("Isso não é um numero inteiro");
+	factor(valueToCalculate: number): void | number[] {
+		// If the value is not a number, returns an error message
+		if (typeof valueToCalculate !== "number") {
+			return console.log("This is not an integer");
 		}
 
-		const numerosFatorados = [];
+		const factoredNumbers = [];
 
-		// Encontra os fatores do número
-		for (let y = 2; y < valorParaCalcular; y++) {
-			while (valorParaCalcular % y === 0) {
-				valorParaCalcular /= y;
-				numerosFatorados.push(y);
+		// Finds the factors of the number
+		for (let y = 2; y < valueToCalculate; y++) {
+			while (valueToCalculate % y === 0) {
+				valueToCalculate /= y;
+				factoredNumbers.push(y);
 			}
 		}
 
-		// Se o array está vazio, significa que o número é primo e ele é adicionado ao array
-		if (numerosFatorados.length === 0) {
-			numerosFatorados.push(valorParaCalcular);
+		// If the array is empty, it means that the number is prime and it is added to the array
+		if (factoredNumbers.length === 0) {
+			factoredNumbers.push(valueToCalculate);
 		}
 
-		// Retorna o array com os fatores
-		return numerosFatorados;
+		return factoredNumbers;
 	}
 
 	/**
-	 * Método para calcular o seno
-	 * @param valorParaCalcular - O número a ser calculado
-	 * @example Matematica.seno(Matematica.Pi)
-	 * @return - O resultado = 0 pois o seno de pi(180Graus) = 0
+	 * Method to calculate the sine of a number
+	 * @param valueToCalculate - The number to calculate the sine
+	 * @example Matematics.sine(Matematics.Pi)
+	 * @return - The result = 0 because the sine of pi(180 degrees) = 0
 	 */
-	seno(valorParaCalcular: number): number {
-		// Valor da variavel X se tiver
+	sine(valueToCalculate: number): number {
+		// Value of the variable X if it exists
 		let n: number;
 		if (
-			this.modulo(valorParaCalcular) > 5 &&
-			this.modulo(valorParaCalcular) <= 30
+			this.absoluteValue(valueToCalculate) > 5 &&
+			this.absoluteValue(valueToCalculate) <= 30
 		) {
-			n = 100; // Valor An para soma parcial
-		} else if (this.modulo(valorParaCalcular) > 30) {
-			n = 40; // Valor An para soma parcial
+			n = 100; // Value An for partial sum
+		} else if (this.absoluteValue(valueToCalculate) > 30) {
+			n = 40; // Value An for partial sum
 		} else {
-			n = 200; // Valor An para soma parcial
+			n = 200; // Value An for partial sum
 		}
-		const inicioSomatorio = 0; // Valor inicial do somatorio
-		let valorVasio = 0;
-		for (let k = inicioSomatorio; k < n + 1; k++) {
-			const serie =
-				((-1) ** k * valorParaCalcular ** (2 * k + 1)) /
-				this.fatorial(2 * k + 1);
-			valorVasio += serie; // Soma a serie de acordo com o valor de n
+		const startSum = 0; // Initial value of the sum
+		let emptyValue = 0;
+		for (let k = startSum; k < n + 1; k++) {
+			const series =
+				((-1) ** k * valueToCalculate ** (2 * k + 1)) /
+				this.factorial(2 * k + 1);
+			emptyValue += series; // Adds the series according to the value of n
 		}
 
-		if (this.modulo(valorVasio) < 0.00000001) {
+		if (this.absoluteValue(emptyValue) < 0.00000001) {
 			return 0;
 		} else {
-			return valorVasio; // Retorna a soma parcial da serie
+			return emptyValue; // Returns the partial sum of the series
 		}
 	}
 
 	/**
-	 * Método para calcular o cosseno
-	 * @param valorParaCalcular - O número a ser calculado
-	 * @example Matematica.cosseno(Matematica.Pi)
-	 * @return - O resultado = 0 pois o cosseno de pi(180Graus) = 0
+	 * Method to calculate the cosine of a number
+	 * @param valueToCalculate - The number to calculate the cosine
+	 * @example Matematics.cosine(Matematics.Pi)
+	 * @return - The result = 0 because the cosine of pi(180 degrees) = 0
 	 */
-	cosseno(valorParaCalcular: number): number {
-		// Valor da variavel X se tiver
+	cosine(valueToCalculate: number): number {
+		// Value of the variable X if it exists
 		let n: number;
 		if (
-			this.modulo(valorParaCalcular) > 5 &&
-			this.modulo(valorParaCalcular) <= 30
+			this.absoluteValue(valueToCalculate) > 5 &&
+			this.absoluteValue(valueToCalculate) <= 30
 		) {
-			n = 100; // Valor An para soma parcial
-		} else if (this.modulo(valorParaCalcular) > 30) {
-			n = 40; // Valor An para soma parcial
+			n = 100; // Value An for partial sum
+		} else if (this.absoluteValue(valueToCalculate) > 30) {
+			n = 40; // Value An for partial sum
 		} else {
-			n = 200; // Valor An para soma parcial
+			n = 200; // Value An for partial sum
 		}
-		const inicioSomatorio = 0; // Valor inicial do somatorio
-		let valorVasio = 0;
-		for (let k = inicioSomatorio; k < n + 1; k++) {
-			const serie =
-				((-1) ** k * valorParaCalcular ** (2 * k)) / this.fatorial(2 * k);
-			valorVasio += serie; // Soma a serie de acordo com o valor de n
+		const startSum = 0; // Initial value of the sum
+		let emptyValue = 0;
+		for (let k = startSum; k < n + 1; k++) {
+			const series =
+				((-1) ** k * valueToCalculate ** (2 * k)) / this.factorial(2 * k);
+			emptyValue += series; // Adds the series according to the value of n
 		}
 
-		if (this.modulo(valorVasio) < 0.00000001) {
+		if (this.absoluteValue(emptyValue) < 0.00000001) {
 			return 0;
 		} else {
-			return valorVasio; // Retorna a soma parcial da serie
+			return emptyValue; // Returns the partial sum of the series
 		}
 	}
 
+	mdc() {}
+	mmc() {}
+
 	/**
-	 * Método para calcular o numero aleatorio entre 2 numeros
-	 * @param max
-	 * @param min
-	 * @example Matematica.numeroAleatorioEntre(10, 20)
-	 * @return - O resultado = algum numero entre 10 e 20
+	 * Method to generate a random number between two values
+	 * @param min - The minimum value
+	 * @param max - The maximum value
+	 * @example Matematics.randomNumberBetween(1, 10)
+	 * @return - A random number between 1 and 10
 	 */
-	numeroAleatorioEntre(min: number, max: number): number {
+	randomNumberBetween(min: number, max: number): number {
 		const timestamp = Date.now();
 		return min + (timestamp % (max - min + 1));
 	}
 
 	/**
-	 * Método para calcular a raiz de um polinomio de grau 1
+	 * Method to calculate the root of a first degree polynomial
 	 * @param a
 	 * @param b
-	 * @example Matematica.raizDePrimeiroGrau(a, b)
+	 * @example Mathematics.linearEquation(a, b)
 	 *
-	 * a = termo que acompanha o (x)
-	 * e b = termo independente
+	 * a = term that accompanies the (x)
+	 * and b = independent term
 	 *
-	 * EX: ax + b = 0 ou 2x + 3 = 0 | a=2 e b=3
+	 * EX: ax + b = 0 or 2x + 3 = 0 | a=2 and b=3
 	 *
-	 * Matematica.raizDePrimeiroGrau(2, 3)
-	 * @return - O resultado = x = -3/2 = -1,5
+	 * Mathematics.linearEquation(2, 3)
+	 * @return - The result = x = -3/2 = -1.5
 	 */
-	raizDePrimeiroGrau(a: number, b: number): ReturnTypesForEquation {
-		const numeroA = Number(a);
-		const numeroB = Number(b);
+	linearEquation(a: number, b: number): ReturnTypesForEquation {
+		const numberA = Number(a);
+		const numberB = Number(b);
 
-		if (numeroA === 0) {
+		if (numberA === 0) {
 			return {
 				value: null,
-				msg: "O valor de 'a' não pode ser 0",
+				msg: "The value of 'a' cannot be 0",
 			};
 		}
 
-		const raiz = -numeroB / numeroA;
+		const root = -numberB / numberA;
 		return {
-			value: raiz,
-			msg: `O valor de x é igual a: ${raiz}`,
+			value: root,
+			msg: `The value of x is the same as: ${root}`,
 		};
 	}
 
 	/**
-	 * Método para calcular a raiz de um polinomio de grau 1
+	 * Method to calculate the root of a first-degree polynomial
 	 * @param a
 	 * @param b
 	 * @param c
-	 * @example Matematica.raizDeSegundoGrau(a, b, c)
+	 * @example Mathematics.quadraticEquation(a, b, c)
 	 *
-	 * a = termo que acompanha o (x^2)
-	 * b = termo que acompanha o (x)
-	 * c = termo independente
+	 * a = coefficient of (x^2)
+	 * b = coefficient of (x)
+	 * c = constant term
 	 *
 	 * EX: a(x^2) + b(x) + c = 0
 	 *
 	 *     1(x^2) + 2(x) - 3 = 0 | a = 1, b = 2, c = -3
 	 *
-	 * Matematica.raizDeSegundoGrau(1, 2, -3)
-	 * @return - O resultado = [1, -3]
+	 * Mathematics.quadraticEquation(1, 2, -3)
+	 * @return - The result = [1, -3]
 	 */
-	raizDeSegundoGrau(
+	quadraticEquation(
 		a: number,
 		b: number,
 		c: number,
 	): ReturnTypesForEquation2upDegree {
-		const numeroA = Number(a);
-		const numeroB = Number(b);
-		const numeroC = Number(c);
+		const numberA = Number(a);
+		const numberB = Number(b);
+		const numberC = Number(c);
 
-		if (numeroB ** 2 - 4 * numeroA * numeroC < 0)
+		if (numberB ** 2 - 4 * numberA * numberC < 0)
 			return {
 				value: null,
-				msg: "A equação não possui raízes reais",
+				msg: "The equation does not have real roots",
 			};
 
-		if (numeroA === 0 && numeroB === 0) {
+		if (numberA === 0 && numberB === 0) {
 			return {
 				value: null,
-				msg: "O valor de 'a' e 'b' não podem ser 0 ao mesmo tempo",
+				msg: "The values of 'a' and 'b' cannot be 0 at the same time",
 			};
 		} else {
-			const raiz1 =
-				(-numeroB + this.raizQuadrada(b ** 2 - 4 * numeroA * numeroC)) /
-				(2 * numeroA);
-			const raiz2 =
-				(-numeroB - this.raizQuadrada(b ** 2 - 4 * numeroA * numeroC)) /
-				(2 * numeroA);
+			const root1 =
+				(-numberB + this.squareRoot(b ** 2 - 4 * numberA * numberC)) /
+				(2 * numberA);
+			const root2 =
+				(-numberB - this.squareRoot(b ** 2 - 4 * numberA * numberC)) /
+				(2 * numberA);
 
-			if (raiz1 === raiz2) {
+			if (root1 === root2) {
 				return {
-					value: [raiz1],
-					msg: `Possui apenas 1 raiz real em X = ${raiz1}`,
+					value: [root1],
+					msg: `It has only 1 real root in X = ${root1}`,
 				};
 			} else {
 				return {
-					value: [raiz1, raiz2],
-					msg: `O valor de X1 = ${raiz1} e X2 = ${raiz2}`,
+					value: [root1, root2],
+					msg: `The value of X1 = ${root1} and X2 = ${root2}`,
 				};
 			}
 		}
 	}
+
 	/**
-	 * Método para calcular a raiz de um polinomio de grau 1
+	 * Method to calculate the root of a third-degree polynomial
 	 * @param a
 	 * @param b
 	 * @param c
 	 * @param d
-	 * @param [aproxima=false]
-	 * @example Matematica.raizDeTerceiroGrau(a, b, c, d)
+	 * @param [approximate=false]
+	 * @example Mathematics.cubicEquation(a, b, c, d)
 	 *
-	 * a = termo que acompanha o (x^3)
-	 * b = termo que acompanha o (x^2)
-	 * c = termo que acompanha o (x)
-	 * d = termo independente
+	 * a = coefficient of (x^3)
+	 * b = coefficient of (x^2)
+	 * c = coefficient of (x)
+	 * d = constant term
 	 *
-	 * Matematica.raizDeTerceiroGrau(1, 2, -3, 5)
-	 * @return - Possui apenas 1 raiz real em X = -3.344171229347796
+	 * Mathematics.cubicEquation(1, 2, -3, 5)
+	 * @return - It has only 1 real root in X = -3.344171229347796
 	 */
-	raizDeTerceiroGrau(
+	cubicEquation(
 		a = 0,
 		b = 0,
 		c = 0,
 		d = 0,
-		aproxima = false,
+		approximate = false,
 	): ReturnTypesForEquation2upDegree {
-		const checkedSim = aproxima;
-		const valorA = Number(a);
-		const valorB = Number(b);
-		const valorC = Number(c);
-		const valorD = Number(d);
+		const checkedYes = approximate;
+		const valueA = Number(a);
+		const valueB = Number(b);
+		const valueC = Number(c);
+		const valueD = Number(d);
 
-		if (valorD == 0) {
+		if (valueD == 0) {
 			const x1 = 0;
-			const delta = valorB ** 2 - 4 * valorA * valorC;
+			const delta = valueB ** 2 - 4 * valueA * valueC;
 
 			if (delta < 0) {
 				return {
 					value: [0],
-					msg: "Possui apenas 1 raiz real em X = 0",
+					msg: "It has only 1 real root in X = 0",
 				};
 			} else {
-				const resposta1 = (-valorB + delta ** (1 / 2)) / (2 * valorA);
-				const resposta2 = (-valorB - delta ** (1 / 2)) / (2 * valorA);
+				const answer1 = (-valueB + delta ** (1 / 2)) / (2 * valueA);
+				const answer2 = (-valueB - delta ** (1 / 2)) / (2 * valueA);
 
 				if (delta === 0) {
-					if (resposta1 == x1) {
+					if (answer1 == x1) {
 						return {
 							value: [0],
-							msg: "O valor de X1 = 0 | X1 = X2 = X3",
+							msg: "The value of X1 = 0 | X1 = X2 = X3",
 						};
 					} else {
-						if (checkedSim) {
+						if (checkedYes) {
 							return {
-								value: [0, resposta1],
-								msg: `O valor de X1 = 0 e X2 é igual a: ${resposta1.toFixed(2)} | X2 = X3`,
+								value: [0, answer1],
+								msg: `The value of X1 = 0 and X2 is equal to: ${answer1.toFixed(2)} | X2 = X3`,
 							};
 						} else {
 							return {
-								value: [0, resposta1],
-								msg: `O valor de X1 = 0 e X2 é igual a: ${resposta1} | X2 = X3`,
+								value: [0, answer1],
+								msg: `The value of X1 = 0 and X2 is equal to: ${answer1} | X2 = X3`,
 							};
 						}
 					}
 				} else {
-					if (resposta1 == x1) {
-						if (checkedSim) {
+					if (answer1 == x1) {
+						if (checkedYes) {
 							return {
-								value: [0, resposta2],
-								msg: `O valor de X1 = 0 e X2 = ${resposta2.toFixed(2)} | X1 = X3`,
+								value: [0, answer2],
+								msg: `The value of X1 = 0 and X2 = ${answer2.toFixed(2)} | X1 = X3`,
 							};
 						} else {
 							return {
-								value: [0, resposta2],
-								msg: `O valor de X1 = 0 e X2 = ${resposta2} | X1 = X3`,
+								value: [0, answer2],
+								msg: `The value of X1 = 0 and X2 = ${answer2} | X1 = X3`,
 							};
 						}
-					} else if (resposta2 == x1) {
-						if (checkedSim) {
+					} else if (answer2 == x1) {
+						if (checkedYes) {
 							return {
-								value: [0, resposta1],
-								msg: `O valor de X1 = 0 e X2 = ${resposta1.toFixed(2)} | X1 = X3`,
+								value: [0, answer1],
+								msg: `The value of X1 = 0 and X2 = ${answer1.toFixed(2)} | X1 = X3`,
 							};
 						} else {
 							return {
-								value: [0, resposta1],
-								msg: `O valor de X1 = 0 e X2 é igual a: ${resposta1} | X1 = X3`,
+								value: [0, answer1],
+								msg: `The value of X1 = 0 and X2 is equal to: ${answer1} | X1 = X3`,
 							};
 						}
 					} else {
-						if (checkedSim) {
+						if (checkedYes) {
 							return {
-								value: [0, resposta1, resposta2],
-								msg: `O valor de X1 = 0, X2 é igual a: ${resposta1.toFixed(2)} e O valor de X3 é igual a: ${resposta2.toFixed(2)}`,
+								value: [0, answer1, answer2],
+								msg: `The value of X1 = 0, X2 it's the same as: ${answer1.toFixed(2)} and The value of X3 it's the same as: ${answer2.toFixed(2)}`,
 							};
 						} else {
 							return {
-								value: [0, resposta1, resposta2],
-								msg: `O valor de X1 = 0, X2 é igual a: ${resposta1} e O valor de X3 é igual a: ${resposta2}`,
+								value: [0, answer1, answer2],
+								msg: `The value of X1 = 0, X2 it's the same as: ${answer1} and The value of X3 it's the same as: ${answer2}`,
 							};
 						}
 					}
 				}
 			}
 		} else {
-			const possiveisRaizes = [];
+			const possibleRoots = [];
 
-			if (valorD > 0) {
-				for (let index = 1; index < Number(valorD) + 1; index++) {
-					const isInteger = valorD % index;
+			if (valueD > 0) {
+				for (let index = 1; index < Number(valueD) + 1; index++) {
+					const isInteger = valueD % index;
 					if (isInteger == 0) {
-						possiveisRaizes.push(index);
-						possiveisRaizes.push(-index);
+						possibleRoots.push(index);
+						possibleRoots.push(-index);
 					}
 				}
 			} else {
-				for (let index = -1; index > Number(valorD) - 1; index--) {
-					const isInteger = valorD % index;
+				for (let index = -1; index > Number(valueD) - 1; index--) {
+					const isInteger = valueD % index;
 					if (isInteger == 0) {
-						possiveisRaizes.push(index);
-						possiveisRaizes.push(-index);
+						possibleRoots.push(index);
+						possibleRoots.push(-index);
 					}
 				}
 			}
 			const raizes: number[] = [];
-			possiveisRaizes.forEach((test) => {
+
+			possibleRoots.forEach((test) => {
 				const primeiraRaiz =
-					Number(valorA) * test ** 3 +
-					Number(valorB) * test ** 2 +
-					Number(valorC) * test +
-					Number(valorD);
+					Number(valueA) * test ** 3 +
+					Number(valueB) * test ** 2 +
+					Number(valueC) * test +
+					Number(valueD);
 				if (primeiraRaiz == 0) {
 					raizes.push(test);
 				}
 			});
 
 			if (raizes.length === 0) {
-				return this.metodoDeNewton(valorA, valorB, valorC, valorD, checkedSim);
+				return this.newtonMethod(valueA, valueB, valueC, valueD, checkedYes);
 			}
 
-			return this.dispositivoBrioRufinho(
-				valorA,
-				valorB,
-				valorC,
-				valorD,
+			return this.ruffiniDevice(
+				valueA,
+				valueB,
+				valueC,
+				valueD,
 				raizes,
-				checkedSim,
+				checkedYes,
 			);
 		}
 	}
 }
 
-// Cria uma instância da classe Calculadora
-// Exporta a instância da classe Calculadora
-export = new Calculadora();
+// Create an instance of the Calculator class
+// Exports the instance of the Calculator class
+export = new Calculator();

@@ -1,48 +1,42 @@
 import { ReturnTypesForEquation, ReturnTypesForEquation2upDegree } from "./types/loganmatic";
 /**
  * @author - Gabriel Logan
- * @description - Programa Criado como uma biblioteca de matematica em portugues
- * @example - import Matematica from "./loganmatic.js"
- * console.log(Matematica.Pi)
+ * @description - Program created as a math library in English
+ * @example - import Mathematics from "loganmatic"
+ * console.log(Mathematics.Pi)
  */
-declare class Calculadora {
-    NumeroEuler: number;
+declare class Calculator {
+    EulerNumber: number;
     Pi: number;
     constructor();
     /**
-     * Método para calcular o valor absoluto de um numero
-     * @param n - Precisão do numero de euler
-     * @example Matematica.crieEulerNumber(99999); ira criar um numero de euler com 99999 somas, cuidado
-     * isso pode travar o seu pc, numeros muito grande resultam em demora para encontrar o valor
-     * @return - Numero de Euler
+     * Method to calculate the absoluteValue value of a number
+     * @param n - Precision of the euler number
+     * @example Mathematics.createEulerNumber(99999); will create an euler number with 99999 sums, be careful
+     * this can freeze your pc, very large numbers result in delay to find the value
+     * @return - Euler Number
      */
-    protected crieEulerNumber(n?: number): number;
+    protected createEulerNumber(n?: number): number;
     /**
-     * @param valorA
-     * @param valorB
-     * @param valorC
-     * @param valorD
-     * @param checkedSim
+     * @param valueA
+     * @param valueB
+     * @param valueC
+     * @param valueD
+     * @param checkedYes
      */
-    protected metodoDeNewton(valorA: number, valorB: number, valorC: number, valorD: number, checkedSim: boolean): {
-        value: number;
-        msg: string;
-    } | {
+    protected newtonMethod(valueA: number, valueB: number, valueC: number, valueD: number, checkedYes: boolean): {
         value: number[];
         msg: string;
     };
     /**
-     * @param valorA
-     * @param valorB
-     * @param valorC
-     * @param valorD
+     * @param valueA
+     * @param valueB
+     * @param valueC
+     * @param valueD
      * @param raizes
-     * @param checkedSim
+     * @param checkedYes
      */
-    protected dispositivoBrioRufinho(valorA: number, valorB: number, valorC: number, valorD: number, raizes: number[], checkedSim: boolean): {
-        value: number;
-        msg: string;
-    } | {
+    protected ruffiniDevice(valueA: number, valueB: number, valueC: number, valueD: number, raizes: number[], checkedYes: boolean): {
         value: number[];
         msg: string;
     } | {
@@ -50,114 +44,116 @@ declare class Calculadora {
         msg: string;
     };
     /**
-     * Método para calcular o valor absoluto de um numero
-     * @param numero - O número a ser calculado o modulo
-     * @example Matematica.modulo(-4)
-     * @return - O resultado = 4
+     * Method for calculating the absoluteValue value of a number
+     * @param number - The number to calculate the module
+     * @example Matematics.absoluteValue(-4)
+     * @return - The result = 4
      */
-    modulo(numero: number): number;
+    absoluteValue(number: number): number;
     /**
-     * Método para calcular o fatorial de um número
-     * @param valorParaCalcular - O número a ser calculado o fatorial
-     * @example Matematica.fatorial(4)
-     * @return - O resultado do fatorial que é 24
+     * Method to calculate the factorial of a number
+     * @param valueToCalculate - The number to calculate the factorial
+     * @example Matematics.factorial(4)
+     * @return - The result of the factorial which is 24
      */
-    fatorial(valorParaCalcular: number): number;
+    factorial(valueToCalculate: number): number;
     /**
-     * Método para calcular a raiz quadrada de um número
-     * @param valorParaCalcular - O número a ter a raiz quadrada calculada
-     * @example Matematica.raizQuadrada(9)
-     * @return - O resultado da raiz quadrada = 3
+     * Method to calculate the square root of a number
+     * @param valueToCalculate - The number to calculate the square root
+     * @example Matematics.squareRoot(9)
+     * @return - The result of the square root = 3
      */
-    raizQuadrada(valorParaCalcular: number): number;
+    squareRoot(valueToCalculate: number): number;
     /**
-     * Método para calcular a raiz cúbica de um número
-     * @param valorParaCalcular - O número a ter a raiz cúbica calculada
-     * @example Matematica.raizCubica(8)
-     * @return - O resultado da raiz cúbica = 2
+     * Method to calculate the cubic root of a number
+     * @param valueToCalculate - The number to calculate the cubic root
+     * @example Matematics.cubicRoot(8)
+     * @return - The result of the cubic root = 2
      */
-    raizCubica(valorParaCalcular: number): number;
+    cubicRoot(valueToCalculate: number): number;
     /**
-     * Método para fatorar um número
-     * @param valorParaCalcular - O número a ser fatorado
-     * @example Matematica.fatorar(100)
-     * @return - Um array com os fatores do número [2, 2, 5, 5]
+     * Method to factor a number
+     * @param valueToCalculate - The number to be factored
+     * @example Matematics.factor(100)
+     * @return - An array with the factors of the number [2, 2, 5, 5]
      */
-    fatorar(valorParaCalcular: number): void | number[];
+    factor(valueToCalculate: number): void | number[];
     /**
-     * Método para calcular o seno
-     * @param valorParaCalcular - O número a ser calculado
-     * @example Matematica.seno(Matematica.Pi)
-     * @return - O resultado = 0 pois o seno de pi(180Graus) = 0
+     * Method to calculate the sine of a number
+     * @param valueToCalculate - The number to calculate the sine
+     * @example Matematics.sine(Matematics.Pi)
+     * @return - The result = 0 because the sine of pi(180 degrees) = 0
      */
-    seno(valorParaCalcular: number): number;
+    sine(valueToCalculate: number): number;
     /**
-     * Método para calcular o cosseno
-     * @param valorParaCalcular - O número a ser calculado
-     * @example Matematica.cosseno(Matematica.Pi)
-     * @return - O resultado = 0 pois o cosseno de pi(180Graus) = 0
+     * Method to calculate the cosine of a number
+     * @param valueToCalculate - The number to calculate the cosine
+     * @example Matematics.cosine(Matematics.Pi)
+     * @return - The result = 0 because the cosine of pi(180 degrees) = 0
      */
-    cosseno(valorParaCalcular: number): number;
+    cosine(valueToCalculate: number): number;
+    mdc(): void;
+    mmc(): void;
     /**
-     * Método para calcular o numero aleatorio entre 2 numeros
-     * @param max
-     * @param min
-     * @example Matematica.numeroAleatorioEntre(10, 20)
-     * @return - O resultado = algum numero entre 10 e 20
+     * Method to generate a random number between two values
+     * @param min - The minimum value
+     * @param max - The maximum value
+     * @example Matematics.randomNumberBetween(1, 10)
+     * @return - A random number between 1 and 10
      */
-    numeroAleatorioEntre(min: number, max: number): number;
+    randomNumberBetween(min: number, max: number): number;
     /**
-     * Método para calcular a raiz de um polinomio de grau 1
+     * Method to calculate the root of a first degree polynomial
      * @param a
      * @param b
-     * @example Matematica.raizDePrimeiroGrau(a, b)
+     * @example Mathematics.linearEquation(a, b)
      *
-     * a = termo que acompanha o (x)
-     * e b = termo independente
+     * a = term that accompanies the (x)
+     * and b = independent term
      *
-     * EX: ax + b = 0 ou 2x + 3 = 0 | a=2 e b=3
+     * EX: ax + b = 0 or 2x + 3 = 0 | a=2 and b=3
      *
-     * Matematica.raizDePrimeiroGrau(2, 3)
-     * @return - O resultado = x = -3/2 = -1,5
+     * Mathematics.linearEquation(2, 3)
+     * @return - The result = x = -3/2 = -1.5
      */
-    raizDePrimeiroGrau(a: number, b: number): ReturnTypesForEquation;
+    linearEquation(a: number, b: number): ReturnTypesForEquation;
     /**
-     * Método para calcular a raiz de um polinomio de grau 1
+     * Method to calculate the root of a first-degree polynomial
      * @param a
      * @param b
      * @param c
-     * @example Matematica.raizDeSegundoGrau(a, b, c)
+     * @example Mathematics.quadraticEquation(a, b, c)
      *
-     * a = termo que acompanha o (x^2)
-     * b = termo que acompanha o (x)
-     * c = termo independente
+     * a = coefficient of (x^2)
+     * b = coefficient of (x)
+     * c = constant term
      *
      * EX: a(x^2) + b(x) + c = 0
      *
      *     1(x^2) + 2(x) - 3 = 0 | a = 1, b = 2, c = -3
      *
-     * Matematica.raizDeSegundoGrau(1, 2, -3)
-     * @return - O resultado = [1, -3]
+     * Mathematics.quadraticEquation(1, 2, -3)
+     * @return - The result = [1, -3]
      */
-    raizDeSegundoGrau(a: number, b: number, c: number): ReturnTypesForEquation2upDegree;
+    quadraticEquation(a: number, b: number, c: number): ReturnTypesForEquation2upDegree;
     /**
-     * Método para calcular a raiz de um polinomio de grau 1
+     * Method to calculate the root of a third-degree polynomial
      * @param a
      * @param b
      * @param c
      * @param d
-     * @param [aproxima=false]
-     * @example Matematica.raizDeTerceiroGrau(a, b, c, d)
+     * @param [approximate=false]
+     * @example Mathematics.cubicEquation(a, b, c, d)
      *
-     * a = termo que acompanha o (x^3)
-     * b = termo que acompanha o (x^2)
-     * c = termo que acompanha o (x)
-     * d = termo independente
+     * a = coefficient of (x^3)
+     * b = coefficient of (x^2)
+     * c = coefficient of (x)
+     * d = constant term
      *
-     * Matematica.raizDeTerceiroGrau(1, 2, -3, 5)
-     * @return - Possui apenas 1 raiz real em X = -3.344171229347796
+     * Mathematics.cubicEquation(1, 2, -3, 5)
+     * @return - It has only 1 real root in X = -3.344171229347796
      */
-    raizDeTerceiroGrau(a?: number, b?: number, c?: number, d?: number, aproxima?: boolean): ReturnTypesForEquation2upDegree;
+    cubicEquation(a?: number, b?: number, c?: number, d?: number, approximate?: boolean): ReturnTypesForEquation2upDegree;
 }
-declare const _default: Calculadora;
+declare const _default: Calculator;
 export = _default;
