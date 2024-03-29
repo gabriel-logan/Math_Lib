@@ -1,5 +1,10 @@
 // Classe que representa uma calculadora com algumas funções matemáticas básicas
 
+import {
+	ReturnTypesForEquation,
+	ReturnTypesForEquation2upDegree,
+} from "./types/loganmatic";
+
 const valorPi: string = "3.1415926535897932384626433832795";
 
 /**
@@ -24,7 +29,7 @@ class Calculadora {
 	 * isso pode travar o seu pc, numeros muito grande resultam em demora para encontrar o valor
 	 * @return - Numero de Euler
 	 */
-	protected crieEulerNumber(n = 9999) {
+	protected crieEulerNumber(n = 9999): number {
 		const inicioSomatorio = 0;
 		let valorVasio = 0;
 
@@ -170,9 +175,15 @@ class Calculadora {
 			primeiraRaizCritica[0].toFixed(7) == primeiraRaizCritica[1].toFixed(7)
 		) {
 			if (checkedSim) {
-				return `Possui apenas 1 raiz real em X = ${primeiraRaizCritica[0].toFixed(4)}`;
+				return {
+					value: primeiraRaizCritica[0],
+					msg: `Possui apenas 1 raiz real em X = ${primeiraRaizCritica[0].toFixed(4)}`,
+				};
 			} else {
-				return `Possui apenas 1 raiz real em X = ${primeiraRaizCritica[0]}`;
+				return {
+					value: primeiraRaizCritica[0],
+					msg: `Possui apenas 1 raiz real em X = ${primeiraRaizCritica[0]}`,
+				};
 			}
 		} else if (
 			primeiraRaizCritica[0].toFixed(4) == primeiraRaizCritica[2].toFixed(4)
@@ -184,13 +195,30 @@ class Calculadora {
 			this.metodoDeNewton(valorA, valorB, valorC, valorD, checkedSim);
 		} else {
 			if (checkedSim) {
-				return `X1 ≅ ${primeiraRaizCritica[0].toFixed(4)}, X2 ≅ ${primeiraRaizCritica[1].toFixed(4)}, X3 ≅ ${primeiraRaizCritica[2].toFixed(4)}`;
+				return {
+					value: [
+						primeiraRaizCritica[0],
+						primeiraRaizCritica[1],
+						primeiraRaizCritica[2],
+					],
+					msg: `X1 ≅ ${primeiraRaizCritica[0].toFixed(4)}, X2 ≅ ${primeiraRaizCritica[1].toFixed(4)}, X3 ≅ ${primeiraRaizCritica[2].toFixed(4)}`,
+				};
 			} else {
-				return `X1 ≅ ${primeiraRaizCritica[0]}, X2 ≅ ${primeiraRaizCritica[1]}, X3 ≅ ${primeiraRaizCritica[2]}`;
+				return {
+					value: [
+						primeiraRaizCritica[0],
+						primeiraRaizCritica[1],
+						primeiraRaizCritica[2],
+					],
+					msg: `X1 ≅ ${primeiraRaizCritica[0]}, X2 ≅ ${primeiraRaizCritica[1]}, X3 ≅ ${primeiraRaizCritica[2]}`,
+				};
 			}
 		}
 
-		return `X1 = ${primeiraRaizCritica[0]}`;
+		return {
+			value: [primeiraRaizCritica[0]],
+			msg: `X1 = ${primeiraRaizCritica[0]}`,
+		};
 	}
 
 	/**
@@ -225,7 +253,10 @@ class Calculadora {
 			const delta = segundoCoeficiente ** 2 - 4 * valorA * terceiroCoeficiente;
 
 			if (delta < 0) {
-				return `Possui apenas 1 raiz real em X = ${raizes[0]}`;
+				return {
+					value: 0,
+					msg: `Possui apenas 1 raiz real em X = ${raizes[0]}`,
+				};
 			} else {
 				const resposta1 =
 					(-segundoCoeficiente + delta ** (1 / 2)) / (2 * valorA);
@@ -234,32 +265,59 @@ class Calculadora {
 
 				if (delta === 0) {
 					if (resposta1 == raizes[0]) {
-						return "O valor de X1 = 0 | X1 = X2 = X3";
+						return {
+							value: 0,
+							msg: "O valor de X1 = 0 | X1 = X2 = X3",
+						};
 					} else {
 						if (checkedSim) {
-							return `O valor de X1 = 0 e X2 é igual a: ${resposta1.toFixed(2)} | X2 = X3`;
+							return {
+								value: [0, resposta1],
+								msg: `O valor de X1 = 0 e X2 é igual a: ${resposta1.toFixed(2)} | X2 = X3`,
+							};
 						} else {
-							return `O valor de X1 = 0 e X2 é igual a: ${resposta1} | X2 = X3`;
+							return {
+								value: [0, resposta1],
+								msg: `O valor de X1 = 0 e X2 é igual a: ${resposta1} | X2 = X3`,
+							};
 						}
 					}
 				} else {
 					if (resposta1 == raizes[0]) {
 						if (checkedSim) {
-							return `O valor de X1 = ${raizes[0]} e X2 = ${resposta2.toFixed(2)} | X1 = X3`;
+							return {
+								value: [raizes[0], resposta2],
+								msg: `O valor de X1 = ${raizes[0]} e X2 = ${resposta2.toFixed(2)} | X1 = X3`,
+							};
 						} else {
-							return `O valor de X1 = ${raizes[0]} e X2 = ${resposta2} | X1 = X3`;
+							return {
+								value: [raizes[0], resposta2],
+								msg: `O valor de X1 = ${raizes[0]} e X2 = ${resposta2} | X1 = X3`,
+							};
 						}
 					} else if (resposta2 == raizes[0]) {
 						if (checkedSim) {
-							return `O valor de X1 = ${raizes[0]} e X2 é igual a: ${resposta1.toFixed(2)} | X1 = X3`;
+							return {
+								value: [raizes[0], resposta1],
+								msg: `O valor de X1 = ${raizes[0]} e X2 é igual a: ${resposta1.toFixed(2)} | X1 = X3`,
+							};
 						} else {
-							return `O valor de X1 = ${raizes[0]} e X2 é igual a: ${resposta1} | X1 = X3`;
+							return {
+								value: [raizes[0], resposta1],
+								msg: `O valor de X1 = ${raizes[0]} e X2 é igual a: ${resposta1} | X1 = X3`,
+							};
 						}
 					} else {
 						if (checkedSim) {
-							return `O valor de X1 = ${raizes[0]}, X2 é igual a: ${resposta1.toFixed(2)} e O valor de X3 é igual a: ${resposta2.toFixed(2)}`;
+							return {
+								value: [raizes[0], resposta1, resposta2],
+								msg: `O valor de X1 = ${raizes[0]}, X2 é igual a: ${resposta1.toFixed(2)} e O valor de X3 é igual a: ${resposta2.toFixed(2)}`,
+							};
 						} else {
-							return `O valor de X1 = ${raizes[0]}, X2 é igual a: ${resposta1} e O valor de X3 é igual a: ${resposta2}`;
+							return {
+								value: [raizes[0], resposta1, resposta2],
+								msg: `O valor de X1 = ${raizes[0]}, X2 é igual a: ${resposta1} e O valor de X3 é igual a: ${resposta2}`,
+							};
 						}
 					}
 				}
@@ -267,7 +325,10 @@ class Calculadora {
 		} else if (quartoCoeficiente != 0) {
 			return this.metodoDeNewton(valorA, valorB, valorC, valorD, checkedSim);
 		} else {
-			return "Vish, não sei oque rolou HEHEHE";
+			return {
+				value: null,
+				msg: "Vish, não sei oque rolou HEHEHE",
+			};
 		}
 	}
 
@@ -279,7 +340,7 @@ class Calculadora {
 	 * @example Matematica.modulo(-4)
 	 * @return - O resultado = 4
 	 */
-	modulo(numero: number) {
+	modulo(numero: number): number {
 		if (numero < 0) {
 			return -numero; // Retorna o valor negativo como positivo
 		} else {
@@ -293,7 +354,7 @@ class Calculadora {
 	 * @example Matematica.fatorial(4)
 	 * @return - O resultado do fatorial que é 24
 	 */
-	fatorial(valorParaCalcular: number) {
+	fatorial(valorParaCalcular: number): number {
 		// Se o valor é zero, o fatorial é 1
 		if (valorParaCalcular === 0) {
 			return 1;
@@ -315,7 +376,7 @@ class Calculadora {
 	 * @example Matematica.raizQuadrada(9)
 	 * @return - O resultado da raiz quadrada = 3
 	 */
-	raizQuadrada(valorParaCalcular: number) {
+	raizQuadrada(valorParaCalcular: number): number {
 		return valorParaCalcular ** (1 / 2);
 	}
 
@@ -325,7 +386,7 @@ class Calculadora {
 	 * @example Matematica.raizCubica(8)
 	 * @return - O resultado da raiz cúbica = 2
 	 */
-	raizCubica(valorParaCalcular: number) {
+	raizCubica(valorParaCalcular: number): number {
 		return valorParaCalcular ** (1 / 3);
 	}
 
@@ -335,7 +396,7 @@ class Calculadora {
 	 * @example Matematica.fatorar(100)
 	 * @return - Um array com os fatores do número [2, 2, 5, 5]
 	 */
-	fatorar(valorParaCalcular: number) {
+	fatorar(valorParaCalcular: number): void | number[] {
 		// Se o valor não é um número, retorna uma mensagem de erro
 		if (typeof valorParaCalcular !== "number") {
 			return console.log("Isso não é um numero inteiro");
@@ -366,7 +427,7 @@ class Calculadora {
 	 * @example Matematica.seno(Matematica.Pi)
 	 * @return - O resultado = 0 pois o seno de pi(180Graus) = 0
 	 */
-	seno(valorParaCalcular: number) {
+	seno(valorParaCalcular: number): number {
 		// Valor da variavel X se tiver
 		let n: number;
 		if (
@@ -401,7 +462,7 @@ class Calculadora {
 	 * @example Matematica.cosseno(Matematica.Pi)
 	 * @return - O resultado = 0 pois o cosseno de pi(180Graus) = 0
 	 */
-	cosseno(valorParaCalcular: number) {
+	cosseno(valorParaCalcular: number): number {
 		// Valor da variavel X se tiver
 		let n: number;
 		if (
@@ -436,7 +497,7 @@ class Calculadora {
 	 * @example Matematica.numeroAleatorioEntre(10, 20)
 	 * @return - O resultado = algum numero entre 10 e 20
 	 */
-	numeroAleatorioEntre(min: number, max: number) {
+	numeroAleatorioEntre(min: number, max: number): number {
 		const timestamp = Date.now();
 		return min + (timestamp % (max - min + 1));
 	}
@@ -455,16 +516,22 @@ class Calculadora {
 	 * Matematica.raizDePrimeiroGrau(2, 3)
 	 * @return - O resultado = x = -3/2 = -1,5
 	 */
-	raizDePrimeiroGrau(a: number, b: number) {
+	raizDePrimeiroGrau(a: number, b: number): ReturnTypesForEquation {
 		const numeroA = Number(a);
 		const numeroB = Number(b);
 
 		if (numeroA === 0) {
-			return `Esta equação é uma constante de valor = ${numeroB}`;
-		} else {
-			const raiz = -numeroB / numeroA;
-			return raiz;
+			return {
+				value: null,
+				msg: "O valor de 'a' não pode ser 0",
+			};
 		}
+
+		const raiz = -numeroB / numeroA;
+		return {
+			value: raiz,
+			msg: `O valor de x é igual a: ${raiz}`,
+		};
 	}
 
 	/**
@@ -485,16 +552,26 @@ class Calculadora {
 	 * Matematica.raizDeSegundoGrau(1, 2, -3)
 	 * @return - O resultado = [1, -3]
 	 */
-	raizDeSegundoGrau(a: number, b: number, c: number) {
+	raizDeSegundoGrau(
+		a: number,
+		b: number,
+		c: number,
+	): ReturnTypesForEquation2upDegree {
 		const numeroA = Number(a);
 		const numeroB = Number(b);
 		const numeroC = Number(c);
 
 		if (numeroB ** 2 - 4 * numeroA * numeroC < 0)
-			return "Não possui raizes reais";
+			return {
+				value: null,
+				msg: "A equação não possui raízes reais",
+			};
 
 		if (numeroA === 0 && numeroB === 0) {
-			return `Esta equação é uma constante de valor = ${numeroC}`;
+			return {
+				value: null,
+				msg: "O valor de 'a' e 'b' não podem ser 0 ao mesmo tempo",
+			};
 		} else {
 			const raiz1 =
 				(-numeroB + this.raizQuadrada(b ** 2 - 4 * numeroA * numeroC)) /
@@ -504,9 +581,15 @@ class Calculadora {
 				(2 * numeroA);
 
 			if (raiz1 === raiz2) {
-				return [raiz1, "Possui apenas 1 raiz real"];
+				return {
+					value: raiz1,
+					msg: `Possui apenas 1 raiz real em X = ${raiz1}`,
+				};
 			} else {
-				return [raiz1, raiz2];
+				return {
+					value: [raiz1, raiz2],
+					msg: `O valor de X1 = ${raiz1} e X2 = ${raiz2}`,
+				};
 			}
 		}
 	}
@@ -527,7 +610,13 @@ class Calculadora {
 	 * Matematica.raizDeTerceiroGrau(1, 2, -3, 5)
 	 * @return - Possui apenas 1 raiz real em X = -3.344171229347796
 	 */
-	raizDeTerceiroGrau(a = 0, b = 0, c = 0, d = 0, aproxima = false) {
+	raizDeTerceiroGrau(
+		a = 0,
+		b = 0,
+		c = 0,
+		d = 0,
+		aproxima = false,
+	): ReturnTypesForEquation2upDegree {
 		const checkedSim = aproxima;
 		const valorA = Number(a);
 		const valorB = Number(b);
@@ -539,39 +628,69 @@ class Calculadora {
 			const delta = valorB ** 2 - 4 * valorA * valorC;
 
 			if (delta < 0) {
-				return "Possui apenas 1 raiz real em X = 0";
+				return {
+					value: 0,
+					msg: "Possui apenas 1 raiz real em X = 0",
+				};
 			} else {
 				const resposta1 = (-valorB + delta ** (1 / 2)) / (2 * valorA);
 				const resposta2 = (-valorB - delta ** (1 / 2)) / (2 * valorA);
 
 				if (delta === 0) {
 					if (resposta1 == x1) {
-						return "O valor de X1 = 0 | X1 = X2 = X3";
+						return {
+							value: 0,
+							msg: "O valor de X1 = 0 | X1 = X2 = X3",
+						};
 					} else {
 						if (checkedSim) {
-							return `O valor de X1 = 0 e X2 é igual a: ${resposta1.toFixed(2)} | X2 = X3`;
+							return {
+								value: [0, resposta1],
+								msg: `O valor de X1 = 0 e X2 é igual a: ${resposta1.toFixed(2)} | X2 = X3`,
+							};
 						} else {
-							return `O valor de X1 = 0 e X2 é igual a: ${resposta1} | X2 = X3`;
+							return {
+								value: [0, resposta1],
+								msg: `O valor de X1 = 0 e X2 é igual a: ${resposta1} | X2 = X3`,
+							};
 						}
 					}
 				} else {
 					if (resposta1 == x1) {
 						if (checkedSim) {
-							return `O valor de X1 = 0 e X2 = ${resposta2.toFixed(2)} | X1 = X3`;
+							return {
+								value: [0, resposta2],
+								msg: `O valor de X1 = 0 e X2 = ${resposta2.toFixed(2)} | X1 = X3`,
+							};
 						} else {
-							return `O valor de X1 = 0 e X2 = ${resposta2} | X1 = X3`;
+							return {
+								value: [0, resposta2],
+								msg: `O valor de X1 = 0 e X2 = ${resposta2} | X1 = X3`,
+							};
 						}
 					} else if (resposta2 == x1) {
 						if (checkedSim) {
-							return `O valor de X1 = 0 e X2 é igual a: ${resposta1.toFixed(2)} | X1 = X3`;
+							return {
+								value: [0, resposta1],
+								msg: `O valor de X1 = 0 e X2 = ${resposta1.toFixed(2)} | X1 = X3`,
+							};
 						} else {
-							return `O valor de X1 = 0 e X2 é igual a: ${resposta1} | X1 = X3`;
+							return {
+								value: [0, resposta1],
+								msg: `O valor de X1 = 0 e X2 é igual a: ${resposta1} | X1 = X3`,
+							};
 						}
 					} else {
 						if (checkedSim) {
-							return `O valor de X1 = 0, X2 é igual a: ${resposta1.toFixed(2)} e O valor de X3 é igual a: ${resposta2.toFixed(2)}`;
+							return {
+								value: [0, resposta1, resposta2],
+								msg: `O valor de X1 = 0, X2 é igual a: ${resposta1.toFixed(2)} e O valor de X3 é igual a: ${resposta2.toFixed(2)}`,
+							};
 						} else {
-							return `O valor de X1 = 0, X2 é igual a: ${resposta1} e O valor de X3 é igual a: ${resposta2}`;
+							return {
+								value: [0, resposta1, resposta2],
+								msg: `O valor de X1 = 0, X2 é igual a: ${resposta1} e O valor de X3 é igual a: ${resposta2}`,
+							};
 						}
 					}
 				}
