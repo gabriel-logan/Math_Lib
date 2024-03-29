@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var piValue = "3.1415926535897932384626433832795";
 var Calculator = (function () {
     function Calculator() {
@@ -553,4 +552,4 @@ var Calculator = (function () {
     };
     return Calculator;
 }());
-exports.default = new Calculator();
+module.exports = new Calculator();

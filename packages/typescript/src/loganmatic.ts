@@ -791,4 +791,4 @@ class Calculator {
 
 // Create an instance of the Calculator class
 // Exports the instance of the Calculator class
-export default new Calculator();
+export = new Calculator();

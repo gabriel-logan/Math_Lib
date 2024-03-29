@@ -168,4 +168,4 @@ declare class Calculator {
     cubicEquation(a?: number, b?: number, c?: number, d?: number, approximate?: boolean): ReturnTypesForEquation2upDegree;
 }
 declare const _default: Calculator;
-export default _default;
+export = _default;
