@@ -100,10 +100,16 @@ var Calculadora = (function () {
         }
         if (primeiraRaizCritica[0].toFixed(7) == primeiraRaizCritica[1].toFixed(7)) {
             if (checkedSim) {
-                return "Possui apenas 1 raiz real em X = ".concat(primeiraRaizCritica[0].toFixed(4));
+                return {
+                    value: primeiraRaizCritica[0],
+                    msg: "Possui apenas 1 raiz real em X = ".concat(primeiraRaizCritica[0].toFixed(4)),
+                };
             }
             else {
-                return "Possui apenas 1 raiz real em X = ".concat(primeiraRaizCritica[0]);
+                return {
+                    value: primeiraRaizCritica[0],
+                    msg: "Possui apenas 1 raiz real em X = ".concat(primeiraRaizCritica[0]),
+                };
             }
         }
         else if (primeiraRaizCritica[0].toFixed(4) == primeiraRaizCritica[2].toFixed(4)) {
@@ -114,13 +120,30 @@ var Calculadora = (function () {
         }
         else {
             if (checkedSim) {
-                return "X1 \u2245 ".concat(primeiraRaizCritica[0].toFixed(4), ", X2 \u2245 ").concat(primeiraRaizCritica[1].toFixed(4), ", X3 \u2245 ").concat(primeiraRaizCritica[2].toFixed(4));
+                return {
+                    value: [
+                        primeiraRaizCritica[0],
+                        primeiraRaizCritica[1],
+                        primeiraRaizCritica[2],
+                    ],
+                    msg: "X1 \u2245 ".concat(primeiraRaizCritica[0].toFixed(4), ", X2 \u2245 ").concat(primeiraRaizCritica[1].toFixed(4), ", X3 \u2245 ").concat(primeiraRaizCritica[2].toFixed(4)),
+                };
             }
             else {
-                return "X1 \u2245 ".concat(primeiraRaizCritica[0], ", X2 \u2245 ").concat(primeiraRaizCritica[1], ", X3 \u2245 ").concat(primeiraRaizCritica[2]);
+                return {
+                    value: [
+                        primeiraRaizCritica[0],
+                        primeiraRaizCritica[1],
+                        primeiraRaizCritica[2],
+                    ],
+                    msg: "X1 \u2245 ".concat(primeiraRaizCritica[0], ", X2 \u2245 ").concat(primeiraRaizCritica[1], ", X3 \u2245 ").concat(primeiraRaizCritica[2]),
+                };
             }
         }
-        return "X1 = ".concat(primeiraRaizCritica[0]);
+        return {
+            value: [primeiraRaizCritica[0]],
+            msg: "X1 = ".concat(primeiraRaizCritica[0]),
+        };
     };
     Calculadora.prototype.dispositivoBrioRufinho = function (valorA, valorB, valorC, valorD, raizes, checkedSim) {
         var primeiro = valorA * raizes[0];
@@ -132,47 +155,77 @@ var Calculadora = (function () {
         if (quartoCoeficiente == 0) {
             var delta = Math.pow(segundoCoeficiente, 2) - 4 * valorA * terceiroCoeficiente;
             if (delta < 0) {
-                return "Possui apenas 1 raiz real em X = ".concat(raizes[0]);
+                return {
+                    value: 0,
+                    msg: "Possui apenas 1 raiz real em X = ".concat(raizes[0]),
+                };
             }
             else {
                 var resposta1 = (-segundoCoeficiente + Math.pow(delta, (1 / 2))) / (2 * valorA);
                 var resposta2 = (-segundoCoeficiente - Math.pow(delta, (1 / 2))) / (2 * valorA);
                 if (delta === 0) {
                     if (resposta1 == raizes[0]) {
-                        return "O valor de X1 = 0 | X1 = X2 = X3";
+                        return {
+                            value: 0,
+                            msg: "O valor de X1 = 0 | X1 = X2 = X3",
+                        };
                     }
                     else {
                         if (checkedSim) {
-                            return "O valor de X1 = 0 e X2 \u00E9 igual a: ".concat(resposta1.toFixed(2), " | X2 = X3");
+                            return {
+                                value: [0, resposta1],
+                                msg: "O valor de X1 = 0 e X2 \u00E9 igual a: ".concat(resposta1.toFixed(2), " | X2 = X3"),
+                            };
                         }
                         else {
-                            return "O valor de X1 = 0 e X2 \u00E9 igual a: ".concat(resposta1, " | X2 = X3");
+                            return {
+                                value: [0, resposta1],
+                                msg: "O valor de X1 = 0 e X2 \u00E9 igual a: ".concat(resposta1, " | X2 = X3"),
+                            };
                         }
                     }
                 }
                 else {
                     if (resposta1 == raizes[0]) {
                         if (checkedSim) {
-                            return "O valor de X1 = ".concat(raizes[0], " e X2 = ").concat(resposta2.toFixed(2), " | X1 = X3");
+                            return {
+                                value: [raizes[0], resposta2],
+                                msg: "O valor de X1 = ".concat(raizes[0], " e X2 = ").concat(resposta2.toFixed(2), " | X1 = X3"),
+                            };
                         }
                         else {
-                            return "O valor de X1 = ".concat(raizes[0], " e X2 = ").concat(resposta2, " | X1 = X3");
+                            return {
+                                value: [raizes[0], resposta2],
+                                msg: "O valor de X1 = ".concat(raizes[0], " e X2 = ").concat(resposta2, " | X1 = X3"),
+                            };
                         }
                     }
                     else if (resposta2 == raizes[0]) {
                         if (checkedSim) {
-                            return "O valor de X1 = ".concat(raizes[0], " e X2 \u00E9 igual a: ").concat(resposta1.toFixed(2), " | X1 = X3");
+                            return {
+                                value: [raizes[0], resposta1],
+                                msg: "O valor de X1 = ".concat(raizes[0], " e X2 \u00E9 igual a: ").concat(resposta1.toFixed(2), " | X1 = X3"),
+                            };
                         }
                         else {
-                            return "O valor de X1 = ".concat(raizes[0], " e X2 \u00E9 igual a: ").concat(resposta1, " | X1 = X3");
+                            return {
+                                value: [raizes[0], resposta1],
+                                msg: "O valor de X1 = ".concat(raizes[0], " e X2 \u00E9 igual a: ").concat(resposta1, " | X1 = X3"),
+                            };
                         }
                     }
                     else {
                         if (checkedSim) {
-                            return "O valor de X1 = ".concat(raizes[0], ", X2 \u00E9 igual a: ").concat(resposta1.toFixed(2), " e O valor de X3 \u00E9 igual a: ").concat(resposta2.toFixed(2));
+                            return {
+                                value: [raizes[0], resposta1, resposta2],
+                                msg: "O valor de X1 = ".concat(raizes[0], ", X2 \u00E9 igual a: ").concat(resposta1.toFixed(2), " e O valor de X3 \u00E9 igual a: ").concat(resposta2.toFixed(2)),
+                            };
                         }
                         else {
-                            return "O valor de X1 = ".concat(raizes[0], ", X2 \u00E9 igual a: ").concat(resposta1, " e O valor de X3 \u00E9 igual a: ").concat(resposta2);
+                            return {
+                                value: [raizes[0], resposta1, resposta2],
+                                msg: "O valor de X1 = ".concat(raizes[0], ", X2 \u00E9 igual a: ").concat(resposta1, " e O valor de X3 \u00E9 igual a: ").concat(resposta2),
+                            };
                         }
                     }
                 }
@@ -182,7 +235,10 @@ var Calculadora = (function () {
             return this.metodoDeNewton(valorA, valorB, valorC, valorD, checkedSim);
         }
         else {
-            return "Vish, não sei oque rolou HEHEHE";
+            return {
+                value: null,
+                msg: "Vish, não sei oque rolou HEHEHE",
+            };
         }
     };
     Calculadora.prototype.modulo = function (numero) {
@@ -284,21 +340,31 @@ var Calculadora = (function () {
         var numeroA = Number(a);
         var numeroB = Number(b);
         if (numeroA === 0) {
-            return "Esta equa\u00E7\u00E3o \u00E9 uma constante de valor = ".concat(numeroB);
+            return {
+                value: null,
+                msg: "O valor de 'a' não pode ser 0",
+            };
         }
-        else {
-            var raiz = -numeroB / numeroA;
-            return raiz;
-        }
+        var raiz = -numeroB / numeroA;
+        return {
+            value: raiz,
+            msg: "O valor de x \u00E9 igual a: ".concat(raiz),
+        };
     };
     Calculadora.prototype.raizDeSegundoGrau = function (a, b, c) {
         var numeroA = Number(a);
         var numeroB = Number(b);
         var numeroC = Number(c);
         if (Math.pow(numeroB, 2) - 4 * numeroA * numeroC < 0)
-            return "Não possui raizes reais";
+            return {
+                value: null,
+                msg: "A equação não possui raízes reais",
+            };
         if (numeroA === 0 && numeroB === 0) {
-            return "Esta equa\u00E7\u00E3o \u00E9 uma constante de valor = ".concat(numeroC);
+            return {
+                value: null,
+                msg: "O valor de 'a' e 'b' não podem ser 0 ao mesmo tempo",
+            };
         }
         else {
             var raiz1 = (-numeroB + this.raizQuadrada(Math.pow(b, 2) - 4 * numeroA * numeroC)) /
@@ -306,10 +372,16 @@ var Calculadora = (function () {
             var raiz2 = (-numeroB - this.raizQuadrada(Math.pow(b, 2) - 4 * numeroA * numeroC)) /
                 (2 * numeroA);
             if (raiz1 === raiz2) {
-                return [raiz1, "Possui apenas 1 raiz real"];
+                return {
+                    value: raiz1,
+                    msg: "Possui apenas 1 raiz real em X = ".concat(raiz1),
+                };
             }
             else {
-                return [raiz1, raiz2];
+                return {
+                    value: [raiz1, raiz2],
+                    msg: "O valor de X1 = ".concat(raiz1, " e X2 = ").concat(raiz2),
+                };
             }
         }
     };
@@ -328,47 +400,77 @@ var Calculadora = (function () {
             var x1 = 0;
             var delta = Math.pow(valorB, 2) - 4 * valorA * valorC;
             if (delta < 0) {
-                return "Possui apenas 1 raiz real em X = 0";
+                return {
+                    value: 0,
+                    msg: "Possui apenas 1 raiz real em X = 0",
+                };
             }
             else {
                 var resposta1 = (-valorB + Math.pow(delta, (1 / 2))) / (2 * valorA);
                 var resposta2 = (-valorB - Math.pow(delta, (1 / 2))) / (2 * valorA);
                 if (delta === 0) {
                     if (resposta1 == x1) {
-                        return "O valor de X1 = 0 | X1 = X2 = X3";
+                        return {
+                            value: 0,
+                            msg: "O valor de X1 = 0 | X1 = X2 = X3",
+                        };
                     }
                     else {
                         if (checkedSim) {
-                            return "O valor de X1 = 0 e X2 \u00E9 igual a: ".concat(resposta1.toFixed(2), " | X2 = X3");
+                            return {
+                                value: [0, resposta1],
+                                msg: "O valor de X1 = 0 e X2 \u00E9 igual a: ".concat(resposta1.toFixed(2), " | X2 = X3"),
+                            };
                         }
                         else {
-                            return "O valor de X1 = 0 e X2 \u00E9 igual a: ".concat(resposta1, " | X2 = X3");
+                            return {
+                                value: [0, resposta1],
+                                msg: "O valor de X1 = 0 e X2 \u00E9 igual a: ".concat(resposta1, " | X2 = X3"),
+                            };
                         }
                     }
                 }
                 else {
                     if (resposta1 == x1) {
                         if (checkedSim) {
-                            return "O valor de X1 = 0 e X2 = ".concat(resposta2.toFixed(2), " | X1 = X3");
+                            return {
+                                value: [0, resposta2],
+                                msg: "O valor de X1 = 0 e X2 = ".concat(resposta2.toFixed(2), " | X1 = X3"),
+                            };
                         }
                         else {
-                            return "O valor de X1 = 0 e X2 = ".concat(resposta2, " | X1 = X3");
+                            return {
+                                value: [0, resposta2],
+                                msg: "O valor de X1 = 0 e X2 = ".concat(resposta2, " | X1 = X3"),
+                            };
                         }
                     }
                     else if (resposta2 == x1) {
                         if (checkedSim) {
-                            return "O valor de X1 = 0 e X2 \u00E9 igual a: ".concat(resposta1.toFixed(2), " | X1 = X3");
+                            return {
+                                value: [0, resposta1],
+                                msg: "O valor de X1 = 0 e X2 = ".concat(resposta1.toFixed(2), " | X1 = X3"),
+                            };
                         }
                         else {
-                            return "O valor de X1 = 0 e X2 \u00E9 igual a: ".concat(resposta1, " | X1 = X3");
+                            return {
+                                value: [0, resposta1],
+                                msg: "O valor de X1 = 0 e X2 \u00E9 igual a: ".concat(resposta1, " | X1 = X3"),
+                            };
                         }
                     }
                     else {
                         if (checkedSim) {
-                            return "O valor de X1 = 0, X2 \u00E9 igual a: ".concat(resposta1.toFixed(2), " e O valor de X3 \u00E9 igual a: ").concat(resposta2.toFixed(2));
+                            return {
+                                value: [0, resposta1, resposta2],
+                                msg: "O valor de X1 = 0, X2 \u00E9 igual a: ".concat(resposta1.toFixed(2), " e O valor de X3 \u00E9 igual a: ").concat(resposta2.toFixed(2)),
+                            };
                         }
                         else {
-                            return "O valor de X1 = 0, X2 \u00E9 igual a: ".concat(resposta1, " e O valor de X3 \u00E9 igual a: ").concat(resposta2);
+                            return {
+                                value: [0, resposta1, resposta2],
+                                msg: "O valor de X1 = 0, X2 \u00E9 igual a: ".concat(resposta1, " e O valor de X3 \u00E9 igual a: ").concat(resposta2),
+                            };
                         }
                     }
                 }

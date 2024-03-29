@@ -1,6 +1,6 @@
 import calculadora from "../src/loganmatic";
 
-describe("Calculadora", () => {
+describe("Calculadora general", () => {
 	test("should correctly calculate Pi", () => {
 		expect(calculadora.Pi).toBeCloseTo(3.141592653589793);
 	});
@@ -10,9 +10,14 @@ describe("Calculadora", () => {
 		expect(eulerNumber).toBeCloseTo(2.71828);
 	});
 
-	test("should correctly calculate the square root of 4", () => {
-		const squareRoot = calculadora.raizQuadrada(4);
-		expect(squareRoot).toBe(2);
+	test("should show only positive numbers", () => {
+		const positiveNumber = calculadora.modulo(-1);
+		expect(positiveNumber).toBe(1);
+	});
+
+	test("should correctly calculate the factorial of 5", () => {
+		const factorial = calculadora.fatorial(5);
+		expect(factorial).toBe(120);
 	});
 
 	test("should correctly calculate the square root of 9", () => {
@@ -20,56 +25,56 @@ describe("Calculadora", () => {
 		expect(squareRoot).toBe(3);
 	});
 
-	test("should show only positive numbers", () => {
-		const positiveNumber = calculadora.modulo(-1);
-		expect(positiveNumber).toBe(1);
+	test("should correctly calculate the square root of 0", () => {
+		const squareRoot = calculadora.raizQuadrada(0);
+		expect(squareRoot).toBe(0);
 	});
 
-	test("should correctly calculate the root of a linear equation", () => {
-		const equationRoot = calculadora.raizDePrimeiroGrau(2, 3);
-		expect(equationRoot).toEqual({
-			value: -1.5,
-			msg: "O valor de x é igual a: -1.5",
-		});
+	test("should correctly calculate the square root of -1", () => {
+		const squareRoot = calculadora.raizQuadrada(-1);
+		expect(squareRoot).toBe(NaN);
 	});
 
-	test("should correctly calculate the roots of a quadratic equation", () => {
-		const equationRoots = calculadora.raizDeSegundoGrau(1, -4, 4);
-		expect(equationRoots).toEqual({
-			value: 2,
-			msg: "Possui apenas 1 raiz real em X = 2",
-		});
+	test("should correctly calculate the cube root of 8", () => {
+		const cubeRoot = calculadora.raizCubica(8);
+		expect(cubeRoot).toBe(2);
 	});
 
-	test("should correctly calculate the roots of a cubic equation with c = 0", () => {
-		const equationRoots = calculadora.raizDeTerceiroGrau(1, -6, 11, 0);
-		expect(equationRoots).toEqual({
-			value: 0,
-			msg: "Possui apenas 1 raiz real em X = 0",
-		});
+	test("should correctly calculate the cube root of -8", () => {
+		const cubeRoot = calculadora.raizCubica(-8);
+		expect(cubeRoot).toBe(-2);
 	});
 
-	test("should correctly calculate the roots of a cubic equation with c = 0", () => {
-		const equationRoots = calculadora.raizDeTerceiroGrau(1, 3, -4, 0);
-		expect(equationRoots).toEqual({
-			value: [0, 1, -4],
-			msg: "O valor de X1 = 0, X2 é igual a: 1 e O valor de X3 é igual a: -4",
-		});
+	test("Must correctly return factored numbers", () => {
+		const factoredNumber = calculadora.fatorar(100);
+		expect(factoredNumber).toEqual([2, 2, 5, 5]);
 	});
 
-	test("should correctly calculate the roots of a cubic equation using the deviceBrioRufinho method", () => {
-		const equationRoots = calculadora.raizDeTerceiroGrau(1, -6, 11, -6);
-		expect(equationRoots).toEqual({
-			value: [1, 3, 2],
-			msg: "O valor de X1 = 1, X2 é igual a: 3 e O valor de X3 é igual a: 2",
-		});
+	test("should correctly calculate the sine of 0", () => {
+		const sine = calculadora.seno(0);
+		expect(sine).toBe(0);
 	});
 
-	test("should correctly calculate the roots of a cubic equation using the metodoDeNewton method", () => {
-		const equationRoots = calculadora.raizDeTerceiroGrau(1, -6, 2, -6, true);
-		expect(equationRoots).toEqual({
-			value: 5.833469159762645,
-			msg: "Possui apenas 1 raiz real em X = 5.8335",
-		});
+	test("should correctly calculate the cosine of 0", () => {
+		const cosine = calculadora.cosseno(0);
+		expect(cosine).toBe(1);
+	});
+
+	test("should correctly calculate a random number between 1 and 10", () => {
+		const randomNumber = calculadora.numeroAleatorioEntre(1, 10);
+		expect(randomNumber).toBeGreaterThanOrEqual(1);
+		expect(randomNumber).toBeLessThanOrEqual(10);
 	});
 });
+
+/**
+ * Valor absoluto de um número (método modulo) PI E EULER
+ * console.log(Matematica.modulo(-4));
+Fatorial de um número (método fatorial)
+Raiz quadrada de um número (método raizQuadrada)
+Raiz cúbica de um número (método raizCubica)
+Fatoração de um número (método fatorar)
+Seno de um número (método seno)
+Cosseno de um número (método cosseno)
+Número aleatório entre dois números (método numeroAleatorioEntre)
+ */

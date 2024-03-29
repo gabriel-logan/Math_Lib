@@ -1,3 +1,4 @@
+import { ReturnTypesForEquation, ReturnTypesForEquation2upDegree } from "./types/loganmatic";
 /**
  * @author - Gabriel Logan
  * @description - Programa Criado como uma biblioteca de matematica em portugues
@@ -23,7 +24,13 @@ declare class Calculadora {
      * @param valorD
      * @param checkedSim
      */
-    protected metodoDeNewton(valorA: number, valorB: number, valorC: number, valorD: number, checkedSim: boolean): string;
+    protected metodoDeNewton(valorA: number, valorB: number, valorC: number, valorD: number, checkedSim: boolean): {
+        value: number;
+        msg: string;
+    } | {
+        value: number[];
+        msg: string;
+    };
     /**
      * @param valorA
      * @param valorB
@@ -32,7 +39,16 @@ declare class Calculadora {
      * @param raizes
      * @param checkedSim
      */
-    protected dispositivoBrioRufinho(valorA: number, valorB: number, valorC: number, valorD: number, raizes: number[], checkedSim: boolean): string;
+    protected dispositivoBrioRufinho(valorA: number, valorB: number, valorC: number, valorD: number, raizes: number[], checkedSim: boolean): {
+        value: number;
+        msg: string;
+    } | {
+        value: number[];
+        msg: string;
+    } | {
+        value: null;
+        msg: string;
+    };
     /**
      * Método para calcular o valor absoluto de um numero
      * @param numero - O número a ser calculado o modulo
@@ -104,7 +120,7 @@ declare class Calculadora {
      * Matematica.raizDePrimeiroGrau(2, 3)
      * @return - O resultado = x = -3/2 = -1,5
      */
-    raizDePrimeiroGrau(a: number, b: number): string | number;
+    raizDePrimeiroGrau(a: number, b: number): ReturnTypesForEquation;
     /**
      * Método para calcular a raiz de um polinomio de grau 1
      * @param a
@@ -123,7 +139,7 @@ declare class Calculadora {
      * Matematica.raizDeSegundoGrau(1, 2, -3)
      * @return - O resultado = [1, -3]
      */
-    raizDeSegundoGrau(a: number, b: number, c: number): string | (string | number)[];
+    raizDeSegundoGrau(a: number, b: number, c: number): ReturnTypesForEquation2upDegree;
     /**
      * Método para calcular a raiz de um polinomio de grau 1
      * @param a
@@ -141,7 +157,7 @@ declare class Calculadora {
      * Matematica.raizDeTerceiroGrau(1, 2, -3, 5)
      * @return - Possui apenas 1 raiz real em X = -3.344171229347796
      */
-    raizDeTerceiroGrau(a?: number, b?: number, c?: number, d?: number, aproxima?: boolean): string;
+    raizDeTerceiroGrau(a?: number, b?: number, c?: number, d?: number, aproxima?: boolean): ReturnTypesForEquation2upDegree;
 }
 declare const _default: Calculadora;
 export = _default;

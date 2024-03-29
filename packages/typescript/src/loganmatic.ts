@@ -387,7 +387,13 @@ class Calculadora {
 	 * @return - O resultado da raiz cúbica = 2
 	 */
 	raizCubica(valorParaCalcular: number): number {
-		return valorParaCalcular ** (1 / 3);
+		const convertToPositive = this.modulo(valorParaCalcular);
+		const result = convertToPositive ** (1 / 3);
+		if (valorParaCalcular < 0) {
+			return result * -1;
+		} else {
+			return result;
+		}
 	}
 
 	/**
