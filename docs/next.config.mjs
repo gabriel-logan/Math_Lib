@@ -5,7 +5,6 @@ const nextConfig = {
 		unoptimized: true,
 	},
 	assetPrefix: "https://gabriel-logan.github.io/Math_Lib",
-	basePath: "/out",
 };
 
 export default nextConfig;
