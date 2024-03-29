@@ -1,6 +1,6 @@
 {
     "name": "loganmatic",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "Biblioteca de matematica com algumas funções para facilitar calculos",
     "publisher": "Gabriel Logan",
     "main": "./dist/loganmatic.js",
@@ -19,12 +19,12 @@
     ],
     "author": {
         "name": "Gabriel Logan",
-        "url": "https://github.com/gabriel-logan/Math_Lib_Js"
+        "url": "https://github.com/gabriel-logan/Math_Lib/"
     },
     "bugs": {
-        "url": "https://github.com/gabriel-logan/Math_Lib_Js/issues"
+        "url": "https://github.com/gabriel-logan/Math_Lib//issues"
     },
-    "homepage": "https://github.com/gabriel-logan/Math_Lib_Js#readme",
+    "homepage": "https://github.com/gabriel-logan/Math_Lib/#readme",
     "license": "ISC",
     "devDependencies": {
         "@types/jest": "^29.5.12",

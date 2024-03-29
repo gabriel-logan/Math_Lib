@@ -66,15 +66,3 @@ describe("Calculadora general", () => {
 		expect(randomNumber).toBeLessThanOrEqual(10);
 	});
 });
-
-/**
- * Valor absoluto de um número (método modulo) PI E EULER
- * console.log(Matematica.modulo(-4));
-Fatorial de um número (método fatorial)
-Raiz quadrada de um número (método raizQuadrada)
-Raiz cúbica de um número (método raizCubica)
-Fatoração de um número (método fatorar)
-Seno de um número (método seno)
-Cosseno de um número (método cosseno)
-Número aleatório entre dois números (método numeroAleatorioEntre)
- */

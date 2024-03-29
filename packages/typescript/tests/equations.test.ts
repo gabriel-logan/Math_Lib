@@ -49,11 +49,3 @@ describe("Calculadora equations", () => {
 		});
 	});
 });
-
-/**
- * Raiz de um polinômio de grau 1 (método raizDePrimeiroGrau)
-Raiz de um polinômio de grau 2 (método raizDeSegundoGrau)
-Raiz de um polinômio de grau 3 (método raizDeTerceiroGrau)
-Método de Newton para encontrar raízes de equações
-Método Dispositivo de Brio-Rufinho para encontrar raízes de equações
- */
