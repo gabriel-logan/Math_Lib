@@ -14,6 +14,6 @@ export type ReturnTypesForEquation2upDegree =
 			msg: string;
 	  }
 	| {
-			value: number | number[];
+			value: number[];
 			msg: string;
 	  };

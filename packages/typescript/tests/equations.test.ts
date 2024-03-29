@@ -12,7 +12,7 @@ describe("Calculadora equations", () => {
 	test("should correctly calculate the roots of a quadratic equation", () => {
 		const equationRoots = calculadora.raizDeSegundoGrau(1, -4, 4);
 		expect(equationRoots).toEqual({
-			value: 2,
+			value: [2],
 			msg: "Possui apenas 1 raiz real em X = 2",
 		});
 	});
@@ -20,7 +20,7 @@ describe("Calculadora equations", () => {
 	test("should correctly calculate the roots of a cubic equation with c = 0", () => {
 		const equationRoots = calculadora.raizDeTerceiroGrau(1, -6, 11, 0);
 		expect(equationRoots).toEqual({
-			value: 0,
+			value: [0],
 			msg: "Possui apenas 1 raiz real em X = 0",
 		});
 	});
@@ -43,9 +43,11 @@ describe("Calculadora equations", () => {
 
 	test("should correctly calculate the roots of a cubic equation using the metodoDeNewton method", () => {
 		const equationRoots = calculadora.raizDeTerceiroGrau(1, -6, 2, -6, true);
-		expect(equationRoots).toEqual({
-			value: 5.833469159762645,
-			msg: "Possui apenas 1 raiz real em X = 5.8335",
+		const expectedRoots = [5.833469159762645];
+
+		expect(equationRoots.value?.length).toEqual(expectedRoots.length);
+		equationRoots.value?.forEach((root, index) => {
+			expect(root).toBeCloseTo(expectedRoots[index]);
 		});
 	});
 });

@@ -176,12 +176,12 @@ class Calculadora {
 		) {
 			if (checkedSim) {
 				return {
-					value: primeiraRaizCritica[0],
+					value: [primeiraRaizCritica[0]],
 					msg: `Possui apenas 1 raiz real em X = ${primeiraRaizCritica[0].toFixed(4)}`,
 				};
 			} else {
 				return {
-					value: primeiraRaizCritica[0],
+					value: [primeiraRaizCritica[0]],
 					msg: `Possui apenas 1 raiz real em X = ${primeiraRaizCritica[0]}`,
 				};
 			}
@@ -254,7 +254,7 @@ class Calculadora {
 
 			if (delta < 0) {
 				return {
-					value: 0,
+					value: [0],
 					msg: `Possui apenas 1 raiz real em X = ${raizes[0]}`,
 				};
 			} else {
@@ -266,7 +266,7 @@ class Calculadora {
 				if (delta === 0) {
 					if (resposta1 == raizes[0]) {
 						return {
-							value: 0,
+							value: [0],
 							msg: "O valor de X1 = 0 | X1 = X2 = X3",
 						};
 					} else {
@@ -588,7 +588,7 @@ class Calculadora {
 
 			if (raiz1 === raiz2) {
 				return {
-					value: raiz1,
+					value: [raiz1],
 					msg: `Possui apenas 1 raiz real em X = ${raiz1}`,
 				};
 			} else {
@@ -635,7 +635,7 @@ class Calculadora {
 
 			if (delta < 0) {
 				return {
-					value: 0,
+					value: [0],
 					msg: "Possui apenas 1 raiz real em X = 0",
 				};
 			} else {
@@ -645,7 +645,7 @@ class Calculadora {
 				if (delta === 0) {
 					if (resposta1 == x1) {
 						return {
-							value: 0,
+							value: [0],
 							msg: "O valor de X1 = 0 | X1 = X2 = X3",
 						};
 					} else {
