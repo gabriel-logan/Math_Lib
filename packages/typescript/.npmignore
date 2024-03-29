@@ -10,3 +10,5 @@ src/
 *.lock
 tests/
 coverage/
+jest.config.js
+tsconfig.types.json
