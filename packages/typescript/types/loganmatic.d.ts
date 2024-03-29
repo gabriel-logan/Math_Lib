@@ -17,12 +17,12 @@ declare class Calculadora {
      */
     protected crieEulerNumber(n?: number): number;
     /**
-    * @param valorA
-    * @param valorB
-    * @param valorC
-    * @param valorD
-    * @param checkedSim
-    */
+     * @param valorA
+     * @param valorB
+     * @param valorC
+     * @param valorD
+     * @param checkedSim
+     */
     protected metodoDeNewton(valorA: number, valorB: number, valorC: number, valorD: number, checkedSim: boolean): string;
     /**
      * @param valorA

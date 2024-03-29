@@ -1,13 +1,10 @@
 .gitignore
-*.py
-*.html
-testarlib.js
-teste.*
-package-lock.json
 *.cjs
 tsconfig.json
-loganmatic.ts
 .prettierrc
 .npmignore
 .eslintrc.js
 .eslintignore
+src/
+.editorconfig
+*.lock

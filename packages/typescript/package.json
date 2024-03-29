@@ -3,10 +3,11 @@
     "version": "1.1.1",
     "description": "Biblioteca de matematica com algumas funções para facilitar calculos",
     "publisher": "Gabriel Logan",
-    "main": "loganmatic.js",
-    "types": "loganmatic.d.ts",
+    "main": "./dist/loganmatic.js",
+    "types": "./types/loganmatic.d.ts",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+				"build": "tsc"
     },
     "keywords": [
         "matemática",
