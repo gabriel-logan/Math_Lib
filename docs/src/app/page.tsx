@@ -11,6 +11,9 @@ export default function Home() {
 						<li>
 							<Link href="/typescript">Typescript/Javascript</Link>
 						</li>
+						<li>
+							<Link href="/python">Python</Link>
+						</li>
 					</ul>
 				</div>
 			</div>

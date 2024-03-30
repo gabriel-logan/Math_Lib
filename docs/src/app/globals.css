@@ -31,3 +31,11 @@ body {
     text-wrap: balance;
   }
 }
+
+a:hover{
+	color: rgb(0, 157, 255);
+}
+
+a:active{
+	color: rgb(7, 104, 164);
+}
