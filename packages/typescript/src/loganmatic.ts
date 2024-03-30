@@ -1,5 +1,7 @@
 // Class that represents a calculator with some basic mathematical functions
 
+import ArithmeticOp from "./arithmeticOp";
+import generateCriticalPointInterval from "./generateCriticalPointInterval";
 import {
 	ReturnTypesForEquation,
 	ReturnTypesForEquation2upDegree,
@@ -13,11 +15,12 @@ const piValue: string = "3.1415926535897932384626433832795";
  * @example - import Mathematics from "loganmatic"
  * console.log(Mathematics.Pi)
  */
-class Calculator {
+class Calculator extends ArithmeticOp {
 	EulerNumber: number; // Declare EulerNumber property
 	Pi: number; // Declare Pi property
 
 	constructor() {
+		super();
 		this.EulerNumber = this.createEulerNumber();
 		this.Pi = parseFloat(piValue);
 	}
@@ -70,10 +73,6 @@ class Calculator {
 			criticalPoint1 = criticalPoint2 * -1;
 		} else if (answer1 > 0 && answer2 > 0) {
 			criticalPoint1 = criticalPoint2 * -1;
-		}
-
-		function generateCriticalPointInterval(min: number, max: number) {
-			return Math.random() * (max - min + 1) + min;
 		}
 
 		let criticalPoint3: number;
@@ -786,6 +785,10 @@ class Calculator {
 				checkedYes,
 			);
 		}
+	}
+
+	public getRufinhoDevice() {
+		return this.ruffiniDevice;
 	}
 }
 
