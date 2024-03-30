@@ -1,9 +1,32 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+var arithmeticOp_1 = __importDefault(require("./arithmeticOp"));
+var generateCriticalPointInterval_1 = __importDefault(require("./generateCriticalPointInterval"));
 var piValue = "3.1415926535897932384626433832795";
-var Calculator = (function () {
+var Calculator = (function (_super) {
+    __extends(Calculator, _super);
     function Calculator() {
-        this.EulerNumber = this.createEulerNumber();
-        this.Pi = parseFloat(piValue);
+        var _this = _super.call(this) || this;
+        _this.EulerNumber = _this.createEulerNumber();
+        _this.Pi = parseFloat(piValue);
+        return _this;
     }
     Calculator.prototype.createEulerNumber = function (n) {
         if (n === void 0) { n = 9999; }
@@ -30,24 +53,21 @@ var Calculator = (function () {
         else if (answer1 > 0 && answer2 > 0) {
             criticalPoint1 = criticalPoint2 * -1;
         }
-        function generateCriticalPointInterval(min, max) {
-            return Math.random() * (max - min + 1) + min;
-        }
         var criticalPoint3;
         if (answer1 > answer2) {
             if (Number(answer1) - Number(answer2) > 1) {
-                criticalPoint3 = generateCriticalPointInterval(Math.ceil(Number(answer2) + 0.2), Number(answer1));
+                criticalPoint3 = (0, generateCriticalPointInterval_1.default)(Math.ceil(Number(answer2) + 0.2), Number(answer1));
             }
             else {
-                criticalPoint3 = generateCriticalPointInterval(Number(answer2) + 0.2, Number(answer1));
+                criticalPoint3 = (0, generateCriticalPointInterval_1.default)(Number(answer2) + 0.2, Number(answer1));
             }
         }
         else {
             if (Number(answer2) - Number(answer1) > 1) {
-                criticalPoint3 = generateCriticalPointInterval(Math.ceil(Number(answer1) + 0.2), Number(answer2));
+                criticalPoint3 = (0, generateCriticalPointInterval_1.default)(Math.ceil(Number(answer1) + 0.2), Number(answer2));
             }
             else {
-                criticalPoint3 = generateCriticalPointInterval(Number(answer1) + 0.2, Number(answer2));
+                criticalPoint3 = (0, generateCriticalPointInterval_1.default)(Number(answer1) + 0.2, Number(answer2));
             }
         }
         if (delta < 0) {
@@ -550,6 +570,9 @@ var Calculator = (function () {
             return this.ruffiniDevice(valueA, valueB, valueC, valueD, raizes_1, checkedYes);
         }
     };
+    Calculator.prototype.getRufinhoDevice = function () {
+        return this.ruffiniDevice;
+    };
     return Calculator;
-}());
+}(arithmeticOp_1.default));
 module.exports = new Calculator();

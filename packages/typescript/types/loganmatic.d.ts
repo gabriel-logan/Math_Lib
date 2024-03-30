@@ -1,3 +1,4 @@
+import ArithmeticOp from "./arithmeticOp";
 import { ReturnTypesForEquation, ReturnTypesForEquation2upDegree } from "./types/loganmatic";
 /**
  * @author - Gabriel Logan
@@ -5,7 +6,7 @@ import { ReturnTypesForEquation, ReturnTypesForEquation2upDegree } from "./types
  * @example - import Mathematics from "loganmatic"
  * console.log(Mathematics.Pi)
  */
-declare class Calculator {
+declare class Calculator extends ArithmeticOp {
     EulerNumber: number;
     Pi: number;
     constructor();
@@ -166,6 +167,13 @@ declare class Calculator {
      * @return - It has only 1 real root in X = -3.344171229347796
      */
     cubicEquation(a?: number, b?: number, c?: number, d?: number, approximate?: boolean): ReturnTypesForEquation2upDegree;
+    getRufinhoDevice(): (valueA: number, valueB: number, valueC: number, valueD: number, raizes: number[], checkedYes: boolean) => {
+        value: number[];
+        msg: string;
+    } | {
+        value: null;
+        msg: string;
+    };
 }
 declare const _default: Calculator;
 export = _default;
