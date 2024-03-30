@@ -2,6 +2,7 @@
 
 import ArithmeticOp from "./arithmeticOp";
 import generateCriticalPointInterval from "./generateCriticalPointInterval";
+import randomNumberBetween from "./randomNumberBetween";
 import {
 	ReturnTypesForEquation,
 	ReturnTypesForEquation2upDegree,
@@ -541,8 +542,7 @@ class Calculator extends ArithmeticOp {
 	 * @return - A random number between 1 and 10
 	 */
 	randomNumberBetween(min: number, max: number): number {
-		const timestamp = Date.now();
-		return min + (timestamp % (max - min + 1));
+		return randomNumberBetween(min, max);
 	}
 
 	/**

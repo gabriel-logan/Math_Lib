@@ -19,6 +19,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 var arithmeticOp_1 = __importDefault(require("./arithmeticOp"));
 var generateCriticalPointInterval_1 = __importDefault(require("./generateCriticalPointInterval"));
+var randomNumberBetween_1 = __importDefault(require("./randomNumberBetween"));
 var piValue = "3.1415926535897932384626433832795";
 var Calculator = (function (_super) {
     __extends(Calculator, _super);
@@ -391,8 +392,7 @@ var Calculator = (function (_super) {
         return this.absoluteValue(mmcValue);
     };
     Calculator.prototype.randomNumberBetween = function (min, max) {
-        var timestamp = Date.now();
-        return min + (timestamp % (max - min + 1));
+        return (0, randomNumberBetween_1.default)(min, max);
     };
     Calculator.prototype.linearEquation = function (a, b) {
         var numberA = Number(a);
