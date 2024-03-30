@@ -4,6 +4,8 @@ The loganmatic is a mathematics library created for use in JS, TS, JAVA, PYTHON 
 
 ## Important rule:
 ### All methods must be developed without using external libraries!!!
+The main idea is to develop all methods without using any external libs. Some libs may be allowed temporarily for the code to work.
+LIB Prohibited without exception: Any math lib.
 
 ## How to Contribute
 
