@@ -1,0 +1,9 @@
+LICENSE
+README.md
+pyproject.toml
+src/loganmatic/__init__.py
+src/loganmatic.egg-info/PKG-INFO
+src/loganmatic.egg-info/SOURCES.txt
+src/loganmatic.egg-info/dependency_links.txt
+src/loganmatic.egg-info/top_level.txt
+tests/testarlib.py
