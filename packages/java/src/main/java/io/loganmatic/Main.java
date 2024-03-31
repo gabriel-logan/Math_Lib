@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Random;
 
 public class Main {
-    public static double Pi = 3.14159265358979323846;
-    static int a = 1;
-    static int b = -4;
-    static int c = -3;
-    static int d = 2;
+    public static final double Pi = 3.14159265358979323846;
+    private static final int COEFFICIENT_A = 1;
+    private static final int COEFFICIENT_B = -4;
+    private static final int COEFFICIENT_C = -3;
+    private static final int COEFFICIENT_D = 2;
 
-    static CubicEquationResult result = cubicEquation(a, b, c, d);
+    private static final CubicEquationResult result = cubicEquation(COEFFICIENT_A, COEFFICIENT_B, COEFFICIENT_C, COEFFICIENT_D);
     public static void main(String[] args) {
         System.out.println(result.valueX1);
         System.out.println(result.valueX2);
@@ -28,8 +28,9 @@ public class Main {
     }
     protected static double createEulerNumber() {
         double eulerNumber = 0.0;
+        final int n = 9999; // number of iterations
         // Iterates over the numbers from 0 to 9 to calculate the Euler number
-        for (int i = 0; i < 9999; i++) {
+        for (int i = 0; i < n; i++) {
             // Calculates the Euler number using the formula: 1 / i!
             eulerNumber += 1.0 / factorial(i);
         }
@@ -37,6 +38,23 @@ public class Main {
         // Returns the Euler number
         return eulerNumber;
     }
+
+    /*  35701 exaggerated method to see the number with MANY decimal places, more than 35 thousand
+    Just curiosity
+
+    If your computer is very good, you can increase the loop quantity, the larger it is, the more accurate it is.
+    *     protected static BigDecimal createEulerNumber() {
+        BigDecimal eulerNumber = BigDecimal.ZERO;
+        BigDecimal factorial = BigDecimal.ONE;
+
+        for (int i = 0; i < 9999; i++) {
+            eulerNumber = eulerNumber.add(BigDecimal.ONE.divide(factorial, MathContext.DECIMAL128));
+            factorial = factorial.multiply(BigDecimal.valueOf(i + 1));
+        }
+
+        return eulerNumber;
+    }
+    * */
 
     public static int randomNumberBetween(int min, int max) {
         Random random = new Random();
@@ -58,7 +76,7 @@ public class Main {
             return 1;
         }
 
-        double result = 1;
+        float result = 1f;
         // Iterates over the numbers less than or equal to the value to calculate the factorial
         for (int i = 1; i <= valueToCalculate; i++) {
             result *= i;
@@ -77,7 +95,7 @@ public class Main {
             throw new IllegalArgumentException("The number A must be different from zero");
         }
 
-        double result = valueB / valueA;
+        final double result = valueB / valueA;
 
         return new LinearEquationResult(result, "The result of the linear equation is: " + result);
     }
@@ -87,14 +105,14 @@ public class Main {
             throw new IllegalArgumentException("The number A and B cannot be zero at the same time");
         }
 
-        double delta = quadraticEquationDiscriminant(valueA, valueB, valueC);
+        final double delta = quadraticEquationDiscriminant(valueA, valueB, valueC);
 
         if(delta < 0) {
             throw new IllegalArgumentException("The delta is negative, so the equation has no real roots");
         }
 
-        double x1 = (-valueB + Math.sqrt(delta)) / (2 * valueA);
-        double x2 = (-valueB - Math.sqrt(delta)) / (2 * valueA);
+        final double x1 = (-valueB + Math.sqrt(delta)) / (2 * valueA);
+        final double x2 = (-valueB - Math.sqrt(delta)) / (2 * valueA);
 
         if(delta == 0) {
             return new QuadraticEquationResult(x1, x2, "The result of the quadratic equation is: " + x1);
@@ -127,15 +145,17 @@ public class Main {
 
     public static CubicEquationResult cubicEquation (double valueA, double valueB, double valueC, double valueD) {
         if(valueD == 0) {
-            double x1 = 0;
+            final double x1 = 0;
 
-            double delta = quadraticEquationDiscriminant(valueA, valueB, valueC);
+            final double delta = quadraticEquationDiscriminant(valueA, valueB, valueC);
+
+            final QuadraticEquationResult quadraticResult = quadraticEquation(valueA, valueB, valueC);
 
             if (delta < 0) {
                 return new CubicEquationResult(x1,x1,x1, "It has only 1 real root in x = 0");
             } else {
-                double answer1 = quadraticEquation(valueA, valueB, valueC).valueX1;
-                double answer2 = quadraticEquation(valueA, valueB, valueC).valueX2;
+                double answer1 = quadraticResult.valueX1;
+                double answer2 = quadraticResult.valueX2;
 
                 if (answer1 == answer2) {
                     return new CubicEquationResult(x1, answer1, answer2, "It has two real roots x1 = 0 and x2 = " + answer1);
@@ -169,8 +189,10 @@ public class Main {
 
         double delta = quadraticEquationDiscriminant(derivedValueA, derivedValueB, derivedValueC);
 
-        double answer1 = quadraticEquation(derivedValueA, derivedValueB, derivedValueC).valueX1;
-        double answer2 = quadraticEquation(derivedValueA, derivedValueB, derivedValueC).valueX2;
+        QuadraticEquationResult quadraticResult = quadraticEquation(derivedValueA, derivedValueB, derivedValueC);
+
+        double answer1 = quadraticResult.valueX1;
+        double answer2 = quadraticResult.valueX2;
 
         double criticalPoint1 = answer1 * 1000;
         double criticalPoint2 = answer2 * 2000;
@@ -201,7 +223,7 @@ public class Main {
 
         List<Double> firstRootCritical = new ArrayList<>();
 
-        int iterations = 100000;
+        final int iterations = 100000; // number of iterations for the Newton method to find the roots of the cubic equation
 
         for (int index = 0; index < iterations; index++) {
             criticalPoint1 =
@@ -286,8 +308,10 @@ public class Main {
             if(delta < 0) {
                 return new CubicEquationResult(gotFirstRoot,gotFirstRoot,gotFirstRoot,"X = "+ gotFirstRoot);
             } else {
-                double answer1 = quadraticEquation(valueA, secondCoefficient, thirdCoefficient).valueX1;
-                double answer2 = quadraticEquation(valueA, secondCoefficient, thirdCoefficient).valueX2;
+                QuadraticEquationResult quadraticResult = quadraticEquation(valueA, secondCoefficient, thirdCoefficient);
+
+                double answer1 = quadraticResult.valueX1;
+                double answer2 = quadraticResult.valueX2;
 
                 if (delta == 0) {
                     if (answer1 == gotFirstRoot) {
