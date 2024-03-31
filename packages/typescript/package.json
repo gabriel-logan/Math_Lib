@@ -27,6 +27,10 @@
 				"equations",
 				"equacoes"
 		],
+		"repository": {
+			"type": "git",
+			"url": "git+https://github.com/gabriel-logan/Math_Lib.git"
+		},
 		"author": {
 				"name": "Gabriel Logan",
 				"url": "https://github.com/gabriel-logan/Math_Lib/"

@@ -103,7 +103,7 @@ export default function MathLibPage() {
 					</span>
 				</code>
 			</pre>
-			<p>Made by Gabriel Lima.</p>
+			<p>Made by Gabriel Logan.</p>
 		</div>
 	);
 }
