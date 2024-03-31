@@ -45,24 +45,6 @@ var ArithmeticOp = (function () {
         }
         return result;
     };
-    ArithmeticOp.prototype.getSum = function () {
-        return this.sum;
-    };
-    ArithmeticOp.prototype.getSub = function () {
-        return this.sub;
-    };
-    ArithmeticOp.prototype.getMul = function () {
-        return this.mul;
-    };
-    ArithmeticOp.prototype.getDiv = function () {
-        return this.div;
-    };
-    ArithmeticOp.prototype.getMod = function () {
-        return this.mod;
-    };
-    ArithmeticOp.prototype.getPower = function () {
-        return this.power;
-    };
     return ArithmeticOp;
 }());
 exports.default = ArithmeticOp;

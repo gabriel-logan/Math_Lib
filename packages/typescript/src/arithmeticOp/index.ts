@@ -60,28 +60,4 @@ export default class ArithmeticOp {
 		}
 		return result;
 	}
-
-	public getSum() {
-		return this.sum;
-	}
-
-	public getSub() {
-		return this.sub;
-	}
-
-	public getMul() {
-		return this.mul;
-	}
-
-	public getDiv() {
-		return this.div;
-	}
-
-	public getMod() {
-		return this.mod;
-	}
-
-	public getPower() {
-		return this.power;
-	}
 }

@@ -12,3 +12,6 @@ tests/
 coverage/
 jest.config.js
 tsconfig.types.json
+ExtendedsTests.js
+ExtendedsTests.d.ts
+dist/types/

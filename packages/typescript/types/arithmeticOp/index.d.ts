@@ -39,10 +39,4 @@ export default class ArithmeticOp {
      * @returns The power of the base and exponent.
      */
     protected power(base: number, exponent: number): number;
-    getSum(): (...numbers: number[]) => number;
-    getSub(): (...numbers: number[]) => number;
-    getMul(): (...numbers: number[]) => number;
-    getDiv(): (...numbers: number[]) => number;
-    getMod(): (...numbers: number[]) => number;
-    getPower(): (base: number, exponent: number) => number;
 }

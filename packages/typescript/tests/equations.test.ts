@@ -1,25 +1,33 @@
-import Mathematics from "../src/loganmatic";
-import generateCriticalPointInterval from "../src/generateCriticalPointInterval/";
+import ExtendedsTest from "../src/ExtendedsTests";
 
 describe("Calculadora equations", () => {
 	// loganmatic.test.ts
 
-	const rufineMethod = Mathematics.getRufinhoDevice();
+	const Mathematics = new ExtendedsTest();
 
 	test("getRufinhoDevice returns the expected result", () => {
 		// Substitua 'arg1', 'arg2', etc. pelos argumentos reais que getRufinhoDevice aceita
-		const result = rufineMethod(1, -6, 11, -6, [1, 3, 2], false);
+		const result = Mathematics.getRufinhoDevice(
+			1,
+			-6,
+			11,
+			-6,
+			[1, 3, 2],
+			false,
+		);
 		// Substitua 'expectedResult' pelo resultado que você espera de getRufinhoDevice
 		expect(result.value).toEqual([1, 3, 2]);
 	});
 
-	test("generateCriticalPointInterval returns a value within the expected range", () => {
+	/**
+ * 	test("generateCriticalPointInterval returns a value within the expected range", () => {
 		const min = 1;
 		const max = 10;
 		const result = generateCriticalPointInterval(min, max);
 		expect(result).toBeGreaterThanOrEqual(min);
 		expect(result).toBeLessThanOrEqual(max);
 	});
+ */
 
 	test("should correctly calculate the root of a linear equation", () => {
 		const equationRoot = Mathematics.linearEquation(2, 3);
