@@ -4,3 +4,5 @@
 # Loganmatic
 
 ## JAVA
+
+// Code for JDK 22

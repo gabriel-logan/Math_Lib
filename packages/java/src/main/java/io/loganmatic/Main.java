@@ -20,10 +20,10 @@ public class Main {
         System.out.println("Looks like it work... (: ");
         System.out.println("Euler number: " + createEulerNumber());
         System.out.println("Random number between 1 and 10: " + randomNumberBetween(1, 10));
-        System.out.println("Factorial of 5: " + factorial(3));
+        System.out.println("Factorial of 3: " + factorial(3));
         System.out.println("Discriminant of the quadratic equation: " + quadraticEquationDiscriminant(1, -4, -3));
-        System.out.println("Linear equation: " + linearEquation(1, 2));
-        System.out.println("Quadratic equation: " + quadraticEquation(1, -4, 4).msg);
+        System.out.println("Linear equation: " + linearEquation(1, 2).valueX);
+        System.out.println("Quadratic equation: " + quadraticEquation(1, -4, -6).msg);
         System.out.println("Pi number: " + Pi);
     }
     protected static double createEulerNumber() {
@@ -254,14 +254,14 @@ public class Main {
             }
         }
 
-        if (Math.abs(firstRootCritical.get(0) - firstRootCritical.get(1)) < 1e-7) {
+        if (Math.abs(firstRootCritical.getFirst() - firstRootCritical.get(1)) < 1e-7) {
             return new CubicEquationResult(firstRootCritical.getFirst(), firstRootCritical.getFirst(), firstRootCritical.getFirst(), String.format("It has only 1 real root in X = %f", firstRootCritical.getFirst()));
-        } else if (Math.abs(firstRootCritical.get(0) - firstRootCritical.get(2)) < 1e-4) {
+        } else if (Math.abs(firstRootCritical.getFirst() - firstRootCritical.get(2)) < 1e-4) {
             return newtonMethodForCubicEquation(valueA, valueB, valueC, valueD);
         } else if (Math.abs(firstRootCritical.get(1) - firstRootCritical.get(2)) < 1e-4) {
             return newtonMethodForCubicEquation(valueA, valueB, valueC, valueD);
         } else {
-            return new CubicEquationResult(firstRootCritical.get(0), firstRootCritical.get(1), firstRootCritical.get(2), String.format("X1 ≅ %f, X2 ≅ %f, X3 ≅ %f", firstRootCritical.get(0), firstRootCritical.get(1), firstRootCritical.get(2)));
+            return new CubicEquationResult(firstRootCritical.getFirst(), firstRootCritical.get(1), firstRootCritical.get(2), String.format("X1 ≅ %f, X2 ≅ %f, X3 ≅ %f", firstRootCritical.getFirst(), firstRootCritical.get(1), firstRootCritical.get(2)));
         }
     }
 
