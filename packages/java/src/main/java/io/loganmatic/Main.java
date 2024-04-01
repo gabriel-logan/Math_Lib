@@ -1,51 +1,32 @@
 package io.loganmatic;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-
-import static java.lang.System.*;
 
 public class Main {
     // "I am using Math.pow because I couldn't develop a method for powers."
     // Pi and EulerNumber start with Uppercase because of the ts/js code documentation.
-    public static final double Pi = 3.14159265358979323846;
+    private static final double Pi = 3.14159265358979323846;
+    private static final double EulerNumber = createEulerNumber();
+    private static final Random random = new Random();
+
+    public static void main(String[] args) {
+        // Call the method
+    }
+
+    /**
+     * The mathematical constant π (pi) represents the ratio of a circle's circumference to its diameter.
+     */
+    public static double getPi() {
+        return Pi;
+    }
 
     /**
      * The Euler number is a mathematical constant that is the base of the natural logarithm.
      */
-    public static double EulerNumber;
-    private static final Random random = new Random();
-
-    public static void main(String[] args) {
-        EulerNumber = createEulerNumber();
-
-        out.println("EulerNumber: " + EulerNumber);
-        out.println("Pi: " + Pi);
-
-        // Testing the methods
-        out.println("Factorial of 5: " + factorial(5));
-        out.println("Square root of 16: " + squareRoot(16));
-        out.println("Cubic root of 27: " + cubicRoot(27));
-        out.println("Sine of 30: " + sine(30)); // Some problems with the trigonometric functions
-        out.println("Cosine of 60: " + cosine(60));
-        out.println("Tangent of 45: " + tangent(45));
-        out.println("Cotangent of 45: " + cotangent(45));
-        out.println("Secant of 60: " + secant(60));
-        out.println("Cosecant of 30: " + cosecant(30));
-        out.println("Absolute value of -10: " + absoluteValue(-10));
-
-        List<Integer> values = Arrays.asList(12, 18);
-        out.println("GCD of 12 and 18: " + gcd(values));
-        out.println("LCM of 12 and 18: " + lcm(values));
-
-        out.println("Random number between 1 and 10: " + randomNumberBetween(1, 10));
-
-        // Testing the equations
-        out.println("Linear equation result: " + linearEquation(2, 3).msg);
-        out.println("Quadratic equation result: " + quadraticEquation(1, -3, 2).msg);
-        out.println("Cubic equation result: " + cubicEquation(1, -6, 11, -6).msg);
+    public static double getEulerNumber() {
+        return EulerNumber;
     }
 
     private static double createEulerNumber() {

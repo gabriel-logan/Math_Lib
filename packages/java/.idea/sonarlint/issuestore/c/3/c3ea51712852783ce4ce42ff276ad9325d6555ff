@@ -1,23 +1,19 @@
 
-Ÿ
-java:S1104"WMake EulerNumber a static final constant or non-public and provide accessors if needed.(ĞŞøœüÿÿÿÿ8í¤ÑÊé1J$d676cbe4-f09c-428d-b64b-3fd486a11fba
-y
-java:S1444"1Make this "public static EulerNumber" field final(ĞŞøœüÿÿÿÿ8î¤ÑÊé1J$3aa8bd28-5382-4d18-8d34-fe9498e5708d
 ‘
-java:S2184˜"HCast one of the operands of this multiplication operation to a "double".(üÏ¶ëùÿÿÿÿ8ñ¤ÑÊé1J$e4d5f3d2-5e31-4e87-9a5c-2aa51ab655d6
+java:S2184…"HCast one of the operands of this multiplication operation to a "double".(üÏ¶ëùÿÿÿÿ8ô¿íËé1J$80b858af-964f-43f0-a1da-ba6590b2d5b7
 ‡
-java:S3518Â"CMake sure this expression can't be zero before doing this division.(™¯×‰8ë®ÑÊé1J$478b00d3-28fa-48a4-ac79-c2bfe9117eba
+java:S3518¯"CMake sure this expression can't be zero before doing this division.(™¯×‰8¶ÇõËé1J$d6a5f401-7ddb-432e-bbed-860a36424f43
 Œ
-java:S3518Ï"CMake sure this expression can't be zero before doing this division.(ùÖÁ¶ıÿÿÿÿ8ë®ÑÊé1J$cdec972b-7ab6-48d4-a011-71db97f23a01
+java:S3518¼"CMake sure this expression can't be zero before doing this division.(ùÖÁ¶ıÿÿÿÿ8¶ÇõËé1J$8c85211b-7a5a-489b-a6c3-012edd63fd12
 Œ
-java:S3518ª"CMake sure this expression can't be zero before doing this division.(÷ê¯Óÿÿÿÿÿ8ë®ÑÊé1J$fd0152e7-72ce-4478-b951-62417239b07e
-œ	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(›¯¼8ì®ÑÊé1J$1eccb0e4-f5d2-42e8-ae64-3ef739d378ab
-
-java:S3008"VRename this field "EulerNumber" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ĞŞøœüÿÿÿÿ8í®ÑÊé1J$af327b58-0223-47f5-ba80-24be7291bdb9
-ƒ	java:S125D"<This block of commented-out lines of code should be removed.(¥”Ü•øÿÿÿÿ8ô®ÑÊé1J$f7b7ac1b-ea69-4c22-9f0b-917764213f46
+java:S3518—"CMake sure this expression can't be zero before doing this division.(÷ê¯Óÿÿÿÿÿ8·ÇõËé1J$e59565e7-66d6-4087-ac28-0020d13dd310
+¡	java:S115
+"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(§œÇçùÿÿÿÿ8ÅÍíËé1J$426d18ac-e148-4469-a5eb-b1fc1c430740
+›	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(¥¥b8ÂŒÌé1J$09c4359c-7e85-4ce9-921d-f96fa56aa01c
+ƒ	java:S1251"<This block of commented-out lines of code should be removed.(¥”Ü•øÿÿÿÿ8ÂÇõËé1J$2f112fbb-c07a-4f41-b1c6-db38cbcda1a7
 š
-java:S3776k"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(¾©ÿöüÿÿÿÿ8÷®ÑÊé1J$3271d1a8-b9eb-444b-80e5-69a0589ec2fb
+java:S3776X"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(¾©ÿöüÿÿÿÿ8ÆÇõËé1J$4f91948a-46f3-4be8-9dc0-99e9e64e2ae3
 ›
-java:S3776Ô"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(ÍĞÉıÿÿÿÿ8ı®ÑÊé1J$31720ddd-48b0-4d4e-8704-30c861c6da63
+java:S3776Á"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(ÍĞÉıÿÿÿÿ8ÑÇõËé1J$2d2a965a-6f0a-41d7-838d-d12fd2e46ff1
 –
-java:S3776¾"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(Æˆ…£8Š¯ÑÊé1J$6e537114-27b4-4914-afdb-11c96424e8bd
+java:S3776«"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(Æˆ…£8åÇõËé1J$09119650-9905-4ed4-872d-db0da74e4880
