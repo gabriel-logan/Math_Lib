@@ -11,3 +11,7 @@ U
 ,src/main/java/io/loganmatic/TestMethods.java,f\0\f048efc2b45166618e3e3c404822f5132a85d11c
 h
 8src/main/java/io/loganmatic/QuadraticEquationResult.java,7\5\75166fe8846334cce3a5dc584e598185a9be6805
+e
+5src/main/java/io/loganmatic/LinearEquationResult.java,e\5\e5bccf7dd9647f79fcfde37b16d7f4fe1b65a1dd
+I
+bigDecimalEulerNumber.txt,9\a\9a738fbda1f7a2552a247f3348bf9a64f8e490f4

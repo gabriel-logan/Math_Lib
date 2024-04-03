@@ -1,0 +1,16 @@
+    /*
+    // 35701 exaggerated method to see the number with MANY decimal places, more than 35 thousand
+    // Just curiosity
+    // If your computer is very good, you can increase the loop quantity, the larger it is, the more accurate it is.
+    private static BigDecimal createEulerNumber() {
+        BigDecimal eulerNumber = BigDecimal.ZERO;
+        BigDecimal factorial = BigDecimal.ONE;
+
+        for (int i = 0; i < 9999; i++) {
+            eulerNumber = eulerNumber.add(BigDecimal.ONE.divide(factorial, MathContext.DECIMAL128));
+            factorial = factorial.multiply(BigDecimal.valueOf(i + 1));
+        }
+
+        return eulerNumber;
+    }
+    */

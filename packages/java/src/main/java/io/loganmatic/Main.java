@@ -1,14 +1,15 @@
 package io.loganmatic;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class Main {
     // "I am using Math.pow because I couldn't develop a method for powers."
-    // Pi and EulerNumber start with Uppercase because of the ts/js code documentation.
-    private static final double Pi = 3.14159265358979323846;
-    private static final double EulerNumber = createEulerNumber();
+    private static final double PI = 3.14159265358979323846;
+    private static final double EULER_NUMBER = createEulerNumber();
     private static final Random random = new Random();
 
     public static void main(String[] args) {
@@ -19,14 +20,14 @@ public class Main {
      * The mathematical constant π (pi) represents the ratio of a circle's circumference to its diameter.
      */
     public static double getPi() {
-        return Pi;
+        return PI;
     }
 
     /**
      * The Euler number is a mathematical constant that is the base of the natural logarithm.
      */
     public static double getEulerNumber() {
-        return EulerNumber;
+        return EULER_NUMBER;
     }
 
     private static double createEulerNumber() {
@@ -41,23 +42,6 @@ public class Main {
         // Returns the Euler number
         return eulerNumber;
     }
-
-    /*
-    // 35701 exaggerated method to see the number with MANY decimal places, more than 35 thousand
-    // Just curiosity
-    // If your computer is very good, you can increase the loop quantity, the larger it is, the more accurate it is.
-    private static BigDecimal createEulerNumber() {
-        BigDecimal eulerNumber = BigDecimal.ZERO;
-        BigDecimal factorial = BigDecimal.ONE;
-
-        for (int i = 0; i < 9999; i++) {
-            eulerNumber = eulerNumber.add(BigDecimal.ONE.divide(factorial, MathContext.DECIMAL128));
-            factorial = factorial.multiply(BigDecimal.valueOf(i + 1));
-        }
-
-        return eulerNumber;
-    }
-    */
 
     private static int generateCriticalPointInterval(int min, int max) {
         return randomNumberBetween(min, max);
@@ -85,7 +69,16 @@ public class Main {
         return possibleRoots;
     }
 
-    private static CubicEquationResult newtonMethodForCubicEquation(double valueA, double valueB, double valueC, double valueD) {
+    /**
+     * @param valueA The value of the A coefficient of the cubic equation.
+     * @param valueB The value of the B coefficient of the cubic equation.
+     * @param valueC The value of the C coefficient of the cubic equation.
+     * @param valueD The value of the D coefficient of the cubic equation.
+     * @return The result of the cubic equation with the Newton method.
+     */
+    private static @NotNull CubicEquationResult newtonMethodForCubicEquation(double valueA, double valueB, double valueC, double valueD) {
+        CubicEquationResult result; // The result of the cubic equation with the Newton method
+
         double derivedValueA = valueA * 3;
         double derivedValueB = valueB * 2;
         double derivedValueC = valueC * 1;
@@ -180,17 +173,28 @@ public class Main {
         }
 
         if (Math.abs(firstRootCritical.getFirst() - firstRootCritical.get(1)) < 1e-7) {
-            return new CubicEquationResult(firstRootCritical.getFirst(), firstRootCritical.getFirst(), firstRootCritical.getFirst(), String.format("It has only 1 real root in X = %f", firstRootCritical.getFirst()));
+            result = new CubicEquationResult(firstRootCritical.getFirst(), firstRootCritical.getFirst(), firstRootCritical.getFirst(), String.format("It has only 1 real root in X = %f", firstRootCritical.getFirst()));
         } else if (Math.abs(firstRootCritical.getFirst() - firstRootCritical.get(2)) < 1e-4) {
-            return newtonMethodForCubicEquation(valueA, valueB, valueC, valueD);
+            result = newtonMethodForCubicEquation(valueA, valueB, valueC, valueD);
         } else if (Math.abs(firstRootCritical.get(1) - firstRootCritical.get(2)) < 1e-4) {
-            return newtonMethodForCubicEquation(valueA, valueB, valueC, valueD);
+            result = newtonMethodForCubicEquation(valueA, valueB, valueC, valueD);
         } else {
-            return new CubicEquationResult(firstRootCritical.getFirst(), firstRootCritical.get(1), firstRootCritical.get(2), String.format("X1 ≅ %f, X2 ≅ %f, X3 ≅ %f", firstRootCritical.getFirst(), firstRootCritical.get(1), firstRootCritical.get(2)));
+            result = new CubicEquationResult(firstRootCritical.getFirst(), firstRootCritical.get(1), firstRootCritical.get(2), String.format("X1 ≅ %f, X2 ≅ %f, X3 ≅ %f", firstRootCritical.getFirst(), firstRootCritical.get(1), firstRootCritical.get(2)));
         }
+        return result;
     }
 
-    private static CubicEquationResult brioRuffiniForCubicEquation(double valueA, double valueB, double valueC, double valueD, List<Integer> roots) {
+    /**
+     * @param valueA The value of the A coefficient of the cubic equation.
+     * @param valueB The value of the B coefficient of the cubic equation.
+     * @param valueC The value of the C coefficient of the cubic equation.
+     * @param valueD The value of the D coefficient of the cubic equation.
+     * @param roots The possible roots of the cubic equation.
+     * @return The result of the cubic equation with the Brio Ruffini method.
+     */
+    private static @NotNull CubicEquationResult brioRuffiniForCubicEquation(double valueA, double valueB, double valueC, double valueD, List<Integer> roots) {
+        CubicEquationResult result; // The result of the cubic equation with the Brio Ruffini method
+
         double gotFirstRoot = roots.getFirst();
 
         double first = valueA * gotFirstRoot;
@@ -209,7 +213,7 @@ public class Main {
             double delta = quadraticEquationDiscriminant(valueA, secondCoefficient, thirdCoefficient);
 
             if (delta < 0) {
-                return new CubicEquationResult(gotFirstRoot, gotFirstRoot, gotFirstRoot, "X = " + gotFirstRoot);
+                result = new CubicEquationResult(gotFirstRoot, gotFirstRoot, gotFirstRoot, "X = " + gotFirstRoot);
             } else {
                 QuadraticEquationResult quadraticResult = quadraticEquation(valueA, secondCoefficient, thirdCoefficient);
 
@@ -218,25 +222,26 @@ public class Main {
 
                 if (delta == 0) {
                     if (answer1 == gotFirstRoot) {
-                        return new CubicEquationResult(0, 0, 0, "X = 0");
+                        result = new CubicEquationResult(0, 0, 0, "X = 0");
                     } else {
-                        return new CubicEquationResult(0, answer1, answer1, "X1 = 0 and X2 = " + answer1);
+                        result = new CubicEquationResult(0, answer1, answer1, "X1 = 0 and X2 = " + answer1);
                     }
                 } else {
                     final String X1Result = "X1 = " + gotFirstRoot + " and ";
                     final String X2Result = "X2 = ";
                     if (answer1 == gotFirstRoot) {
-                        return new CubicEquationResult(gotFirstRoot, answer2, answer2, X1Result + X2Result + answer2);
+                        result = new CubicEquationResult(gotFirstRoot, answer2, answer2, X1Result + X2Result + answer2);
                     } else if (answer2 == gotFirstRoot) {
-                        return new CubicEquationResult(gotFirstRoot, answer1, answer1, X1Result + X2Result + answer1);
+                        result = new CubicEquationResult(gotFirstRoot, answer1, answer1, X1Result + X2Result + answer1);
                     } else {
-                        return new CubicEquationResult(gotFirstRoot, answer1, answer2, X1Result + X2Result + answer1 + " and X3 = " + answer2);
+                        result = new CubicEquationResult(gotFirstRoot, answer1, answer2, X1Result + X2Result + answer1 + " and X3 = " + answer2);
                     }
                 }
             }
         } else {
-            return newtonMethodForCubicEquation(valueA, valueB, valueC, valueD);
+            result = newtonMethodForCubicEquation(valueA, valueB, valueC, valueD);
         }
+        return result;
     }
 
     /**
@@ -383,15 +388,15 @@ public class Main {
         }
 
         int startNumberIteration = 0;
-        double cosine = 0;
+        double cosine = 0.0;
 
         for (int k = startNumberIteration; k < n; k++) {
-            final double series = (Math.pow((-1), k) * Math.pow(angle, 2 * k)) / factorial(2 * k);
+            double series = (Math.pow((-1), k) * Math.pow(angle, 2.0 * k)) / factorial(2 * k);
             cosine += series;
         }
 
         if (absoluteValue(cosine) < 1e-10) {
-            cosine = 0;
+            cosine = 0.0;
         }
 
         return cosine;
@@ -404,6 +409,9 @@ public class Main {
      * @return The tangent of the specified angle.
      */
     public static double tangent(double angle) {
+        if(cosine(angle) == 0){
+            throw new IllegalArgumentException("The tangent of the angle is not defined (cosine is zero)" + angle);
+        }
         return sine(angle) / cosine(angle);
     }
 
@@ -414,6 +422,9 @@ public class Main {
      * @return The cotangent of the specified angle.
      */
     public static double cotangent(double angle) {
+        if (tangent(angle) == 0) {
+            throw new IllegalArgumentException("The cotangent of the angle is not defined (tangent is zero)" + angle);
+        }
         return 1 / tangent(angle);
     }
 
@@ -427,7 +438,6 @@ public class Main {
         if (cosine(angle) == 0) {
             throw new IllegalArgumentException("The secant of the angle is not defined (cosine is zero)" + angle);
         }
-
         return 1 / cosine(angle);
     }
 
@@ -522,6 +532,8 @@ public class Main {
      * Where Δ is the discriminant of the quadratic equation.
      */
     public static QuadraticEquationResult quadraticEquation(double valueA, double valueB, double valueC) {
+        QuadraticEquationResult result; // The result of the quadratic equation
+
         if (valueA == 0 && valueB == 0) {
             throw new IllegalArgumentException("The number A and B cannot be zero at the same time");
         }
@@ -540,10 +552,12 @@ public class Main {
         final double x2 = (-valueB - Math.sqrt(delta)) / (2 * valueA);
 
         if (delta == 0) {
-            return new QuadraticEquationResult(x1, x2, "The result of the quadratic equation is: " + x1);
+            result = new QuadraticEquationResult(x1, x2, "The result of the quadratic equation is: " + x1);
+        } else {
+            result = new QuadraticEquationResult(x1, x2, "The results of the quadratic equation are: " + x1 + " and " + x2);
         }
 
-        return new QuadraticEquationResult(x1, x2, "The results of the quadratic equation are: " + x1 + " and " + x2);
+        return result;
     }
 
     /**
@@ -553,6 +567,7 @@ public class Main {
      * Where Δ is the discriminant of the cubic equation.
      */
     public static CubicEquationResult cubicEquation(double valueA, double valueB, double valueC, double valueD) {
+        CubicEquationResult result; // The result of the cubic equation
         if (valueD == 0) {
             final double x1 = 0;
 
@@ -561,15 +576,15 @@ public class Main {
             final QuadraticEquationResult quadraticResult = quadraticEquation(valueA, valueB, valueC);
 
             if (delta < 0) {
-                return new CubicEquationResult(x1, x1, x1, "It has only 1 real root in x = 0");
+                result = new CubicEquationResult(x1, x1, x1, "It has only 1 real root in x = 0");
             } else {
                 double answer1 = quadraticResult.valueX1;
                 double answer2 = quadraticResult.valueX2;
 
                 if (answer1 == answer2) {
-                    return new CubicEquationResult(x1, answer1, answer2, "It has two real roots x1 = 0 and x2 = " + answer1);
+                    result = new CubicEquationResult(x1, answer1, answer2, "It has two real roots x1 = 0 and x2 = " + answer1);
                 } else {
-                    return new CubicEquationResult(x1, answer1, answer2, String.format("x1 = %f and x2 = %f and x3 = %f", x1, answer1, answer2));
+                    result = new CubicEquationResult(x1, answer1, answer2, String.format("x1 = %f and x2 = %f and x3 = %f", x1, answer1, answer2));
                 }
             }
         } else {
@@ -585,10 +600,91 @@ public class Main {
             }
 
             if (roots.isEmpty()) {
-                return newtonMethodForCubicEquation(valueA, valueB, valueC, valueD);
+                result = newtonMethodForCubicEquation(valueA, valueB, valueC, valueD);
+            } else {
+                result = brioRuffiniForCubicEquation(valueA, valueB, valueC, valueD, roots);
             }
-            return brioRuffiniForCubicEquation(valueA, valueB, valueC, valueD, roots);
         }
+        return result;
+    }
+
+    /**
+     * Returns an error when at least one number is needed.
+     * @throws IllegalArgumentException At least one number must be provided.
+     */
+    private static void atLeastOneNumberNeededError() {
+        throw new IllegalArgumentException("At least one number must be provided");
+    }
+
+    /**
+     * Calculate the sum of the specified numbers.
+     * @param numbers The numbers to calculate the sum.
+     * @return The sum of the specified numbers.
+     */
+    public static double sum(int... numbers) {
+        if (numbers.length == 0) {
+            atLeastOneNumberNeededError();
+        }
+
+        double result = numbers[0];
+        for (int i = 1; i < numbers.length; i++) {
+            result += numbers[i];
+        }
+        return result;
+    }
+
+    /**
+     * Calculate the subtraction of the specified numbers.
+     * @param numbers The numbers to calculate the subtraction.
+     * @return The subtraction of the specified numbers.
+     */
+    public static double subtract(int... numbers) {
+        if (numbers.length == 0) {
+            atLeastOneNumberNeededError();
+        }
+
+        double result = numbers[0];
+        for (int i = 1; i < numbers.length; i++) {
+            result -= numbers[i];
+        }
+        return result;
+    }
+
+    /**
+     * Calculate the multiplication of the specified numbers.
+     * @param numbers The numbers to calculate the multiplication.
+     * @return The multiplication of the specified numbers.
+     */
+    public static double multiply(int... numbers) {
+        if (numbers.length == 0) {
+            atLeastOneNumberNeededError();
+        }
+
+        double result = numbers[0];
+        for (int i = 1; i < numbers.length; i++) {
+            result *= numbers[i];
+        }
+        return result;
+    }
+
+    /**
+     * Calculate the division of the specified numbers.
+     * @param numbers The numbers to calculate the division.
+     * @return The division of the specified numbers.
+     */
+    public static double divide(int... numbers) {
+        if (numbers.length == 0) {
+            atLeastOneNumberNeededError();
+        }
+
+        double result = numbers[0];
+        for (int i = 1; i < numbers.length; i++) {
+            if (numbers[i] == 0) {
+                throw new ArithmeticException("Cannot divide by zero");
+            }
+            result /= numbers[i];
+        }
+        return result;
     }
 }
 
