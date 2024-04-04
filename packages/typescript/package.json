@@ -1,6 +1,6 @@
 {
 		"name": "loganmatic",
-		"version": "1.1.6",
+		"version": "1.1.7",
 		"description": "Math library with some functions to facilitate calculations",
 		"publisher": "Gabriel Logan",
 		"main": "./dist/loganmatic.js",

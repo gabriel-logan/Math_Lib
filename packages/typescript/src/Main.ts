@@ -60,6 +60,7 @@ export default class Calculator extends ArithmeticOp {
 		valueC: number,
 		valueD: number,
 		checkedYes: boolean,
+		locale: string,
 	) {
 		const derivedValueA = valueA * 3;
 		const derivedValueB = valueB * 2;
@@ -176,7 +177,7 @@ export default class Calculator extends ArithmeticOp {
 			if (checkedYes) {
 				return {
 					value: [firstRootCritical[0]],
-					msg: `It has only 1 real root in X = ${firstRootCritical[0].toFixed(4)}`,
+					msg: `It has only 1 real root in X = ${firstRootCritical[0].toLocaleString(locale, { maximumFractionDigits: 4 })}`,
 				};
 			} else {
 				return {
@@ -187,11 +188,11 @@ export default class Calculator extends ArithmeticOp {
 		} else if (
 			firstRootCritical[0].toFixed(4) == firstRootCritical[2].toFixed(4)
 		) {
-			this.newtonMethod(valueA, valueB, valueC, valueD, checkedYes);
+			this.newtonMethod(valueA, valueB, valueC, valueD, checkedYes, locale);
 		} else if (
 			firstRootCritical[1].toFixed(4) == firstRootCritical[2].toFixed(4)
 		) {
-			this.newtonMethod(valueA, valueB, valueC, valueD, checkedYes);
+			this.newtonMethod(valueA, valueB, valueC, valueD, checkedYes, locale);
 		} else {
 			if (checkedYes) {
 				return {
@@ -200,7 +201,7 @@ export default class Calculator extends ArithmeticOp {
 						firstRootCritical[1],
 						firstRootCritical[2],
 					],
-					msg: `X1 ≅ ${firstRootCritical[0].toFixed(4)}, X2 ≅ ${firstRootCritical[1].toFixed(4)}, X3 ≅ ${firstRootCritical[2].toFixed(4)}`,
+					msg: `X1 ≅ ${firstRootCritical[0].toLocaleString(locale, { maximumFractionDigits: 4 })}, X2 ≅ ${firstRootCritical[1].toLocaleString(locale, { maximumFractionDigits: 4 })}, X3 ≅ ${firstRootCritical[2].toLocaleString(locale, { maximumFractionDigits: 4 })}`,
 				};
 			} else {
 				return {
@@ -235,6 +236,7 @@ export default class Calculator extends ArithmeticOp {
 		valueD: number,
 		roots: number[],
 		checkedYes: boolean,
+		locale: string,
 	) {
 		const first = valueA * roots[0];
 
@@ -270,7 +272,12 @@ export default class Calculator extends ArithmeticOp {
 						if (checkedYes) {
 							return {
 								value: [0, answer1],
-								msg: `The value of X1 = 0 and X2 is equal to: ${answer1.toFixed(2)} | X2 = X3`,
+								msg: `The value of X1 = 0 and X2 is equal to: ${answer1.toLocaleString(
+									locale,
+									{
+										maximumFractionDigits: 4,
+									},
+								)} | X2 = X3`,
 							};
 						} else {
 							return {
@@ -284,7 +291,12 @@ export default class Calculator extends ArithmeticOp {
 						if (checkedYes) {
 							return {
 								value: [roots[0], answer2],
-								msg: `The value of X1 = ${roots[0]} and X2 = ${answer2.toFixed(2)} | X1 = X3`,
+								msg: `The value of X1 = ${roots[0]} and X2 = ${answer2.toLocaleString(
+									locale,
+									{
+										maximumFractionDigits: 4,
+									},
+								)} | X1 = X3`,
 							};
 						} else {
 							return {
@@ -296,7 +308,12 @@ export default class Calculator extends ArithmeticOp {
 						if (checkedYes) {
 							return {
 								value: [roots[0], answer1],
-								msg: `The value of X1 = ${roots[0]} and X2 it's the same as: ${answer1.toFixed(2)} | X1 = X3`,
+								msg: `The value of X1 = ${roots[0]} and X2 it's the same as: ${answer1.toLocaleString(
+									locale,
+									{
+										maximumFractionDigits: 4,
+									},
+								)} | X1 = X3`,
 							};
 						} else {
 							return {
@@ -308,7 +325,17 @@ export default class Calculator extends ArithmeticOp {
 						if (checkedYes) {
 							return {
 								value: [roots[0], answer1, answer2],
-								msg: `The value of X1 = ${roots[0]}, X2 it's the same as: ${answer1.toFixed(2)} and The value of X3 it's the same as: ${answer2.toFixed(2)}`,
+								msg: `The value of X1 = ${roots[0]}, X2 it's the same as: ${answer1.toLocaleString(
+									locale,
+									{
+										maximumFractionDigits: 4,
+									},
+								)} and The value of X3 it's the same as: ${answer2.toLocaleString(
+									locale,
+									{
+										maximumFractionDigits: 4,
+									},
+								)}`,
 							};
 						} else {
 							return {
@@ -320,7 +347,14 @@ export default class Calculator extends ArithmeticOp {
 				}
 			}
 		} else if (fourthCoefficient != 0) {
-			return this.newtonMethod(valueA, valueB, valueC, valueD, checkedYes);
+			return this.newtonMethod(
+				valueA,
+				valueB,
+				valueC,
+				valueD,
+				checkedYes,
+				locale,
+			);
 		} else {
 			return {
 				value: null,
@@ -648,12 +682,15 @@ export default class Calculator extends ArithmeticOp {
 	 * @param c
 	 * @param d
 	 * @param [approximate=false]
+	 * @param [locale="en-US"] // The locale to format the number
 	 * @example Mathematics.cubicEquation(a, b, c, d)
 	 *
 	 * a = coefficient of (x^3)
 	 * b = coefficient of (x^2)
 	 * c = coefficient of (x)
 	 * d = constant term
+	 *
+	 * EX: a(x^3) + b(x^2) + c(x) + d = 0
 	 *
 	 * Mathematics.cubicEquation(1, 2, -3, 5)
 	 * @return - It has only 1 real root in X = -3.344171229347796
@@ -664,6 +701,7 @@ export default class Calculator extends ArithmeticOp {
 		c = 0,
 		d = 0,
 		approximate = false,
+		locale = "en-US",
 	): ReturnTypesForEquation2upDegree {
 		const checkedYes = approximate;
 		const valueA = Number(a);
@@ -694,7 +732,12 @@ export default class Calculator extends ArithmeticOp {
 						if (checkedYes) {
 							return {
 								value: [0, answer1],
-								msg: `The value of X1 = 0 and X2 is equal to: ${answer1.toFixed(2)} | X2 = X3`,
+								msg: `The value of X1 = 0 and X2 is equal to: ${answer1.toLocaleString(
+									locale,
+									{
+										maximumFractionDigits: 4,
+									},
+								)} | X2 = X3`,
 							};
 						} else {
 							return {
@@ -708,7 +751,12 @@ export default class Calculator extends ArithmeticOp {
 						if (checkedYes) {
 							return {
 								value: [0, answer2],
-								msg: `The value of X1 = 0 and X2 = ${answer2.toFixed(2)} | X1 = X3`,
+								msg: `The value of X1 = 0 and X2 = ${answer2.toLocaleString(
+									locale,
+									{
+										maximumFractionDigits: 4,
+									},
+								)} | X1 = X3`,
 							};
 						} else {
 							return {
@@ -720,7 +768,12 @@ export default class Calculator extends ArithmeticOp {
 						if (checkedYes) {
 							return {
 								value: [0, answer1],
-								msg: `The value of X1 = 0 and X2 = ${answer1.toFixed(2)} | X1 = X3`,
+								msg: `The value of X1 = 0 and X2 = ${answer1.toLocaleString(
+									locale,
+									{
+										maximumFractionDigits: 4,
+									},
+								)} | X1 = X3`,
 							};
 						} else {
 							return {
@@ -732,7 +785,17 @@ export default class Calculator extends ArithmeticOp {
 						if (checkedYes) {
 							return {
 								value: [0, answer1, answer2],
-								msg: `The value of X1 = 0, X2 it's the same as: ${answer1.toFixed(2)} and The value of X3 it's the same as: ${answer2.toFixed(2)}`,
+								msg: `The value of X1 = 0, X2 it's the same as: ${answer1.toLocaleString(
+									locale,
+									{
+										maximumFractionDigits: 4,
+									},
+								)} and The value of X3 it's the same as: ${answer2.toLocaleString(
+									locale,
+									{
+										maximumFractionDigits: 4,
+									},
+								)}`,
 							};
 						} else {
 							return {
@@ -777,7 +840,14 @@ export default class Calculator extends ArithmeticOp {
 			});
 
 			if (roots.length === 0) {
-				return this.newtonMethod(valueA, valueB, valueC, valueD, checkedYes);
+				return this.newtonMethod(
+					valueA,
+					valueB,
+					valueC,
+					valueD,
+					checkedYes,
+					locale,
+				);
 			}
 
 			return this.ruffiniDevice(
@@ -787,6 +857,7 @@ export default class Calculator extends ArithmeticOp {
 				valueD,
 				roots,
 				checkedYes,
+				locale,
 			);
 		}
 	}

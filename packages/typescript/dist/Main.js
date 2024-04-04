@@ -41,7 +41,7 @@ var Calculator = (function (_super) {
         }
         return emptyValue;
     };
-    Calculator.prototype.newtonMethod = function (valueA, valueB, valueC, valueD, checkedYes) {
+    Calculator.prototype.newtonMethod = function (valueA, valueB, valueC, valueD, checkedYes, locale) {
         var derivedValueA = valueA * 3;
         var derivedValueB = valueB * 2;
         var derivedValueC = valueC * 1;
@@ -125,7 +125,7 @@ var Calculator = (function (_super) {
             if (checkedYes) {
                 return {
                     value: [firstRootCritical[0]],
-                    msg: "It has only 1 real root in X = ".concat(firstRootCritical[0].toFixed(4)),
+                    msg: "It has only 1 real root in X = ".concat(firstRootCritical[0].toLocaleString(locale, { maximumFractionDigits: 4 })),
                 };
             }
             else {
@@ -136,10 +136,10 @@ var Calculator = (function (_super) {
             }
         }
         else if (firstRootCritical[0].toFixed(4) == firstRootCritical[2].toFixed(4)) {
-            this.newtonMethod(valueA, valueB, valueC, valueD, checkedYes);
+            this.newtonMethod(valueA, valueB, valueC, valueD, checkedYes, locale);
         }
         else if (firstRootCritical[1].toFixed(4) == firstRootCritical[2].toFixed(4)) {
-            this.newtonMethod(valueA, valueB, valueC, valueD, checkedYes);
+            this.newtonMethod(valueA, valueB, valueC, valueD, checkedYes, locale);
         }
         else {
             if (checkedYes) {
@@ -149,7 +149,7 @@ var Calculator = (function (_super) {
                         firstRootCritical[1],
                         firstRootCritical[2],
                     ],
-                    msg: "X1 \u2245 ".concat(firstRootCritical[0].toFixed(4), ", X2 \u2245 ").concat(firstRootCritical[1].toFixed(4), ", X3 \u2245 ").concat(firstRootCritical[2].toFixed(4)),
+                    msg: "X1 \u2245 ".concat(firstRootCritical[0].toLocaleString(locale, { maximumFractionDigits: 4 }), ", X2 \u2245 ").concat(firstRootCritical[1].toLocaleString(locale, { maximumFractionDigits: 4 }), ", X3 \u2245 ").concat(firstRootCritical[2].toLocaleString(locale, { maximumFractionDigits: 4 })),
                 };
             }
             else {
@@ -168,7 +168,7 @@ var Calculator = (function (_super) {
             msg: "X1 = ".concat(firstRootCritical[0]),
         };
     };
-    Calculator.prototype.ruffiniDevice = function (valueA, valueB, valueC, valueD, roots, checkedYes) {
+    Calculator.prototype.ruffiniDevice = function (valueA, valueB, valueC, valueD, roots, checkedYes, locale) {
         var first = valueA * roots[0];
         var secondCoefficient = Number(first) + Number(valueB);
         var second = secondCoefficient * roots[0];
@@ -197,7 +197,9 @@ var Calculator = (function (_super) {
                         if (checkedYes) {
                             return {
                                 value: [0, answer1],
-                                msg: "The value of X1 = 0 and X2 is equal to: ".concat(answer1.toFixed(2), " | X2 = X3"),
+                                msg: "The value of X1 = 0 and X2 is equal to: ".concat(answer1.toLocaleString(locale, {
+                                    maximumFractionDigits: 4,
+                                }), " | X2 = X3"),
                             };
                         }
                         else {
@@ -213,7 +215,9 @@ var Calculator = (function (_super) {
                         if (checkedYes) {
                             return {
                                 value: [roots[0], answer2],
-                                msg: "The value of X1 = ".concat(roots[0], " and X2 = ").concat(answer2.toFixed(2), " | X1 = X3"),
+                                msg: "The value of X1 = ".concat(roots[0], " and X2 = ").concat(answer2.toLocaleString(locale, {
+                                    maximumFractionDigits: 4,
+                                }), " | X1 = X3"),
                             };
                         }
                         else {
@@ -227,7 +231,9 @@ var Calculator = (function (_super) {
                         if (checkedYes) {
                             return {
                                 value: [roots[0], answer1],
-                                msg: "The value of X1 = ".concat(roots[0], " and X2 it's the same as: ").concat(answer1.toFixed(2), " | X1 = X3"),
+                                msg: "The value of X1 = ".concat(roots[0], " and X2 it's the same as: ").concat(answer1.toLocaleString(locale, {
+                                    maximumFractionDigits: 4,
+                                }), " | X1 = X3"),
                             };
                         }
                         else {
@@ -241,7 +247,11 @@ var Calculator = (function (_super) {
                         if (checkedYes) {
                             return {
                                 value: [roots[0], answer1, answer2],
-                                msg: "The value of X1 = ".concat(roots[0], ", X2 it's the same as: ").concat(answer1.toFixed(2), " and The value of X3 it's the same as: ").concat(answer2.toFixed(2)),
+                                msg: "The value of X1 = ".concat(roots[0], ", X2 it's the same as: ").concat(answer1.toLocaleString(locale, {
+                                    maximumFractionDigits: 4,
+                                }), " and The value of X3 it's the same as: ").concat(answer2.toLocaleString(locale, {
+                                    maximumFractionDigits: 4,
+                                })),
                             };
                         }
                         else {
@@ -255,7 +265,7 @@ var Calculator = (function (_super) {
             }
         }
         else if (fourthCoefficient != 0) {
-            return this.newtonMethod(valueA, valueB, valueC, valueD, checkedYes);
+            return this.newtonMethod(valueA, valueB, valueC, valueD, checkedYes, locale);
         }
         else {
             return {
@@ -446,12 +456,13 @@ var Calculator = (function (_super) {
             }
         }
     };
-    Calculator.prototype.cubicEquation = function (a, b, c, d, approximate) {
+    Calculator.prototype.cubicEquation = function (a, b, c, d, approximate, locale) {
         if (a === void 0) { a = 0; }
         if (b === void 0) { b = 0; }
         if (c === void 0) { c = 0; }
         if (d === void 0) { d = 0; }
         if (approximate === void 0) { approximate = false; }
+        if (locale === void 0) { locale = "en-US"; }
         var checkedYes = approximate;
         var valueA = Number(a);
         var valueB = Number(b);
@@ -480,7 +491,9 @@ var Calculator = (function (_super) {
                         if (checkedYes) {
                             return {
                                 value: [0, answer1],
-                                msg: "The value of X1 = 0 and X2 is equal to: ".concat(answer1.toFixed(2), " | X2 = X3"),
+                                msg: "The value of X1 = 0 and X2 is equal to: ".concat(answer1.toLocaleString(locale, {
+                                    maximumFractionDigits: 4,
+                                }), " | X2 = X3"),
                             };
                         }
                         else {
@@ -496,7 +509,9 @@ var Calculator = (function (_super) {
                         if (checkedYes) {
                             return {
                                 value: [0, answer2],
-                                msg: "The value of X1 = 0 and X2 = ".concat(answer2.toFixed(2), " | X1 = X3"),
+                                msg: "The value of X1 = 0 and X2 = ".concat(answer2.toLocaleString(locale, {
+                                    maximumFractionDigits: 4,
+                                }), " | X1 = X3"),
                             };
                         }
                         else {
@@ -510,7 +525,9 @@ var Calculator = (function (_super) {
                         if (checkedYes) {
                             return {
                                 value: [0, answer1],
-                                msg: "The value of X1 = 0 and X2 = ".concat(answer1.toFixed(2), " | X1 = X3"),
+                                msg: "The value of X1 = 0 and X2 = ".concat(answer1.toLocaleString(locale, {
+                                    maximumFractionDigits: 4,
+                                }), " | X1 = X3"),
                             };
                         }
                         else {
@@ -524,7 +541,11 @@ var Calculator = (function (_super) {
                         if (checkedYes) {
                             return {
                                 value: [0, answer1, answer2],
-                                msg: "The value of X1 = 0, X2 it's the same as: ".concat(answer1.toFixed(2), " and The value of X3 it's the same as: ").concat(answer2.toFixed(2)),
+                                msg: "The value of X1 = 0, X2 it's the same as: ".concat(answer1.toLocaleString(locale, {
+                                    maximumFractionDigits: 4,
+                                }), " and The value of X3 it's the same as: ").concat(answer2.toLocaleString(locale, {
+                                    maximumFractionDigits: 4,
+                                })),
                             };
                         }
                         else {
@@ -568,9 +589,9 @@ var Calculator = (function (_super) {
                 }
             });
             if (roots_1.length === 0) {
-                return this.newtonMethod(valueA, valueB, valueC, valueD, checkedYes);
+                return this.newtonMethod(valueA, valueB, valueC, valueD, checkedYes, locale);
             }
-            return this.ruffiniDevice(valueA, valueB, valueC, valueD, roots_1, checkedYes);
+            return this.ruffiniDevice(valueA, valueB, valueC, valueD, roots_1, checkedYes, locale);
         }
     };
     return Calculator;

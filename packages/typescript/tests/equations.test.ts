@@ -14,6 +14,7 @@ describe("Calculadora equations", () => {
 			-6,
 			[1, 3, 2],
 			false,
+			"pt-BR",
 		);
 		// Substitua 'expectedResult' pelo resultado que você espera de getRufinhoDevice
 		expect(result.value).toEqual([1, 3, 2]);
@@ -77,5 +78,20 @@ describe("Calculadora equations", () => {
 		equationRoots.value?.forEach((root, index) => {
 			expect(root).toBeCloseTo(expectedRoots[index]);
 		});
+	});
+
+	test("should correctly calculate the roots of a cubic equation using the metodoDeNewton method with the locale return correct", () => {
+		const equationRoots = Mathematics.cubicEquation(
+			1,
+			-6,
+			3,
+			-6,
+			true,
+			"pt-BR",
+		);
+
+		const expectedRootsMsg = "It has only 1 real root in X = 5,6572";
+
+		expect(expectedRootsMsg).toBe(equationRoots.msg);
 	});
 });
