@@ -75,4 +75,4 @@ console.log(equationRoots.value); // Returns an array
 console.log(equationRoots.msg); // Returns a descriptive message
 ```
 
-Made by Gabriel Lima.
+Made by Gabriel Logan.

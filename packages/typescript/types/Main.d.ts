@@ -26,7 +26,7 @@ export default class Calculator extends ArithmeticOp {
      * @param valueD
      * @param checkedYes
      */
-    protected newtonMethod(valueA: number, valueB: number, valueC: number, valueD: number, checkedYes: boolean): {
+    protected newtonMethod(valueA: number, valueB: number, valueC: number, valueD: number, checkedYes: boolean, locale: string): {
         value: number[];
         msg: string;
     };
@@ -38,7 +38,7 @@ export default class Calculator extends ArithmeticOp {
      * @param roots
      * @param checkedYes
      */
-    protected ruffiniDevice(valueA: number, valueB: number, valueC: number, valueD: number, roots: number[], checkedYes: boolean): {
+    protected ruffiniDevice(valueA: number, valueB: number, valueC: number, valueD: number, roots: number[], checkedYes: boolean, locale: string): {
         value: number[];
         msg: string;
     } | {
@@ -130,7 +130,7 @@ export default class Calculator extends ArithmeticOp {
      * Mathematics.linearEquation(2, 3)
      * @return - The result = x = -3/2 = -1.5
      */
-    linearEquation(a: number, b: number): ReturnTypesForEquation;
+    linearEquation(a: number, b: number, locale?: string): ReturnTypesForEquation;
     /**
      * Method to calculate the root of a first-degree polynomial
      * @param a
@@ -149,7 +149,7 @@ export default class Calculator extends ArithmeticOp {
      * Mathematics.quadraticEquation(1, 2, -3)
      * @return - The result = [1, -3]
      */
-    quadraticEquation(a: number, b: number, c: number): ReturnTypesForEquation2upDegree;
+    quadraticEquation(a: number, b: number, c: number, locale?: string): ReturnTypesForEquation2upDegree;
     /**
      * Method to calculate the root of a third-degree polynomial
      * @param a
@@ -157,6 +157,7 @@ export default class Calculator extends ArithmeticOp {
      * @param c
      * @param d
      * @param [approximate=false]
+     * @param [locale="en-US"] // The locale to format the number
      * @example Mathematics.cubicEquation(a, b, c, d)
      *
      * a = coefficient of (x^3)
@@ -164,8 +165,10 @@ export default class Calculator extends ArithmeticOp {
      * c = coefficient of (x)
      * d = constant term
      *
+     * EX: a(x^3) + b(x^2) + c(x) + d = 0
+     *
      * Mathematics.cubicEquation(1, 2, -3, 5)
      * @return - It has only 1 real root in X = -3.344171229347796
      */
-    cubicEquation(a?: number, b?: number, c?: number, d?: number, approximate?: boolean): ReturnTypesForEquation2upDegree;
+    cubicEquation(a?: number, b?: number, c?: number, d?: number, approximate?: boolean, locale?: string): ReturnTypesForEquation2upDegree;
 }

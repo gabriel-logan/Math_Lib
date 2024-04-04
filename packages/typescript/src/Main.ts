@@ -282,7 +282,12 @@ export default class Calculator extends ArithmeticOp {
 						} else {
 							return {
 								value: [0, answer1],
-								msg: `The value of X1 = 0 and X2 is equal to: ${answer1} | X2 = X3`,
+								msg: `The value of X1 = 0 and X2 is equal to: ${answer1.toLocaleString(
+									locale,
+									{
+										maximumFractionDigits: 20,
+									},
+								)} | X2 = X3`,
 							};
 						}
 					}
@@ -301,7 +306,12 @@ export default class Calculator extends ArithmeticOp {
 						} else {
 							return {
 								value: [roots[0], answer2],
-								msg: `The value of X1 = ${roots[0]} and X2 = ${answer2} | X1 = X3`,
+								msg: `The value of X1 = ${roots[0]} and X2 = ${answer2.toLocaleString(
+									locale,
+									{
+										maximumFractionDigits: 20,
+									},
+								)} | X1 = X3`,
 							};
 						}
 					} else if (answer2 == roots[0]) {
@@ -318,7 +328,12 @@ export default class Calculator extends ArithmeticOp {
 						} else {
 							return {
 								value: [roots[0], answer1],
-								msg: `The value of X1 = ${roots[0]} and X2 it's the same as: ${answer1} | X1 = X3`,
+								msg: `The value of X1 = ${roots[0]} and X2 it's the same as: ${answer1.toLocaleString(
+									locale,
+									{
+										maximumFractionDigits: 20,
+									},
+								)} | X1 = X3`,
 							};
 						}
 					} else {
@@ -340,7 +355,17 @@ export default class Calculator extends ArithmeticOp {
 						} else {
 							return {
 								value: [roots[0], answer1, answer2],
-								msg: `The value of X1 = ${roots[0]}, X2 it's the same as: ${answer1} and The value of X3 it's the same as: ${answer2}`,
+								msg: `The value of X1 = ${roots[0]}, X2 it's the same as: ${answer1.toLocaleString(
+									locale,
+									{
+										maximumFractionDigits: 20,
+									},
+								)} and The value of X3 it's the same as: ${answer2.toLocaleString(
+									locale,
+									{
+										maximumFractionDigits: 20,
+									},
+								)}`,
 							};
 						}
 					}
@@ -597,7 +622,11 @@ export default class Calculator extends ArithmeticOp {
 	 * Mathematics.linearEquation(2, 3)
 	 * @return - The result = x = -3/2 = -1.5
 	 */
-	linearEquation(a: number, b: number): ReturnTypesForEquation {
+	linearEquation(
+		a: number,
+		b: number,
+		locale = "en-US",
+	): ReturnTypesForEquation {
 		const numberA = Number(a);
 		const numberB = Number(b);
 
@@ -611,7 +640,9 @@ export default class Calculator extends ArithmeticOp {
 		const root = -numberB / numberA;
 		return {
 			value: root,
-			msg: `The value of x is the same as: ${root}`,
+			msg: `The value of x is the same as: ${root.toLocaleString(locale, {
+				maximumFractionDigits: 20,
+			})}`,
 		};
 	}
 
@@ -637,6 +668,7 @@ export default class Calculator extends ArithmeticOp {
 		a: number,
 		b: number,
 		c: number,
+		locale = "en-US",
 	): ReturnTypesForEquation2upDegree {
 		const numberA = Number(a);
 		const numberB = Number(b);
@@ -664,12 +696,18 @@ export default class Calculator extends ArithmeticOp {
 			if (root1 === root2) {
 				return {
 					value: [root1],
-					msg: `It has only 1 real root in X = ${root1}`,
+					msg: `It has only 1 real root in X = ${root1.toLocaleString(locale, {
+						maximumFractionDigits: 20,
+					})}`,
 				};
 			} else {
 				return {
 					value: [root1, root2],
-					msg: `The value of X1 = ${root1} and X2 = ${root2}`,
+					msg: `The value of X1 = ${root1.toLocaleString(locale, {
+						maximumFractionDigits: 20,
+					})} and X2 = ${root2.toLocaleString(locale, {
+						maximumFractionDigits: 20,
+					})}`,
 				};
 			}
 		}
@@ -742,7 +780,12 @@ export default class Calculator extends ArithmeticOp {
 						} else {
 							return {
 								value: [0, answer1],
-								msg: `The value of X1 = 0 and X2 is equal to: ${answer1} | X2 = X3`,
+								msg: `The value of X1 = 0 and X2 is equal to: ${answer1.toLocaleString(
+									locale,
+									{
+										maximumFractionDigits: 20,
+									},
+								)} | X2 = X3`,
 							};
 						}
 					}
@@ -761,7 +804,12 @@ export default class Calculator extends ArithmeticOp {
 						} else {
 							return {
 								value: [0, answer2],
-								msg: `The value of X1 = 0 and X2 = ${answer2} | X1 = X3`,
+								msg: `The value of X1 = 0 and X2 = ${answer2.toLocaleString(
+									locale,
+									{
+										maximumFractionDigits: 20,
+									},
+								)} | X1 = X3`,
 							};
 						}
 					} else if (answer2 == x1) {
@@ -778,7 +826,12 @@ export default class Calculator extends ArithmeticOp {
 						} else {
 							return {
 								value: [0, answer1],
-								msg: `The value of X1 = 0 and X2 is equal to: ${answer1} | X1 = X3`,
+								msg: `The value of X1 = 0 and X2 is equal to: ${answer1.toLocaleString(
+									locale,
+									{
+										maximumFractionDigits: 20,
+									},
+								)} | X1 = X3`,
 							};
 						}
 					} else {
@@ -800,7 +853,17 @@ export default class Calculator extends ArithmeticOp {
 						} else {
 							return {
 								value: [0, answer1, answer2],
-								msg: `The value of X1 = 0, X2 it's the same as: ${answer1} and The value of X3 it's the same as: ${answer2}`,
+								msg: `The value of X1 = 0, X2 it's the same as: ${answer1.toLocaleString(
+									locale,
+									{
+										maximumFractionDigits: 20,
+									},
+								)} and The value of X3 it's the same as: ${answer2.toLocaleString(
+									locale,
+									{
+										maximumFractionDigits: 20,
+									},
+								)}`,
 							};
 						}
 					}
