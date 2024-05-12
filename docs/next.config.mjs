@@ -4,8 +4,7 @@ const nextConfig = {
 	images: {
 		unoptimized: true,
 	},
-	assetPrefix: "https://gabriel-logan.github.io/Math_Lib",
-	basePath: "/Math_Lib",
+	basePath: process.env.NODE_ENV === "production" ? "/Math_Lib" : undefined,
 };
 
 export default nextConfig;

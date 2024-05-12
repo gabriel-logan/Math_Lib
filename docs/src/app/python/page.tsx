@@ -1,42 +1,49 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+
 export default function Readme() {
 	return (
 		<div className="flex min-h-screen">
-			<div className="m-8 mx-auto flex flex-col items-center space-x-4 rounded-xl bg-white p-6 shadow-md">
-				<div className="flex h-9 w-5/6 flex-row items-center justify-evenly">
+			<div className="m-8 mx-auto flex flex-col items-center space-x-4 rounded-xl bg-black p-6 shadow-md">
+				<div className="flex h-9 w-4/6 flex-row items-center justify-evenly">
 					<Link href="https://badge.fury.io/py/loganmatic">
 						<Image
 							src="https://badge.fury.io/py/loganmatic.svg"
 							alt="PyPI version"
-							width={120}
-							height={120}
+							width={0}
+							height={0}
+							className="h-auto w-auto"
 						/>
 					</Link>
 					<Link href="https://opensource.org/licenses/MIT">
 						<Image
 							src="https://img.shields.io/badge/License-MIT-yellow.svg"
 							alt="License: MIT"
-							width={120}
-							height={120}
+							width={0}
+							height={0}
+							className="h-auto w-auto"
 						/>
 					</Link>
 					<Link href="https://pypistats.org/packages/loganmatic">
 						<Image
 							src="https://img.shields.io/pypi/dm/loganmatic.svg?style=flat-square"
 							alt="PyPI downloads"
-							width={120}
-							height={120}
+							width={0}
+							height={0}
+							className="h-auto w-auto"
 						/>
 					</Link>
 				</div>
 				<div className="mb-4">
-					<div className="text-xl font-medium text-black">Loganmatic</div>
-					<p className="text-gray-500">
+					<div className="text-xl font-medium text-white">Loganmatic</div>
+					<p className="text-gray-400">
 						Example usage of the Calculator class:
 					</p>
-					<pre className="rounded bg-gray-200 p-2 text-sm text-gray-500">
+
+					<SyntaxHighlighter language="python" style={a11yDark}>
 						{`
 from loganmatic import loganmatic
 
@@ -53,9 +60,12 @@ print("Random number", loganmatic.random_number_between(1, 10))
 print("Root of linear equation", loganmatic.root_of_first_degree(2, 4))
 print("Roots of quadratic equation", loganmatic.root_of_second_degree(1, -3, 2))
           `}
-					</pre>
+					</SyntaxHighlighter>
 				</div>
-				<Link href="/">Go Back</Link>
+
+				<Link className="text-white" href="/">
+					Go Back
+				</Link>
 			</div>
 		</div>
 	);

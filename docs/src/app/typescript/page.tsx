@@ -1,9 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+
 export default function MathLibPage() {
 	return (
-		<div className="min-h-screen bg-gray-100 p-8">
+		<div className="min-h-screen bg-gray-100 p-8 dark:bg-black">
 			<Link className="hover:text-blue-700" href="/">
 				Go back
 			</Link>
@@ -32,9 +35,15 @@ export default function MathLibPage() {
 				</Link>
 			</p>
 			<h3 className="mb-2 text-xl font-bold">Installation</h3>
-			<pre className="mb-4 rounded bg-gray-200 p-2">
-				<code>npm install loganmatic // or yarn add install loganmatic</code>
-			</pre>
+
+			<SyntaxHighlighter language="bash" style={a11yDark}>
+				npm install loganmatic
+			</SyntaxHighlighter>
+			<p>Or</p>
+			<SyntaxHighlighter language="bash" style={a11yDark}>
+				yarn add loganmatic
+			</SyntaxHighlighter>
+
 			<p className="mb-4">ENG</p>
 			<p className="mb-4 font-bold">!! JAVASCRIPT !!</p>
 			<p className="mb-4">
@@ -45,16 +54,18 @@ export default function MathLibPage() {
 				To use as an NPM package, simply use npm i loganmatic.
 			</p>
 			<p className="mb-4">To import, use:</p>
-			<pre className="mb-4 rounded bg-gray-200 p-2">
-				<code>import anythingYouWant from &quot;loganmatic.js&quot;</code>
-			</pre>
+
+			<SyntaxHighlighter language="javascript" style={a11yDark}>
+				{`import anythingYouWant from "loganmatic.js"`}
+			</SyntaxHighlighter>
+
 			<p className="mb-4">Then, you can use it as follows:</p>
-			<pre className="mb-4 rounded bg-gray-200 p-2">
-				<code>
-					console.log(anythingYouWant.EulerNumber);
-					console.log(anythingYouWant.factor(100));
-				</code>
-			</pre>
+
+			<SyntaxHighlighter language="javascript" style={a11yDark}>
+				{`console.log(anythingYouWant.EulerNumber);
+console.log(anythingYouWant.factor(100));`}
+			</SyntaxHighlighter>
+
 			<h2 className="mb-2 text-2xl font-bold">
 				Evaluated modules to calculate
 			</h2>
@@ -79,30 +90,15 @@ export default function MathLibPage() {
 				of great help!
 			</p>
 			<p className="mb-4 font-bold">Usage example:</p>
-			<pre className="mb-4 rounded bg-gray-200 p-2 text-sm">
-				<code className="block whitespace-pre">
-					<span className="text-blue-600">import</span> Mathematics{" "}
-					<span className="text-blue-600">from</span>{" "}
-					<span className="text-red-600">{'"loganmatic"'}</span>;
-					<br />
-					<span className="text-blue-600">console.log</span>
-					(Mathematics.EulerNumber);
-					<br />
-					<span className="text-green-600">const</span> equationRoots =
-					Mathematics.cubicEquation(1, -6, 11, -6);
-					<br />
-					<span className="text-blue-600">console.log</span>
-					(equationRoots.value);{" "}
-					<span className="text-gray-500">{"// Returns an array"}</span>
-					<br />
-					<span className="text-blue-600">
-						console.log
-					</span>(equationRoots.msg);{" "}
-					<span className="text-gray-500">
-						{"// Returns a descriptive message"}
-					</span>
-				</code>
-			</pre>
+
+			<SyntaxHighlighter language="javascript" style={a11yDark}>
+				{`import Mathematics from "loganmatic";
+console.log(Mathematics.EulerNumber);
+const equationRoots = Mathematics.cubicEquation(1, -6, 11, -6);
+console.log(equationRoots.value); // Returns an array
+console.log(equationRoots.msg); // Returns a descriptive message`}
+			</SyntaxHighlighter>
+
 			<p>Made by Gabriel Logan.</p>
 		</div>
 	);
